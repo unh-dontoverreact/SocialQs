@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const contactsController = require("../../controllers/socialQController");
+const contactsController = require("../../controllers/contactsController");
 
 // Matches with "/api/contacts"
 router.route("/")
