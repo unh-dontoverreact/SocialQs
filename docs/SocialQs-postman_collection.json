@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "89be2d1a-ba31-40f2-abda-a95aaa9e56ae",
+		"name": "SocialQs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Local - Create Contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"Matt\",\n\t\"lastName\"  : \"Galarneau\",\n\t\"email\"     : \"mlgalarneau@gmail.com\",\n\t\"birthDate\" : \"10-30-1966\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"contacts"
+					]
+				},
+				"description": "Adds a contact to the mongo database"
+			},
+			"response": []
+		},
+		{
+			"name": "Local - GET Contacts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"contacts"
+					]
+				},
+				"description": "Get all local contacts"
+			},
+			"response": []
+		},
+		{
+			"name": "Local - DELETE Contact",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/contacts/5c6c24e16c795234fcc7c9ea",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"contacts",
+						"5c6c24e16c795234fcc7c9ea"
+					]
+				},
+				"description": "Delete contact from local database"
+			},
+			"response": []
+		},
+		{
+			"name": "Local - Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"mbgala\",\n\t\"password\": \"foo\",\n\t\"email\"   : \"mbgalarneau@gmail.com\",\n\t\"image\"   : \"\",\n\t\"contacts\" : [{\n\t\t\"firstName\" : \"Fred\",\n\t\t\"lastName\"  : \"Flintstone\",\n\t\t\"email\"     : \"fred@bedrockestates.com\",\n\t\t\"birthDate\" : \"1939-05-24\"\n\t\t},\n\t\t{\n\t\t\"firstName\" : \"Yogi\",\n\t\t\"lastName\"  : \"Bear\",\n\t\t\"email\"     : \"yogi@jellystone.com\",\n\t\t\"birthDate\" : \"1942-01-20\"\n\t\t}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Creates a new user with a nested contact object"
+			},
+			"response": []
+		},
+		{
+			"name": "Local - GET Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Get all users from the collection"
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku - Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"Mike\",\n\t\"lastName\"  : \"Galarneau\"\n}"
+				},
+				"url": {
+					"raw": "http://socialqs.herokuapp.com/api/contacts",
+					"protocol": "http",
+					"host": [
+						"socialqs",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"contacts"
+					]
+				},
+				"description": "Create a contact on the Heroku repository"
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku - GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://socialqs.herokuapp.com/api/contacts",
+					"protocol": "https",
+					"host": [
+						"socialqs",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"contacts"
+					]
+				},
+				"description": "Get all contacts from Heroku"
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku - DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://socialqs.herokuapp.com/api/contacts/5c6c255669f7c2002ae7adc6",
+					"protocol": "https",
+					"host": [
+						"socialqs",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"contacts",
+						"5c6c255669f7c2002ae7adc6"
+					]
+				},
+				"description": "Delete contact from remote database"
+			},
+			"response": []
+		}
+	]
+}
