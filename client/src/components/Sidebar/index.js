@@ -6,7 +6,7 @@ import User from "../User"
 class Sidebar extends Component {
     componentDidMount() {
         let elem = document.querySelector(".sidenav");
-        let instance = M.Sidenav.init(elem, {
+        M.Sidenav.init(elem, {
             edge: "left",
             inDuration: 250
         });
@@ -21,7 +21,7 @@ class Sidebar extends Component {
                 <User />
 
                 {/* Contact Section */ }
-                <li><a className="subheader">Contacts</a></li>
+                <li><a className="subheader" href="/">Contacts</a></li>
                 <li>
                     <a href="#!">
                         <i className="material-icons waves-effect">person_add</i>Add Contacts
@@ -34,7 +34,7 @@ class Sidebar extends Component {
                     <div className="divider" />
                 </li>
                 {/* Events Section */ }
-                <li><a className="subheader">Events</a></li>
+                <li><a className="subheader" href="/">Events</a></li>
 
                 <li><a href="#!"><i className="material-icons waves-effect">event_note</i>List Events</a></li>
                 <li>
@@ -46,7 +46,7 @@ class Sidebar extends Component {
                     <div className="divider" />
                 </li>
                 </ul>
-            <a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i>
+            <a href="/" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i>
             </a>
           </div>
         );
