@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import API from '../utils/API';
 import { ContactList, ContactListItem } from '../components/ContactList'
 import { Col, Row, Container } from "../components/Grid";
+import Test from "../components/Test/Test.js"
 
 class HomePage extends Component {
 
@@ -36,22 +37,30 @@ class HomePage extends Component {
 
   render() {
     return (
+      <div>
+     
+      
       <Container fluid>
+      
+
         <Row>
           <Col size="md-12">
             <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "5px"}}>
               <h4 id="results-lbl">Results</h4>
+             
                 {this.state.contacts.length ? (
                   <ContactList>
                     {this.renderContacts()}  
-                  </ContactList>
+                                      </ContactList>
+                                     
                 ) : (
                   <h4 id="noresults-lbl">No Contacts avaialble</h4>
                 )}
                 </div>
           </Col>
         </Row>
-      </Container>    )
+      </Container>   
+      </div> )
   }
 }
 

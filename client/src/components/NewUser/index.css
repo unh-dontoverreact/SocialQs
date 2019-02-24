@@ -1,0 +1,22 @@
+/* .new-user-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+.new-user-display{
+    postion: relative;
+    top: 100px;
+    width:50%;
+margin: auto;
+
+padding:50px;
+border: 2px;
+border-color: #612469;
+border-style: inset
+
+}
+.signup-button, .back-to-login-button{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 10px
+}
