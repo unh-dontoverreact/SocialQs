@@ -6,7 +6,7 @@ function Nav() {
 
     <nav>
       <div className="nav-wrapper">
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <ul id="nav-mobile" className="left hide-on-med-and-down">
           <li><a href="/">SocialQs</a></li>
         </ul>
       </div>
