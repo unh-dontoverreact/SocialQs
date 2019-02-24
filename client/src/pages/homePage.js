@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import API from '../utils/API';
 import { ContactList, ContactListItem } from '../components/ContactList'
 import { Col, Row, Container } from "../components/Grid";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar"
+
 class HomePage extends Component {
 
   state = {
@@ -47,7 +48,10 @@ class HomePage extends Component {
       
 
         <Row>
-          <Col size="md-12">
+          <Col size="md-3">
+          <Sidebar />
+          </Col>
+          <Col size="md-9">
             <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "5px"}}>
               <h4 id="results-lbl">Results</h4>
              
