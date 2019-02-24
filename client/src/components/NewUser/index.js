@@ -17,13 +17,23 @@ const NewUser = props => (
      
        </form> */}
    <form autocomplete="on">
+   <div className="input-field">
+          <input placeholder ="Enter your first name" id="first-name"  className=" .center-align" onChange={props.setFirstname}/>
+
+          <span className="helper-text" data-error="wrong" data-success="right" >First Name</span>
+        </div>
+   <div className="input-field">
+          <input placeholder ="Enter your last name" id="last-name"  className=" .center-align" onChange={props.setLastname}/>
+
+          <span className="helper-text" data-error="wrong" data-success="right" >Last Name</span>
+        </div>
         <div className="input-field">
           <input placeholder ="example@example.com" id="email" type="email" className="validate .center-align" onChange={props.setUsername}/>
 
           <span className="helper-text" data-error="wrong" data-success="right" >Email (this will be your username)</span>
         </div>
         <div className="input-field " >
-          <input id="password" type="password" placeholder ="Password" autocomplete="off" onChange={props.setPassword} />
+          <input id="password" type="password" placeholder ="Enter your Password" autocomplete="off" onChange={props.setPassword} />
          
           <span class="helper-text" data-error="wrong" data-success="right" >Password</span>
         </div>

@@ -11,6 +11,8 @@ import axios from 'axios';
 class LandingPage extends Component {
   //set state
   state = {
+    firstname: "",
+    lastname: "",
 username: "",
 password: "",
 existing: true,
@@ -24,16 +26,16 @@ getUser = () => {
   let loginUsername = this.state.username;
   let loginPassword = this.state.password;
   console.log(this.state.username + this.state.password)
-  axios.get('/api/contacts')
+  axios.get('/api/user')
   .then(response =>{
-    let username = response.data
-       for (let i=0; i<username.length; i++){
+    let user = response.data
+       for (let i=0; i<user.length; i++){
       
      //if there is a match to both username and password it redirects to home page
-      if(loginUsername === username[i].firstName && loginPassword === username[i].lastName){
-        console.log(username[i])
+      if(loginUsername === user[i].email && loginPassword === user[i].password){
+        console.log(user[i])
         this.setState({
-          userLoggedIn: username[i],
+          userLoggedIn: user[i],
           redirectTo: '/'
       })
       }
@@ -42,6 +44,14 @@ getUser = () => {
   })
   }
 
+  setFirstname =(event) =>{
+    this.setState({firstname: event.target.value})
+    console.log(this.state.firstname)
+     }
+  setLastname =(event) =>{
+    this.setState({lastname: event.target.value})
+    console.log(this.state.lastname)
+     }
   // changes the state of the user name based on username input field
   setUsername =(event) =>{
     this.setState({username: event.target.value})
@@ -68,11 +78,13 @@ getUser = () => {
  newUser =() => {
   
   let newUserInfo ={
+    firstname: this.state.firstname,
+    lastname: this.state.lastname,
     email: this.state.username,
     password: this.state.password
   }
   console.log(newUserInfo)
-  axios.post('/api/contacts', newUserInfo)
+  axios.post('/api/user', newUserInfo)
   .then(response =>{
     console.log(response)
   })
@@ -110,6 +122,8 @@ getUser = () => {
 <NewUser
 returnToLogin = {this.returnToLogin}
 newUser = {this.newUser}
+setFirstname={this.setFirstname}
+setLastname={this.setLastname}
 setUsername={this.setUsername}
 setPassword={this.setPassword}
 />

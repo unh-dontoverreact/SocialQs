@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import API from '../utils/API';
 import { ContactList, ContactListItem } from '../components/ContactList'
 import { Col, Row, Container } from "../components/Grid";
-import Test from "../components/Test/Test.js"
-
+import Sidebar from "../components/Sidebar";
 class HomePage extends Component {
 
   state = {
@@ -26,20 +25,24 @@ class HomePage extends Component {
 
   // results component rendering
   renderContacts = () => {
-    return this.state.contacts.map((contact, i) => {
-      return <ContactListItem 
+   
+    return  this.state.contacts.map((contact, i) => {
+       
+      return  <ContactListItem 
         key = {i}  
         lastName={contact.lastName}
         firstName={contact.firstName}
         />    
+            
     });
+  
   }
 
   render() {
     return (
       <div>
      
-      
+     <Sidebar />
       <Container fluid>
       
 

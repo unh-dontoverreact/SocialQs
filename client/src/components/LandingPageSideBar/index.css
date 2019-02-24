@@ -12,7 +12,7 @@ padding: 20px;
   border-style: outset;
   border-color: black;
   color: whitesmoke;
-  background-color: #612469
+  background-color: #612469 !important
 }
 .tag{
     color: #612469

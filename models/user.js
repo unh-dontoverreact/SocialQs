@@ -3,10 +3,11 @@ const Schema = mongoose.Schema;
 const { contactSchema } = require("./contact");
 
 const userSchema = new Schema({
-  username: { type: String, required: true  },
-  password: { type: String  },
+  firstname: { type: String, required: true  },
+  lastname: { type: String, required: true  },
+  password: { type: String, required: true  },
   image: { type: String },
-  email: { type: String  },
+  email: { type: String, required: true  },
   contacts: [contactSchema]
 });
 

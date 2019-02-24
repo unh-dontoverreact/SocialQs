@@ -1,14 +1,6 @@
-/* .new-user-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
 .new-user-display{
-    postion: relative;
-    top: 100px;
-    width:50%;
-margin: auto;
-
+       width:50%;
+margin: auto !important;
 padding:50px;
 border: 2px;
 border-color: #612469;
