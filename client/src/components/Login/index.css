@@ -1,0 +1,9 @@
+body {
+    background-color: whitesmoke
+}
+.row{
+    padding:0px !important
+}
+.login-button{
+    margin-top: 10px
+}

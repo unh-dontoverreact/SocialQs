@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LandingPage from "./pages/landingPage";
 import HomePage from "./pages/homePage";
 import Nav from "./components/Nav";
-import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
