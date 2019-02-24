@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import Login from "../components/Login/index"
 import NewUser from "../components/NewUser/index"
 import LandingPageSideBar from "../components/LandingPageSideBar/index"
-import Test from "../components/Test/Test.js"
 import { Redirect } from 'react-router-dom'
 
 import axios from 'axios';
