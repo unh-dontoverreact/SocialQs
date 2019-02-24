@@ -1,6 +1,15 @@
 import axios from "axios";
 
 export default {
+  //gets user info
+  getUser: function() {
+    return axios.get("/api/user");
+  },
+
+  //creates a new user
+  saveUser: function(userData) {
+    return axios.post("/api/user", userData);
+  },
 
   // Gets all contacts
   getContacts: function() {
