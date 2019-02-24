@@ -1,11 +1,3 @@
-nav{
+.nav-wrapper{
   background-color: #612469;
-}
-
-#results-lbl {
-  text-align: left;
-}
-
-#noresults-lbl {
-  text-align: center;
 }
