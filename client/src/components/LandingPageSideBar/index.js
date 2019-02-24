@@ -26,7 +26,7 @@ const LandingPageSideBar = props => (
 
 <h3 className="tag " ><strong><i>All on your own terms</i></strong></h3>
 
-      <a className = "white-text  offset-s4 btn-large login-button waves-effect waves-light btn #9c27b0 purple darken-4 z-depth-5" onClick={props.createUser}>Sign Up Today</a>
+      <button className = "white-text  offset-s4 btn-large login-button waves-effect waves-light btn #9c27b0 purple darken-4 z-depth-5" onClick={props.createUser}>Sign Up Today</button>
       </div>
     
     </div>

@@ -43,8 +43,8 @@ const NewUser = props => (
    
    
 
-       <a className="signup-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.newUser}>Sign Up</a>
-       <a className = "back-to-login-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.returnToLogin}>Back to login</a> 
+       <button className="signup-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.newUser}>Sign Up</button>
+       <button className = "back-to-login-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.returnToLogin}>Back to login</button> 
     </div>
     </div>
 );

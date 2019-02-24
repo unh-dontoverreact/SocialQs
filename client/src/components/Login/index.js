@@ -31,7 +31,7 @@ const Login = props => (
       </div>
     </form>
     <div  className="col s2  ">
-       <a className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" onClick={props.getUser}>Sign In</a>
+       <button className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" onClick={props.getUser}>Sign In</button>
        </div>
    </div>
 </div>
