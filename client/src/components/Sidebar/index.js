@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import "materialize-css/dist/css/materialize.min.css";
-import User from "../User"
+import User from "./User"
 import Calendar from 'react-calendar';
 
 class Sidebar extends Component {
@@ -58,7 +58,7 @@ class Sidebar extends Component {
                     <div className="divider" />
                 </li>
 
-                { /* Event Calenar */ }
+                { /* Event Calendar */ }
                 <Calendar
                   onChange={this.onChange}
                   value={this.state.date}
