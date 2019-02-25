@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 const { contactSchema } = require("./contact");
 
 const userSchema = new Schema({
-  firstname: { type: String, required: true  },
-  lastname: { type: String, required: true  },
+  loginName: { type: String },
+  firstName: { type: String },
+  lastName: { type: String  },
   password: { type: String, required: true  },
   image: { type: String },
   email: { type: String, required: true  },

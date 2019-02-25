@@ -1,15 +1,16 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
+import "./style.css"
 
 function User(props) {
 
     return (
-      <div>
-        <img className="fit-picture"
-          src="http://i.pravatar.cc/300"
-          alt="profile pic" />
+      <div id="profile-pic">
+        <img className="circle"
+          src="http://i.pravatar.cc/300" 
+          alt="" />
 
-        Username:  randomUser {/* {props.username} */ }
+        User:  {props.user.firstName} {props.user.lastName}
       </div>
     );
 }

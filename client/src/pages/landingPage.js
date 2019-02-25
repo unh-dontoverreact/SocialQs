@@ -11,21 +11,20 @@ import axios from 'axios';
 class LandingPage extends Component {
   //set state
   state = {
-    firstname: "",
-    lastname: "",
-username: "",
-password: "",
-image: "",
-redirectTo: null,
-userLoggedIn: []
-  
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+    image: "",
+    redirectTo: null,
+    userLoggedIn: []  
 }
 
 // axios request to user database and checks for matched based on input fields
 getUser = () => {
   let loginUsername = this.state.username;
   let loginPassword = this.state.password;
-  console.log(this.state.username + this.state.password)
+  console.log(this.state.username,this.state.password)
   axios.get('/api/user')
   .then(response =>{
     let user = response.data
@@ -34,34 +33,35 @@ getUser = () => {
      //if there is a match to both username and password it redirects to home page
       if(loginUsername === user[i].email && loginPassword === user[i].password){
         console.log(user[i])
+        this.props.handlers.userUpdateHandler(user[i]);  /* update main app state with new user */        
         this.setState({
           userLoggedIn: user[i],
           redirectTo: '/'
-      })
+        });
       }
 
     }
   })
   }
 
-  setFirstname =(event) =>{
-    this.setState({firstname: event.target.value})
-    console.log(this.state.firstname)
+  setFirstName =(event) =>{
+    this.setState({firstName: event.target.value})
+    console.log(this.state.firstName)
      }
-  setLastname =(event) =>{
-    this.setState({lastname: event.target.value})
-    console.log(this.state.lastname)
+  setLastName =(event) =>{
+    this.setState({lastName: event.target.value})
+    console.log(this.state.lastName)
      }
   // changes the state of the user name based on username input field
   setUsername =(event) =>{
     this.setState({username: event.target.value})
-    console.log(this.state.username)
+    console.log("username: ", this.state.username)
      }
 
      // changes the state of the password name based on password input field
   setPassword =(event) =>{
     this.setState({password: event.target.value})
-    console.log(this.state.password)
+    console.log("password: ", this.state.password)
 
   }
   //if user clicks new user it changes state of existing to false and renders new user component
@@ -78,13 +78,13 @@ getUser = () => {
  newUser =() => {
   
   let newUserInfo ={
-    firstname: this.state.firstname,
-    lastname: this.state.lastname,
+    firstName: this.state.firstName,
+    lastName: this.state.lastName,
     email: this.state.username,
     password: this.state.password,
     image: this.state.image
   }
-  console.log(newUserInfo)
+  console.log("On New User:", newUserInfo)
   axios.post('/api/user', newUserInfo)
   .then(response =>{
     console.log(response)
@@ -98,11 +98,13 @@ getUser = () => {
 // allows user to upload an image it in the state
     constructor(props) {
         super(props);
-         this.state = { pictures: [],
-        upload: [],
-      existing: true };
+        this.state = { 
+            pictures: [],
+            upload: [],
+            existing: true 
+        };
 
-         this.onDrop = this.onDrop.bind(this);
+        this.onDrop = this.onDrop.bind(this);
     }
  
     onDrop(pictureFiles, pictureDataURLs) {
@@ -149,13 +151,13 @@ getUser = () => {
  else{
       return(
 <NewUser
-returnToLogin = {this.returnToLogin}
-newUser = {this.newUser}
-setFirstname={this.setFirstname}
-setLastname={this.setLastname}
-setUsername={this.setUsername}
-setPassword={this.setPassword}
-image={<ImageUploader
+  returnToLogin = {this.returnToLogin}
+  newUser = {this.newUser}
+  setfirstName={this.setFirstName}
+  setlastName={this.setLastName}
+  setUsername={this.setUsername}
+  setPassword={this.setPassword}
+  image={<ImageUploader
   withIcon={true}
   withPreview={true}
   singleImage={true}
