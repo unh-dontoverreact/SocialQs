@@ -15,7 +15,7 @@ const Login = props => (
        </label>
        </form> */}
        <div className="row ">
-    <form className="col s6 " autocomplete="on">
+    <form className="col s6 " autoComplete="on">
       <div className="row">
         <div className="input-field col s5">
           <input id="email" placeholder ="example@example.com" type="email" className="validate" onChange={props.setUsername}/>
@@ -23,9 +23,9 @@ const Login = props => (
           <span className="helper-text" data-error="wrong" data-success="right" >UserName</span>
         </div>
         <div className="input-field col s5">
-          <input id="password" type="password" placeholder ="Password" autocomplete="off" onChange={props.setPassword} />
+          <input id="password" type="password" placeholder ="Password" autoComplete="off" onChange={props.setPassword} />
          
-          <span class="helper-text" data-error="wrong" data-success="right" >Password</span>
+          <span className="helper-text" data-error="wrong" data-success="right" >Password</span>
         </div>
        
       </div>

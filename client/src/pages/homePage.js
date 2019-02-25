@@ -7,18 +7,25 @@ import Sidebar from "../components/Sidebar"
 class HomePage extends Component {
 
   state = {
-    contacts: [],
+    user: { firstName: "",
+            lastName: "",
+            image: "",
+            contacts: []},
+    contacts: []  /* deprecated, see user.contacts */
   };
 
   // Run this when component starts up,  clear the state and load contacts from db
   componentDidMount() {
-    this.setState({contacts: []});
-
-    this.loadContacts();
+    console.log("logged in user: ", this.props.user);
+    this.setState({
+      user: this.props.user,
+      contacts: []
+      });
+    this.loadUserContacts();
   }
   
-  // pull the list of contacts from the back end
-  loadContacts = () => {
+  // pull the list of contacts *for this user* from the back end
+  loadUserContacts = () => {
     API.getContacts().then((res) => {
       this.setState({contacts : res.data});
     });
@@ -45,7 +52,7 @@ class HomePage extends Component {
       <Container fluid>
         <Row>
           <Col size="md-3">
-          <Sidebar />
+          <Sidebar user={this.state.user}/>
           </Col>
           <Col size="md-9">
             <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "5px"}}>
@@ -54,7 +61,7 @@ class HomePage extends Component {
                 {this.state.contacts.length ? (
                   <ContactList>
                     {this.renderContacts()}  
-                                      </ContactList>
+                  </ContactList>
                                      
                 ) : (
                   <h4 id="noresults-lbl">No Contacts avaialble</h4>

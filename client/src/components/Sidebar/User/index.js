@@ -6,10 +6,10 @@ function User(props) {
     return (
       <div>
         <img className="fit-picture"
-          src="http://i.pravatar.cc/300"
-          alt="profile pic" />
+          src="http://i.pravatar.cc/300" 
+          alt="" />
 
-        Username:  randomUser {/* {props.username} */ }
+        User:  {props.user.firstName} {props.user.lastName}
       </div>
     );
 }
