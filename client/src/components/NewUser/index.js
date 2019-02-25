@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css"
 
+
 const NewUser = props => (
 <div className = "valign-wrapper center-align new-user-container">
     <div className= "new-user-display card z-depth-2">
@@ -40,7 +41,7 @@ const NewUser = props => (
        
      
     </form>
-   
+  <div> {props.image }</div>
    
 
        <button className="signup-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.newUser}>Sign Up</button>
