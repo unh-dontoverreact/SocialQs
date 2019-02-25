@@ -106,7 +106,7 @@ getUser = () => {
     }
  
     onDrop(pictureFiles, pictureDataURLs) {
-      let upload = this.state.pictures.concat(pictureFiles)
+     
            this.setState({
             pictures: this.state.pictures.concat(pictureFiles),
             upload:pictureDataURLs,
