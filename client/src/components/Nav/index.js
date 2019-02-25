@@ -7,7 +7,7 @@ function Nav() {
     <nav>
       <div className="nav-wrapper">
         <ul id="nav-mobile" className="brand-logo center hide-on-med-and-down">
-          <li><p>SocialQs</p></li>
+          <li>SocialQs</li>
         </ul>
       </div>
     </nav>

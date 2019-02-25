@@ -10,7 +10,7 @@ class Sidebar extends Component {
     super(props);
 
     this.state = { 
-      date : new Date()
+      date : new Date(),
     };
   }
 
@@ -26,7 +26,7 @@ class Sidebar extends Component {
 
   render() {
       return (
-        <div>
+        <div id="sidebar">
           <ul id="slide-out" className="sidenav sidenav-fixed">
               <li />
               {/* User Profile Section */ }
@@ -38,7 +38,7 @@ class Sidebar extends Component {
               {/* Contact Section */ }
               <li><a className="subheader" href="/">Contacts</a></li>
               <li>
-                  <a href="#!">
+                  <a href="/contacts">
                       <i className="material-icons waves-effect">person_add</i>Manage Contacts
                   </a>
               </li>
@@ -55,7 +55,7 @@ class Sidebar extends Component {
               </li>
 
               {/* Events Section */ }
-              <li><a href="#!"><i className="material-icons">exit_to_app</i>Logout</a></li>
+              <li><a href="/landing" onClick={this.props.logoutHandler}><i className="material-icons">exit_to_app</i>Logout</a></li>
               <li>
                   <div className="divider" />
               </li>

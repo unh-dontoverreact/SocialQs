@@ -4,18 +4,35 @@ import "./style.css"
 
 // ContactList - renders an unorderd list of book items
 export function ContactList({ children }) {
-  return <ul className="list-group">{children}</ul>;
+  return <ul className="collection">{children}</ul>;
 }
 
 // ContactListItem - details of a contact
 export function ContactListItem(props) {
 
   return (
-    <li className="list-group-item">
+    <li className="collection-item">
       <Container>
         <Row>
-          <Col size="lg-12">
-            <h3>{props.firstName} {props.lastName}</h3>
+          <Col size="s12">
+            <table class="striped responsive-table">
+              <tbody>
+                <tr>
+                  <td>
+                    {props.firstName} {props.lastName}
+                  </td>
+                  <td>
+                    {props.birthDate}
+                  </td>
+                  <td>
+                    {props.email}
+                  </td>
+                  <td>
+                    <button><i className="material-icons">delete_forever</i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </Col>
         </Row>
       </Container>
