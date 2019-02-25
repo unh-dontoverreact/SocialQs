@@ -4,6 +4,7 @@ import Login from "../components/Login/index"
 import NewUser from "../components/NewUser/index"
 import LandingPageSideBar from "../components/LandingPageSideBar/index"
 import { Redirect } from 'react-router-dom'
+import ImageUploader from 'react-images-upload';
 
 import axios from 'axios';
 
@@ -14,7 +15,7 @@ class LandingPage extends Component {
     lastname: "",
 username: "",
 password: "",
-existing: true,
+image: "",
 redirectTo: null,
 userLoggedIn: []
   
@@ -80,7 +81,8 @@ getUser = () => {
     firstname: this.state.firstname,
     lastname: this.state.lastname,
     email: this.state.username,
-    password: this.state.password
+    password: this.state.password,
+    image: this.state.image
   }
   console.log(newUserInfo)
   axios.post('/api/user', newUserInfo)
@@ -92,6 +94,32 @@ getUser = () => {
 });
 
 }
+
+// allows user to upload an image it in the state
+    constructor(props) {
+        super(props);
+         this.state = { pictures: [],
+        upload: [],
+      existing: true };
+
+         this.onDrop = this.onDrop.bind(this);
+    }
+ 
+    onDrop(pictureFiles, pictureDataURLs) {
+      let upload = this.state.pictures.concat(pictureFiles)
+           this.setState({
+            pictures: this.state.pictures.concat(pictureFiles),
+            upload:pictureDataURLs,
+            image: pictureDataURLs
+        });
+           console.log(this.state.image)   
+    }
+
+   
+
+
+
+
 // renders components to landing page
   render() {
     if (this.state.redirectTo) {
@@ -101,7 +129,7 @@ getUser = () => {
       <Redirect to={{ pathname: this.state.redirectTo }} />
      
       )
-  } else if (this.state.existing) 
+  } else if (this.state.existing) {
     return (
       <div>
       
@@ -111,13 +139,15 @@ getUser = () => {
       setPassword={this.setPassword}
      
       />
-     
+
 <LandingPageSideBar
  createUser ={this.createUser}
 />
       </div>
     )
-    return(
+  }
+ else{
+      return(
 <NewUser
 returnToLogin = {this.returnToLogin}
 newUser = {this.newUser}
@@ -125,9 +155,18 @@ setFirstname={this.setFirstname}
 setLastname={this.setLastname}
 setUsername={this.setUsername}
 setPassword={this.setPassword}
+image={<ImageUploader
+  withIcon={true}
+  withPreview={true}
+  singleImage={true}
+  buttonText='Choose image'
+  onChange={this.onDrop}
+  imgExtension={['.jpg', '.gif', '.png', '.gif']}
+  maxFileSize={5242880}
+/>}
 />
     )
-    
+  } 
   }
 }
 
