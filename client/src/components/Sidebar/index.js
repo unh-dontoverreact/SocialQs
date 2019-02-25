@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import "materialize-css/dist/css/materialize.min.css";
 import User from "../User"
+import Calendar from 'react-calendar';
 
 class Sidebar extends Component {
     componentDidMount() {
@@ -12,6 +13,12 @@ class Sidebar extends Component {
         });
     }
 
+    state = {
+      date: new Date(),
+    }
+   
+    onChange = date => this.setState({ date })
+  
     render() {
         return (
           <div>
@@ -19,6 +26,9 @@ class Sidebar extends Component {
                 <li />
                 {/* User Profile Section */ }
                 <User />
+                <li>
+                    <div className="divider" />
+                </li>
 
                 {/* Contact Section */ }
                 <li><a className="subheader" href="/">Contacts</a></li>
@@ -33,6 +43,7 @@ class Sidebar extends Component {
                 <li>
                     <div className="divider" />
                 </li>
+
                 {/* Events Section */ }
                 <li><a className="subheader" href="/">Events</a></li>
 
@@ -40,14 +51,22 @@ class Sidebar extends Component {
                 <li>
                     <div className="divider" />
                 </li>
+
                 {/* Events Section */ }
                 <li><a href="#!"><i className="material-icons">exit_to_app</i>Logout</a></li>
                 <li>
                     <div className="divider" />
                 </li>
-                </ul>
-            <a href="/" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i>
-            </a>
+
+                { /* Event Calenar */ }
+                <Calendar
+                  onChange={this.onChange}
+                  value={this.state.date}
+                />
+            </ul>
+
+            { /* Hamburger Menu */ }
+            <a href="/" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
           </div>
         );
     }
