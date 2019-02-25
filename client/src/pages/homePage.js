@@ -42,11 +42,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-     
-     <Sidebar />
       <Container fluid>
-      
-
         <Row>
           <Col size="md-3">
           <Sidebar />
