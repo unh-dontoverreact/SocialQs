@@ -1,0 +1,12 @@
+#userProfile {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #612469;
+    border-color: black;
+    color: whitesmoke;
+    border-style: outset;
+}
+
+#userStats{
+    padding: 10px;
+}
