@@ -44,26 +44,18 @@ getUser = () => {
   })
   }
 
-  setFirstName =(event) =>{
-    this.setState({firstName: event.target.value})
-    console.log(this.state.firstName)
-     }
-  setLastName =(event) =>{
-    this.setState({lastName: event.target.value})
-    console.log(this.state.lastName)
-     }
-  // changes the state of the user name based on username input field
-  setUsername =(event) =>{
-    this.setState({username: event.target.value})
-    console.log("username: ", this.state.username)
-     }
+  // if any input field changes it updates the state
+  handleInputChange = event => {
+    // Getting the value and name of the input
+    const { name, value } = event.target;
 
-     // changes the state of the password name based on password input field
-  setPassword =(event) =>{
-    this.setState({password: event.target.value})
-    console.log("password: ", this.state.password)
+    // Updating the state
+    this.setState({
+      [name]: value
+    });
+    console.log(this.state.username)
+  };
 
-  }
   //if user clicks new user it changes state of existing to false and renders new user component
   createUser=() => {
    this.setState({existing:false})
@@ -118,10 +110,6 @@ getUser = () => {
     }
 
    
-
-
-
-
 // renders components to landing page
   render() {
     if (this.state.redirectTo) {
@@ -137,8 +125,7 @@ getUser = () => {
       
       <Login
       getUser={this.getUser}
-      setUsername={this.setUsername}
-      setPassword={this.setPassword}
+      handleInputChange = {this.handleInputChange}
      
       />
 
@@ -153,10 +140,7 @@ getUser = () => {
 <NewUser
   returnToLogin = {this.returnToLogin}
   newUser = {this.newUser}
-  setfirstName={this.setFirstName}
-  setlastName={this.setLastName}
-  setUsername={this.setUsername}
-  setPassword={this.setPassword}
+  handleInputChange = {this.handleInputChange}
   image={<ImageUploader
   withIcon={true}
   withPreview={true}

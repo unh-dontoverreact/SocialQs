@@ -7,34 +7,25 @@ const NewUser = props => (
     <div className= "new-user-display card z-depth-2">
  
    <h3>Create your Account </h3>
-      {/* <form>
-      <label> Email
-  <input type="text" name="username" className="login-username" onChange={props.setUsername}/> 
-  </label>
-          <label>
-              Password
-       <input  type="text"  name="password" className = "login-password" onChange={props.setPassword}/> 
-       </label>
-     
-       </form> */}
+    
    <form autoComplete="on">
    <div className="input-field">
-          <input placeholder ="Enter your first name" id="first-name"  className=" .center-align" onChange={props.setfirstName}/>
+          <input placeholder ="Enter your first name" name = "firstName" id="first-name"  className=" .center-align" onChange={props.handleInputChange}/>
 
-          <span className="helper-text" data-error="wrong" data-success="right" >First Name</span>
+          <span className="helper-text"  data-error="wrong" data-success="right" >First Name</span>
         </div>
    <div className="input-field">
-          <input placeholder ="Enter your last name" id="last-name"  className=" .center-align" onChange={props.setlastName}/>
+          <input placeholder ="Enter your last name" name= "lastName" id="last-name"  className=" .center-align" onChange={props.handleInputChange}/>
 
           <span className="helper-text" data-error="wrong" data-success="right" >Last Name</span>
         </div>
         <div className="input-field">
-          <input placeholder ="example@example.com" id="email" type="email" className="validate .center-align" onChange={props.setUsername}/>
+          <input placeholder ="example@example.com" name = "username" id="email" type="email" className="validate .center-align" onChange={props.handleInputChange}/>
 
           <span className="helper-text" data-error="wrong" data-success="right" >Email (this will be your username)</span>
         </div>
         <div className="input-field " >
-          <input id="password" type="password" placeholder ="Enter your Password" autoComplete="off" onChange={props.setPassword} />
+          <input id="password" type="password" name="password" placeholder ="Enter your Password" autoComplete="off" onChange={props.handleInputChange} />
          
           <span className="helper-text" data-error="wrong" data-success="right" >Password</span>
         </div>
