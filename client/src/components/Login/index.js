@@ -5,35 +5,29 @@ const Login = props => (
     <div className= "login-display">
  
    
-      {/* <form>
-      <label> Username
-  <input type="text" name="username" className="login-username" onChange={props.setUsername}/> 
-  </label>
-          <label>
-              Password
-       <input  type="text"  name="password" className = "login-password" onChange={props.setPassword}/> 
-       </label>
-       </form> */}
+    
        <div className="row ">
     <form className="col s6 " autoComplete="on">
       <div className="row">
         <div className="input-field col s5">
-          <input id="email" placeholder ="example@example.com" type="email" className="validate" onChange={props.setUsername}/>
+          <input id="email" placeholder ="example@example.com" name="username" type="email" className="validate" onChange={props.handleInputChange}/>
 
           <span className="helper-text" data-error="wrong" data-success="right" >UserName</span>
         </div>
         <div className="input-field col s5">
-          <input id="password" type="password" placeholder ="Password" autoComplete="off" onChange={props.setPassword} />
+          <input id="password" type="password" name ="password" placeholder ="Password" autoComplete="off" onChange={props.handleInputChange} />
          
           <span className="helper-text" data-error="wrong" data-success="right" >Password</span>
         </div>
        
       </div>
     </form>
-    <div  className="col s2  ">
+    <div  className="col s4  ">
        <button className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" onClick={props.getUser}>Sign In</button>
        </div>
-   </div>
+   
+ 
+    </div>
 </div>
 );
 
