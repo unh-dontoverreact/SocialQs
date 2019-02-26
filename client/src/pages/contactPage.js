@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import { ContactList, ContactListItem } from '../components/ContactList'
 import NewContact from "../components/NewContact/index";
@@ -32,27 +33,27 @@ class ContactPage extends Component {
 
 // axios request to contact database and checks for matched based on input fields
 
-// getContact = () => {
-//   let contactname = this.state.contactname;
-//   console.log(this.state.contactname,this.state.password)
-//   axios.get('/api/contact')
-//   .then(response =>{
-//     let contact = response.data
-//        for (let i=0; i<contact.length; i++){
+getContact = () => {
+  let contactname = this.state.contactname;
+  console.log(this.state.contactname)
+  axios.get('/api/contact')
+  .then(response =>{
+    let contact = response.data
+       for (let i=0; i<contact.length; i++){
       
 //      //if there is a match to both username and password it redirects to home page
 //       if(loginUsername === user[i].email && loginPassword === user[i].password){
 //         console.log(user[i])
-//         this.props.handlers.userUpdateHandler(user[i]);  /* update main app state with new user */        
-//         this.setState({
+        this.props.handlers.contactUpdateHandler(contact[i]);  /* update main app state with new contact */        
+        this.setState({
 //           userLoggedIn: user[i],
-//           redirectTo: '/'
-//         });
-//       }
+          redirectTo: '/'
+        });
+      }
 
-//     }
-//   })
-//   }
+    // }
+  })
+  }
 
   setContactFirstName =(event) =>{
     this.setState({firstName: event.target.value})
@@ -114,6 +115,52 @@ class ContactPage extends Component {
            console.log(this.state.image)   
     }
 
+
+// renders components to contact page
+// render() {
+//   if (this.state.redirectTo) {
+
+//     return (
+   
+//     <Redirect to={{ pathname: this.state.redirectTo }} />
+   
+//     )
+// } else if (this.state.existing) {
+//   return (
+//     <div>
+    
+//     <Login
+//     getContact={this.getContact}
+//     handleInputChange = {this.handleInputChange}
+   
+//     />
+
+// <LandingPageSideBar
+// createContact ={this.createContact}
+// />
+//     </div>
+//   )
+// }
+// else{
+//     return(
+// <NewContact
+//   returnToLogin = {this.returnToContact}
+//   newContact = {this.newContact}
+//   handleInputChange = {this.handleInputChange}
+//   image={<ImageUploader
+//   withIcon={true}
+//   withPreview={true}
+//   singleImage={true}
+//   buttonText='Choose image'
+//   onChange={this.onDrop}
+//   imgExtension={['.jpg', '.gif', '.png', '.gif']}
+//   maxFileSize={5242880}
+//   />}
+//   />
+//     )
+//   } 
+//   }
+// }    
   render() {
     return (
       <div>
