@@ -1,13 +1,13 @@
+ /* .all-landing-page-info{
+  background-image: url("./SQ.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  opacity: .9
+}  */
+
 .Landing-Page-Pitch-display {
-    /* background-image: url("./SQ.png");
-    background-image-opacity: .5;
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
-    /* background-position: center;   */
-/* width:50%; */
-/* height:600px; */
-margin:20px;
-padding: 20px;
+     height:100%;
+padding: 20px; 
   border: 2px;
   border-style: outset;
   border-color: black;
