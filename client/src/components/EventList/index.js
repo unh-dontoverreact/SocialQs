@@ -12,7 +12,7 @@ export function EventListItem(props) {
 
   return (
     <div id="EventSection">
-      <h2>{props.user.firstName}'s Upcoming Events</h2>
+      <h2>{props.user.firstName} Upcoming Events</h2>
 
       <table id="eventList" className="striped">
         <thead>
