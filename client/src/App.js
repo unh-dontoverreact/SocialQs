@@ -39,6 +39,12 @@ class App extends Component {
     this.setState({ user : newUser});
   }
 
+  // handleContactUpdate = (newContact) => {
+  //   console.log("newContact: ", newContact);
+  //   console.log("updating global user state to", newContact.firstName, newContact.lastName);
+  //   this.setState({ user : newContact});
+  // }
+
   handleLogout = (user) => {
     console.log("logging out", user.firstName, user.lastName);
     this.resetState();
