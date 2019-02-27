@@ -2,12 +2,12 @@
        width:50%;
 margin: auto !important;
 padding:50px;
-border: 2px;
+border: 5px;
 border-color: #612469;
-border-style: inset
+border-style: groove
 
 }
-.contact-button, .back-to-login-button{
+.contact-button, .back-to-contact-button{
     margin-left: 100px;
     margin-right: 100px;
     margin-bottom: 10px
