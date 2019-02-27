@@ -9,7 +9,7 @@ export function ContactList({ children }) {
 
 //Mark - deleteContact - possibly unneeded code 
 export function deleteContact(id){
-  return console.log ("Delete User",id)
+   console.log ("Delete User",id)
 }
 
 // ContactListItem - details of a contact
