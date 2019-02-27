@@ -27,7 +27,7 @@ class Sidebar extends Component {
   render() {
       return (
         <div id="sidebar">
-          <ul id="slide-out" className="sidenav sidenav-fixed">
+          <ul id="slide-out" className="sidenav">
               <li />
               {/* User Profile Section */ }
               <User user={this.props.user}/>

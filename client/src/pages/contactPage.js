@@ -115,6 +115,35 @@ getContact = () => {
            console.log(this.state.image)   
     }
 
+    render() {
+      return (
+        <div>
+   
+        <Container>
+          <Row>
+            <Col size="s1">
+            <Sidebar user={this.props.user}/>
+            </Col>
+            <Col size="s11">
+            <NewContact />   
+              <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "20px"}}>
+                  {this.props.user.contacts.length ? (
+                    <ContactList>
+                      {this.renderContacts()}  
+                    </ContactList>
+                  ) : (
+                    <h4 id="noresults-lbl">No Contacts available</h4>
+                  )}
+                  </div>
+            </Col>
+          </Row>
+        </Container>   
+        </div> )
+    }
+  }
+  
+  export default ContactPage;
+
 
 // renders components to contact page
 // render() {
@@ -161,29 +190,3 @@ getContact = () => {
 //   } 
 //   }
 // }    
-  render() {
-    return (
-      <div>
-      <Container>
-        <Row>
-          <Col size="s3">
-          <Sidebar user={this.props.user}/>
-          </Col>
-          <Col size="s9">
-            <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "20px"}}>
-                {this.props.user.contacts.length ? (
-                  <ContactList>
-                    {this.renderContacts()}  
-                  </ContactList>
-                ) : (
-                  <h4 id="noresults-lbl">No Contacts available</h4>
-                )}
-                </div>
-          </Col>
-        </Row>
-      </Container>   
-      </div> )
-  }
-}
-
-export default ContactPage;

@@ -27,11 +27,11 @@ const NewContact = props => (
      
      
     </form>
-  <div> {props.image }</div>
+  {/* <div> {props.image }</div> */}
    
 
        <button className="contact-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.newContact}>Create Contact</button>
-       <button className = "back-to-contact-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.returnToContact}>Back to Create Contact</button> 
+       {/* <button className = "back-to-contact-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.returnToContact}>Back to Create Contact</button>  */}
     </div>
     </div>
 );
