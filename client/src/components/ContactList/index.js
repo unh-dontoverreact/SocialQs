@@ -7,6 +7,11 @@ export function ContactList({ children }) {
   return <ul className="collection">{children}</ul>;
 }
 
+//Mark - deleteContact - possibly unneeded code 
+export function deleteContact(id){
+   console.log ("Delete User",id)
+}
+
 // ContactListItem - details of a contact
 export function ContactListItem(props) {
 
@@ -28,7 +33,8 @@ export function ContactListItem(props) {
                     {props.email}
                   </td>
                   <td>
-                    <button><i className="material-icons">delete_forever</i></button>
+                    {/* Mark - onClick to delete user  */}
+                    <button onClick={() => deleteContact(1)}><i className="material-icons">delete_forever</i></button>
                   </td>
                 </tr>
               </tbody>
