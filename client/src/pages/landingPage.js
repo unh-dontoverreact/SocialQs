@@ -17,7 +17,8 @@ class LandingPage extends Component {
     password: "",
     image: "",
     redirectTo: null,
-    userLoggedIn: []  
+    userLoggedIn: [],
+    test : ""
 }
 
 // axios request to user database and checks for matched based on input fields
@@ -33,6 +34,7 @@ getUser = () => {
      //if there is a match to both username and password it redirects to home page
       if(loginUsername === user[i].email && loginPassword === user[i].password){
         console.log(user[i])
+
         this.props.handlers.userUpdateHandler(user[i]);  /* update main app state with new user */        
         this.setState({
           userLoggedIn: user[i],
@@ -148,7 +150,7 @@ getUser = () => {
   buttonText='Choose image'
   onChange={this.onDrop}
   imgExtension={['.jpg', '.gif', '.png', '.gif']}
-  maxFileSize={5242880}
+  maxFileSize={10485760}
 />}
 />
     )
