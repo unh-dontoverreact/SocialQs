@@ -33,28 +33,6 @@ class ContactPage extends Component {
 
 // axios request to contact database and checks for matched based on input fields
 
-getContact = () => {
-  let contactname = this.state.contactname;
-  console.log(this.state.contactname)
-  axios.get('/api/contact')
-  .then(response =>{
-    let contact = response.data
-       for (let i=0; i<contact.length; i++){
-      
-//      //if there is a match to both username and password it redirects to home page
-//       if(loginUsername === user[i].email && loginPassword === user[i].password){
-//         console.log(user[i])
-        this.props.handlers.contactUpdateHandler(contact[i]);  /* update main app state with new contact */        
-        this.setState({
-//           userLoggedIn: user[i],
-          redirectTo: '/'
-        });
-      }
-
-    // }
-  })
-  }
-
   setContactFirstName =(event) =>{
     this.setState({firstName: event.target.value})
     console.log(this.state.firstName)
