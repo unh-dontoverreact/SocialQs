@@ -76,8 +76,10 @@ getUser = () => {
     lastName: this.state.lastName,
     email: this.state.username,
     password: this.state.password,
-    image: this.state.image
+    image:this.state.image
   }
+    
+  
   console.log("On New User:", newUserInfo)
   axios.post('/api/user', newUserInfo)
   .then(response =>{
