@@ -6,6 +6,6 @@ const eventRoutes = require("./events");
 // Contact API routes
 router.use("/contacts", contactRoutes);
 router.use("/user", userRoutes);
-router.use("/event", eventRoutes);
+router.use("/events", eventRoutes);
 
 module.exports = router;
