@@ -8,10 +8,10 @@ class HomePage extends Component {
 
   // Run this when component starts up
   componentDidMount() {
-    console.log("logged in user: ", this.props.user.firstName, this.props.user.lastName, this.props.user.events);
+    console.log("logged in user: ", this.props.user.firstName, this.props.user.lastName);
   }
 
-  //renders list of events, keep commented out until events added to db
+  //renders list of events
   renderEventList = () => {
 
     return this.props.user.events.map((event, i) => {
@@ -40,7 +40,6 @@ class HomePage extends Component {
               <UserProfile user={this.props.user} />
               <EventList user={this.props.user}>
                 {this.renderEventList()}
-                {/* <EventListItem user={this.props.user}/> */}
               </EventList>
             </Col>
           </Row>
