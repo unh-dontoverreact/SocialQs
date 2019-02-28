@@ -1,0 +1,30 @@
+.group-card{
+    background-color:#612469;
+    border: 2px;
+    border-style: inset;
+    border-color: black;
+    border-radius: 25px;
+    text-align: center;
+  padding:0px
+}
+
+.contact-avatars{
+    width: 200px;
+   
+}
+.contact-avatars:hover{
+    width: 210px;
+   
+}
+
+.group-card:hover{
+    background-color:#8c3597;
+    border-style: outset;
+    color: white;
+   
+}
+.group-name{
+    text-align: center;
+    font-size: 30px;
+    
+}
