@@ -1,5 +1,4 @@
 #userProfile {
-    margin-top: 20px;
     text-align: center;
     background-color: #612469;
     border-color: black;
@@ -9,4 +8,5 @@
 
 #mainProfilePhoto{
     height: 200px;
+    margin-bottom: 10px;
 }
