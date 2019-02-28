@@ -1,14 +1,46 @@
 
 import React, { Component } from 'react'
+import ContactSearch from "../components/ContactSearch";
 import { ContactList, ContactListItem } from '../components/ContactList'
 import NewContact from "../components/NewContact/index";
 import { Col, Row, Container } from "../components/Grid";
-import Sidebar from "../components/Sidebar"
+import Sidebar from "../components/Sidebar";
+
+import ContactGroups from "../components/ContactSearch/ContactGroups";
 
 import axios from 'axios';
 
 class ContactPage extends Component {
+state = {
+  addContact: false,
+  contactName: ""
+  
+}
+// if any input field changes it updates the state
+handleInputChange = event => {
+  // Getting the value and name of the input
+  const { name, value } = event.target;
 
+  // Updating the state
+  this.setState({
+    [name]: value
+    
+  });
+  console.log(this.state.contactName)
+  
+  for(let i=0; i<3; i++){
+    if (this.state.contactName===this.state.test[i].firstName || this.state.contactName===this.state.test[i].lastName ){
+      console.log(this.state.test[i])
+    }
+  }
+};
+
+// if user clicks add contact it renders the NewContact component
+addContact =() =>{
+  this.setState({
+    addContact: true
+  })
+}
   // Run this when component starts up
   componentDidMount() {
     console.log("contact page logged in user: ", this.props.user.firstName, this.props.user.lastName);
@@ -77,7 +109,20 @@ class ContactPage extends Component {
         this.state = { 
             pictures: [],
             upload: [],
-            existing: true 
+            existing: true,
+            test: 
+    [
+      "Betty",
+      "Fred",
+      "Davis",
+      "JoJo",
+      "Tim",
+      "Sally",
+      "Yoshi",
+      "Mario",
+      "Luigi",
+      "Princess Peach"
+      ] 
         };
 
         this.onDrop = this.onDrop.bind(this);
@@ -94,10 +139,12 @@ class ContactPage extends Component {
     }
 
     render() {
+      if (this.state.addContact) {
       return (
         <div>
    
         <Container>
+          
           <Row>
             <Col size="s1">
             <Sidebar user={this.props.user}/>
@@ -117,9 +164,30 @@ class ContactPage extends Component {
           </Row>
         </Container>   
         </div> )
-    }
-  }
+      } else {
+        return (
+          <div className="row">
+          <Col size="s1">
+          <Sidebar user={this.props.user}/>
+          </Col>
+          <div className="row">
+          <div className="col s4">
+          <ContactSearch
+        contactOptions={this.state.test}
+      />
+      </div>
+      <div  className=" offset-s10 col s2  ">
+       <button className="new-contact white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" onClick={this.addContact}>Add a Contact</button>
+       </div>
+       </div>
+
+<ContactGroups/>
+</div>
+        )
+      };
+    };
   
+  }
   export default ContactPage;
 
 
