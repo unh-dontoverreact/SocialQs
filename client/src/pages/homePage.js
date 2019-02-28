@@ -11,22 +11,22 @@ class HomePage extends Component {
     console.log("logged in user: ", this.props.user.firstName, this.props.user.lastName);
   }
 
-  // //renders list of events, keep commented out until events added to db
-  // renderEventList = () => {
+  //renders list of events
+  renderEventList = () => {
 
-  //   return this.props.user.events.map((event, i) => {
+    return this.props.user.events.map((event, i) => {
 
-  //     return (
-  //       <EventListItem
-  //         key={i}
-  //         id={event.id}
-  //         date={event.date}
-  //         title={event.title}
-  //         contact={event.contact}
-  //       />
-  //     )
-  //   });
-  // }
+      return (
+        <EventListItem
+          key={i}
+          id={event.id}
+          date={event.date}
+          title={event.title}
+          contact={event.contact}
+        />
+      )
+    });
+  }
 
   render() {
     return (
@@ -39,8 +39,7 @@ class HomePage extends Component {
             <Col size="s9">
               <UserProfile user={this.props.user} />
               <EventList user={this.props.user}>
-                {/* {this.renderEventList()} */}
-                <EventListItem user={this.props.user}/>
+                {this.renderEventList()}
               </EventList>
             </Col>
           </Row>

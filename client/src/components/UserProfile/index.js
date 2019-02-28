@@ -6,21 +6,21 @@ function UserProfile(props) {
 
     return (
       <div id="userProfile">
-      <h2>Welcome {props.user.firstName}!</h2>
-        <img className="circle"
+      <h4>Welcome {props.user.firstName}!</h4>
+        <img className="circle" id="mainProfilePhoto"
           src="http://i.pravatar.cc/300" 
           alt="Profile" />
-          <div id="userStats">
-          <h5>
-          user statistics: example
-          </h5>
-          <h5>
-          user statistics: example
-          </h5>
-          <h5>
-          user statistics: example
-          </h5>
-          </div>
+        
+          <p>
+          Last Login: 01/01/2019
+          </p>
+          <p>
+          Contacts: 27
+          </p>
+          <p>
+          Events: 83
+          </p>
+          
       </div>
     );
 }
