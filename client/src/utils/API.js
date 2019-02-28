@@ -45,5 +45,15 @@ export default {
         return json;
       }
     )
+  },
+
+  //creates a new event
+  saveEvent: function(eventData) {
+    return axios.post("/api/events", eventData);
+  },
+
+  // Get all events
+  getEvents: function() {
+    return axios.get("/api/events");
   }
 };
