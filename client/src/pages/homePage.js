@@ -33,10 +33,10 @@ class HomePage extends Component {
       <div>
         <Container>
           <Row>
-            <Col size="s3">
+            <Col>
               <Sidebar user={this.props.user} />
             </Col>
-            <Col size="s9">
+            <Col>
               <UserProfile user={this.props.user} />
               <EventList user={this.props.user}>
                 {this.renderEventList()}
