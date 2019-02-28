@@ -4,28 +4,31 @@ import "./style.css"
 
 //event list
 export function EventList({ children }) {
-  return <div>{children}</div>;
+  return <div id="EventSection">
+  <h4>Upcoming Events</h4>
+
+  <table id="eventList" className="striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Event</th>
+        <th>Contacts</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {children}
+    </tbody>
+  </table>
+</div>;
 }
 
 //table details of one event
 export function EventListItem(props) {
 
   return (
-    <div id="EventSection">
-      <h4>Upcoming Events</h4>
-
-      <table id="eventList" className="striped">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Event</th>
-            <th>Contacts</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
+    <tr>
             <td>
               {props.date}
             </td>
@@ -41,10 +44,8 @@ export function EventListItem(props) {
               <button className="eventActions" onClick={() => props.handleCompletedEventClick(props.id)}><i className="material-icons">beenhere</i></button>
               <button className="eventActions" onClick={() => props.handleDeleteEventClick(props.id)}><i className="material-icons">delete_forever</i></button>
             </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            </tr>
+            
 
   );
 }
