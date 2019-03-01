@@ -10,27 +10,26 @@ const NewContact = props => (
 
    <form autoComplete="on">
    <div className="input-field">
-          <input placeholder ="Enter your first name" id="first-name"  className=" .center-align" onChange={props.setfirstName}/>
+          <input placeholder ="Enter first name" name="contactfirstName" id="first-name"  className=" .center-align" onChange={props.handleInputChange}/>
 
-          <span className="helper-text" data-error="wrong" data-success="right" >First Name</span>
+          <span className="helper-text" data-error="Please enter a first name" data-success="right" >First Name</span>
         </div>
    <div className="input-field">
-          <input placeholder ="Enter your last name" id="last-name"  className=" .center-align" onChange={props.setlastName}/>
+          <input placeholder ="Enter last name" name="contactlastName" id="last-name"  className=" .center-align" onChange={props.handleInputChange}/>
 
-          <span className="helper-text" data-error="wrong" data-success="right" >Last Name</span>
+          <span className="helper-text" data-error="Please enter a last name" data-success="right" >Last Name</span>
         </div>
     <div className="input-field">
-          <input placeholder ="example@example.com" id="email" type="email" className="validate .center-align" onChange={props.setemail}/>
+          <input placeholder ="Enter an email address - example@example.com" name="contactemail" id="email" type="email" className="validate .center-align" onChange={props.handleInputChange}/>
 
-          <span className="helper-text" data-error="wrong" data-success="right" >Email</span>
+          <span className="helper-text" data-error="Please enter a valid email address" data-success="right" >Email Address</span>
         </div>
-     
      
     </form>
   {/* <div> {props.image }</div> */}
    
 
-       <button className="contact-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.newContact}>Create Contact</button>
+       <button className="contact-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.newContact}>Add Contact</button>
        {/* <button className = "back-to-contact-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={props.returnToContact}>Back to Create Contact</button>  */}
     </div>
     </div>
