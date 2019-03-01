@@ -6,6 +6,7 @@ const contactSchema = new Schema({
   lastName: { type: String, required: true },
   email: { type: String },
   birthDate: { type: Date }
+
 });
 
 const Contact = mongoose.model("Contact", contactSchema);

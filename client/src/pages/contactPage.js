@@ -36,7 +36,7 @@ handleInputChange = event => {
 };
 
 // if user clicks add contact it renders the NewContact component
-addContact =() =>{
+displayContactForm =() =>{
   this.setState({
     addContact: true
   })
@@ -50,7 +50,7 @@ addContact =() =>{
   renderContacts = () => {
    
     return  this.props.user.contacts.map((contact, i) => {
-       
+      // let contact = {contact.firstName} + " " {contact.lastName }
       return  <ContactListItem 
         key = {i}  
         lastName={contact.lastName}
@@ -177,7 +177,7 @@ addContact =() =>{
       />
       </div>
       <div  className=" offset-s10 col s2  ">
-       <button className="new-contact white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" onClick={this.addContact}>Add a Contact</button>
+       <button className="new-contact white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" onClick={this.displayContactForm}>Add a Contact</button>
        </div>
        </div>
 

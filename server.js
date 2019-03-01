@@ -3,6 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
+var multer = require("multer")
+var fs = require("fs");
 const PORT = process.env.PORT || 3001;
 
 
@@ -10,6 +12,12 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// multer middleware
+// app.use(multer({ dest: "./uploads/",
+//     rename: function (fieldname, filename) {
+//     return filename;
+//     },
+//     }))
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

@@ -6,10 +6,11 @@ export default {
     return axios.get("/api/user");
   },
 
-  //creates a new user
+  // creates a new user
   saveUser: function(userData) {
     return axios.post("/api/user", userData);
   },
+ 
 
   // Gets all contacts
   getContacts: function() {
