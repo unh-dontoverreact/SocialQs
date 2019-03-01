@@ -18,10 +18,7 @@ const LandingPageSideBar = props => (
 
         <div className="col cards s6">
             <h2> SocialQ’s - A Personal Relationship Manager </h2>
-            <h5>
-                {" "}
-                Keep track connections even if they've not online{" "}
-            </h5>
+            <h5> Keep track connections even if they've not online </h5>
             <h5>Display a timeline of upcoming important events. </h5>
             <h5>
                 Gentle reminders "cue" you when an important event is coming up.
@@ -47,8 +44,8 @@ const LandingPageSideBar = props => (
             </div>
         </div>
         <div className="image2">
-        <img src= "assets/images/mfrpng.png" /> 
-                   </div>
+            <img src="assets/images/mfrpng.png" />
+        </div>
     </div>
 );
 
