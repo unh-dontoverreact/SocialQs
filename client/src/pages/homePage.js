@@ -3,8 +3,19 @@ import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar"
 import UserProfile from '../components/UserProfile';
 import { EventList, EventListItem } from '../components/EventList';
+import NewEvent from '../components/NewEvent';
 
 class HomePage extends Component {
+
+  state = {
+    events: []
+  }
+
+  newEvent = (event) => {
+    this.setState({
+      events: [...this.state.events, event]
+    })
+  }
 
   // Run this when component starts up
   componentDidMount() {
@@ -41,6 +52,9 @@ class HomePage extends Component {
               <EventList user={this.props.user}>
                 {this.renderEventList()}
               </EventList>
+              <NewEvent 
+                addEvent={this.addEvent}
+                />
             </Col>
           </Row>
         </Container>
