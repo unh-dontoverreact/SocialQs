@@ -47,7 +47,7 @@ const LandingPageSideBar = props => (
             </div>
         </div>
         <div className="image2">
-        <img src='/images/mormonfamilyreunion.png' /> 
+        <img src= "assets/images/mfrpng.png" /> 
                    </div>
     </div>
 );
