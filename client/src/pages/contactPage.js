@@ -13,8 +13,10 @@ import axios from 'axios';
 class ContactPage extends Component {
 state = {
   addContact: false,
-  contactName: ""
-  
+  contactName: "",
+  contactfirstName: "",
+  contactlastName: "",
+  contactemail: ""
 }
 // if any input field changes it updates the state
 handleInputChange = event => {
@@ -26,7 +28,7 @@ handleInputChange = event => {
     [name]: value
     
   });
-  console.log(this.state.contactName)
+  console.log(this.state.contactfirstName)
   
   for(let i=0; i<3; i++){
     if (this.state.contactName===this.state.test[i].firstName || this.state.contactName===this.state.test[i].lastName ){
@@ -78,29 +80,29 @@ addContact =() =>{
    this.setState({existing:false})
   }
 
-  //if on NewContact component and you click back to contact form it changes state of existing to true and renders normal landing page and contact components
+  //if on NewContact component and you click back to contact form it changes state of existing to true and renders normal contact page and contact components
   returnToContact =() =>{
     this.setState({existing:true})
   }
  
 // creates a new contact and post them to contact database based on the state which is set by input fields
- NewContact =() => {
+ newContact =() => {
   
   let newContactInfo ={
-    firstName: this.state.contact.firstName,
-    lastName: this.state.contact.lastName,
-    email: this.state.contact.email,
-    image: this.state.contact.image
+    firstName: this.state.contactfirstName,
+    lastName: this.state.contactlastName,
+    email: this.state.contactemail,
+    image: this.state.contactimage
   }
   console.log("On New Contact:", newContactInfo)
-  axios.post('/api/contact', newContactInfo)
+  axios.post('/api/contacts', newContactInfo)
   .then(response =>{
     console.log(response)
   })
   .catch(error => {
     console.log(error.response)
 });
-
+this.setState({addContact:false})
 }
 
 // allows user to upload a contact image in the state
@@ -150,8 +152,9 @@ addContact =() =>{
             <Sidebar user={this.props.user}/>
             </Col>
             <Col size="s11">
-            <NewContact />   
-              <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "20px"}}>
+            <p></p>
+            <NewContact newContact={this.newContact}handleInputChange={this.handleInputChange}/>   
+              {/* <div style={{border: "1px purple", borderRadius: "20px", padding: "20px"}}>
                   {this.props.user.contacts.length ? (
                     <ContactList>
                       {this.renderContacts()}  
@@ -159,7 +162,7 @@ addContact =() =>{
                   ) : (
                     <h4 id="noresults-lbl">No Contacts available</h4>
                   )}
-                  </div>
+                  </div> */}
             </Col>
           </Row>
         </Container>   
@@ -188,51 +191,4 @@ addContact =() =>{
     };
   
   }
-  export default ContactPage;
-
-
-// renders components to contact page
-// render() {
-//   if (this.state.redirectTo) {
-
-//     return (
-   
-//     <Redirect to={{ pathname: this.state.redirectTo }} />
-   
-//     )
-// } else if (this.state.existing) {
-//   return (
-//     <div>
-    
-//     <Login
-//     getContact={this.getContact}
-//     handleInputChange = {this.handleInputChange}
-   
-//     />
-
-// <LandingPageSideBar
-// createContact ={this.createContact}
-// />
-//     </div>
-//   )
-// }
-// else{
-//     return(
-// <NewContact
-//   returnToLogin = {this.returnToContact}
-//   newContact = {this.newContact}
-//   handleInputChange = {this.handleInputChange}
-//   image={<ImageUploader
-//   withIcon={true}
-//   withPreview={true}
-//   singleImage={true}
-//   buttonText='Choose image'
-//   onChange={this.onDrop}
-//   imgExtension={['.jpg', '.gif', '.png', '.gif']}
-//   maxFileSize={5242880}
-//   />}
-//   />
-//     )
-//   } 
-//   }
-// }    
+  export default ContactPage;   
