@@ -9,6 +9,12 @@ a.button {
 }
 
 .list-group-item {
-  background-color: #eeeeee;
+  /* background-color: #eeeeee;
   margin: 5px;
-}
+    width:75%; */
+  margin: auto !important;
+  padding:50px;
+  border: 5px;
+  border-color: #612469;
+  border-style: groove
+  }
