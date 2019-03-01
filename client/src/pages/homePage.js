@@ -4,16 +4,38 @@ import Sidebar from "../components/Sidebar"
 import UserProfile from '../components/UserProfile';
 import { EventList, EventListItem } from '../components/EventList';
 import NewEvent from '../components/NewEvent';
+import Axios from 'axios';
 
 class HomePage extends Component {
 
   state = {
-    events: []
+    date: "",
+    title: "",
+    contact: []
   }
 
-  newEvent = (event) => {
+  //when we click enter new event, use state as new event and send to db
+  enterNewEvent = () => {
+    
+    let newEvent={
+      date: this.state.date,
+      title: this.state.title,
+      contact: this.state.contact
+    }
+
+    Axios.post('api/events', newEvent)
+    .catch(error => {
+      console.log(error.response)
+    }).then(this.renderEventList())
+  }
+
+  //set state as user enters event info 
+  newEvent = event => {
+
+    const {name, value } = event.target;
+    
     this.setState({
-      events: [...this.state.events, event]
+      [name]: value
     })
   }
 
@@ -53,7 +75,8 @@ class HomePage extends Component {
                 {this.renderEventList()}
               </EventList>
               <NewEvent 
-                addEvent={this.addEvent}
+                handleNewEvent={this.newEvent}
+                enterNewEvent={this.enterNewEvent}
                 />
             </Col>
           </Row>

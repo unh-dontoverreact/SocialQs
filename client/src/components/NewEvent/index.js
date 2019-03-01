@@ -12,60 +12,34 @@ class NewEvent extends React.Component {
                     <form>
                         <div className="input-field">
                             <input
-                                id="date"
+                                name="date"
                                 type="date"
                                 placeholder="Event Date"
+                                onChange={this.props.handleNewEvent}
                             />
                         </div>
                         <div className="input-field">
                             <input
-                                id="title"
+                                name="title"
                                 type="text"
                                 placeholder="Describe the Event"
+                                onChange={this.props.handleNewEvent}
                             />
                         </div>
                         <div className="input-field">
                             <input
-                                id="contacts"
+                                name="contact"
                                 type="text"
                                 placeholder="Add contacts"
+                                onChange={this.props.handleNewEvent}
                             />
                         </div>
                     </form>
 
-                    <button className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5">
+                    <button className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5" onClick={this.props.enterNewEvent}>
                         Create
                     </button>
                 </div>
-            
-
-            //     <tr className="collapsible">
-            //     <td className="collapsible-header" onClick={() => {
-
-            //     }}>
-            //         <span className="material-icons">add_circle_outline</span>
-            //     </td>
-            //     <td />
-            //     <td />
-            //     <td />
-            // </tr>
-            // <tr>
-            //     <td className="input-field">
-            //     <input id="eventDate"type="date"></input>
-            //     </td>
-
-            //     <td className="input-field">
-            //     <input id="eventTitle"type="text"></input>
-            //     <label for="eventTitle">Describe Event</label>
-            //     </td>
-
-            //     <td className="input-field">
-            //     <input id="eventContacts"type="text"></input>
-            //     <label for="eventContacts">Add Contatcs</label>
-            //     </td>
-
-            //     <td><span className="material-icons">add_circle_outline</span></td>
-            // </tr>
         );
     }
 }
