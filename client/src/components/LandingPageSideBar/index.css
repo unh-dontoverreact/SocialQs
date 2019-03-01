@@ -1,9 +1,9 @@
- /* .all-landing-page-info{
-  background-image: url("./SQ.png");
+  .all-landing-page-info{
+  background-image: ("./mormonfamilyreunion.jpg");
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: bottom;
   opacity: .9
-}  */
+}  
 
 .Landing-Page-Pitch-display {
      height:100%;
@@ -16,4 +16,9 @@ padding: 20px;
 }
 .tag{
     color: #612469
+}
+
+.image2 {
+  height: 20px;
+  width: 20px;
 }
