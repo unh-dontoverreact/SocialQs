@@ -53,13 +53,6 @@ class App extends Component {
     console.log ("deleting user", user.id);
     // this.deleteUser( {user: id})
   }
-  //Mark removeUser onclick for Contactlist Component 
-  // deleteUser = id => {
-  //   // Filter this.state.users for friends with an id not equal to the id being removed
-  //   const users = this.state.users.filter(user => user.id !== id);
-  //   // Set this.state.users equal to the new user array
-  //   this.setState({ users });
-  // };
 
   eventHandlers = {
     userUpdateHandler: this.handleUserUpdate,
