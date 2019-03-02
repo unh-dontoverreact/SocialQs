@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import ContactSearch from "../components/ContactSearch";
-import { ContactList, ContactListItem } from '../components/ContactList'
+import { ContactListItem } from '../components/ContactList'
 import NewContact from "../components/NewContact/index";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
