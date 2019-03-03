@@ -12,7 +12,7 @@ function Nav() {
                 >
                     <li>
                         <Link
-                            to={`/`}
+                            to={"/"}
                             activeClassName="material-icons waves-effect"
                         >
                             SocialQs

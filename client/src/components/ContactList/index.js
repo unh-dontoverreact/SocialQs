@@ -4,48 +4,44 @@ import "./style.css";
 
 // ContactList - renders an unorderd list of book items
 export function ContactList({ children }) {
-    return <ul className="collection">{children}</ul>;
+  return <ul className="collection">{children}</ul>;
 }
 
 //Mark - deleteContact - possibly unneeded code
 export function deleteContact() {
-    console.log("Delete User");
+  console.log("Delete User");
 }
 
 // ContactListItem - details of a contact
 export function ContactListItem(props) {
-    return (
-        <li className="collection-item">
-            <Container>
-                <Row>
-                    <Col size="s12">
-                        <table class="striped responsive-table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        {props.firstName} {props.lastName}
-                                    </td>
-                                    <td>{props.birthDate}</td>
-                                    <td>{props.email}</td>
-                                    <td>
-                                        {/* Mark - onClick to delete user  */}
-                                        <button
-                                            onClick={() =>
-                                                deleteContact(props.id)
-                                            }
-                                            className="deleteContact"
-                                        >
-                                            <i className="material-icons">
-                                                delete_forever
-                                            </i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </Col>
-                </Row>
-            </Container>
-        </li>
-    );
+  return (
+    <li className="collection-item">
+      <Container>
+        <Row>
+          <Col size="s12">
+            <table className="striped responsive-table">
+              <tbody>
+                <tr>
+                  <td>
+                    {props.firstName} {props.lastName}
+                  </td>
+                  <td>{props.birthDate}</td>
+                  <td>{props.email}</td>
+                  <td>
+                    {/* Mark - onClick to delete user  */}
+                    <button
+                      onClick={() => deleteContact(props.id)}
+                      className="deleteContact"
+                    >
+                      <i className="material-icons">delete_forever</i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Col>
+        </Row>
+      </Container>
+    </li>
+  );
 }
