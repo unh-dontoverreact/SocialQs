@@ -22,7 +22,6 @@
       "plugin:prettier/recommended"
   ],
   "rules": {
-      "react/prop-types": "skipUndeclared",
       "no-duplicate-case": "error",
       "no-empty": "error",
       "no-console": "off",
