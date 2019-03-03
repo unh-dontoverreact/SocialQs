@@ -1,117 +1,52 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import M from "materialize-css/dist/js/materialize.min.js";
-import "materialize-css/dist/css/materialize.min.css";
+import React, { Component } from 'react';
+import { Button, SideNav, SideNavItem } from 'react-materialize';
+import { NavLink } from 'react-router-dom';
 import User from "./User";
 import Calendar from "react-calendar";
 
 class Sidebar extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            date: new Date(),
-        };
-    }
+  constructor(props) {
+    super(props);
 
-    componentDidMount() {
-        let elem = document.querySelector(".sidenav");
-        M.Sidenav.init(elem, {
-            edge: "left",
-            inDuration: 250
-        });
-    }
+    this.state = {
+        date: new Date(),
+    };
+  }
 
-    onChange = date => this.setState({ date });
+  render() {
+    return (
+      <div>
+        <SideNav        
+          trigger={<Button icon="menu"></Button>}
+          options={{ closeOnClick: true }}
+          >
 
-    render() {
-        return (
-            <div id="sidebar">
-                <ul id="slide-out" className="sidenav">
-                    <li />
-                    {/* User Profile Section */}
-                    <User user={this.props.user} />
-                    <li>
-                        <div className="divider" />
-                    </li>
+          <li><User user={this.props.user} /></li>          
+          <SideNavItem divider />
 
-                    <li>
-                        <Link
-                            to={`/`}
-                        >
-                            <i className="material-icons waves-effect">home</i>
-                            Home Page
-                        </Link>
-                    </li>
+          <li><NavLink to="/"><i className="material-icons">home</i>Home Page</NavLink></li>
+          <SideNavItem divider />
 
-                    {/* Contact Section */}
-                    <li>
-                        <Link to={`/`} activeClassName="subheader">
-                            Contacts
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to={`/contacts`}
-                        >
-                            <i className="material-icons waves-effect">
-                                person_add
-                            </i>
-                            Manage Contacts
-                        </Link>
-                    </li>
-                    <li>
-                        <div className="divider" />
-                    </li>
+          <SideNavItem subheader>Contacts</SideNavItem>
+          <li><NavLink to="/contacts"><i className="material-icons">person_add</i>Manage Contacts</NavLink></li>
+          <SideNavItem divider />
 
-                    {/* Events Section */}
-                    <li>
-                        <Link to={`/`} activeClassName="subheader">
-                            Events
-                        </Link>
-                    </li>
+          <SideNavItem subheader>Events</SideNavItem>
+          <li><NavLink to="/events"><i className="material-icons">event_note</i>Manage Events</NavLink></li>
+          <SideNavItem divider />
 
-                    <li>
-                        <Link
-                            to={`/`}
-                        >
-                            <i className="material-icons waves-effect">
-                                event_note
-                            </i>
-                            List Events
-                        </Link>
-                    </li>
-                    <li>
-                        <div className="divider" />
-                    </li>
+          <li><NavLink to="/landing"><i className="material-icons">exit_to_app</i>Logout</NavLink></li>
+          <SideNavItem divider />
 
-                    {/* Events Section */}
-                    <li>
-                        <Link
-                            to={`/landing`}
-                            onClick={this.props.logoutHandler}
-                        >
-                            <i className="material-icons">exit_to_app</i>Logout
-                        </Link>
-                    </li>
-                    <li>
-                        <div className="divider" />
-                    </li>
-
-                    {/* Event Calendar */}
-                    <Calendar
-                        onChange={this.onChange}
-                        value={this.state.date}
-                    />
-                </ul>
-
-                {/* Hamburger Menu */}
-                <a href="/" data-target="slide-out" className="sidenav-trigger">
-                    <i className="material-icons">menu</i>
-                </a>
-            </div>
-        );
-    }
+          <Calendar
+            onChange={this.onChange}
+            value={this.state.date}
+          />
+        </SideNav>    </div>
+    );
+  }
 }
 
 export default Sidebar;
+
