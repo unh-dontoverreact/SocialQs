@@ -18,11 +18,12 @@
     "prettier"
   ],
   "extends": [
-      "plugin:react/recommended",
-      "plugin:prettier/recommended"
+      "plugin:prettier/recommended",
+      "prettier/flowtype",
+      "prettier/react",
+      "prettier/standard"
   ],
   "rules": {
-      "react/prop-types": "skipUndeclared",
       "no-duplicate-case": "error",
       "no-empty": "error",
       "no-console": "off",
