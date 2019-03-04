@@ -1,7 +1,7 @@
 {
   "name": "socialqs",
   "version": "0.1.0",
-  "description": "SocialQs",
+  "description": "SocialQs React app",
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
@@ -19,6 +19,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",

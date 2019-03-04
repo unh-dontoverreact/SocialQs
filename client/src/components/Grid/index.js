@@ -14,9 +14,5 @@ export function Row({ children }) {
 // This Col component lets us size bootstrap columns with less syntax
 // e.g. <Col size="md-12"> instead of <div className="col-md-12">
 export function Col({ children }) {
-    return (
-        <div>   
-            {children}
-        </div>
-    );
+    return <div>{children}</div>;
 }
