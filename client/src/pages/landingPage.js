@@ -26,15 +26,20 @@ getUser = () => {
   let loginUsername = this.state.username;
   let loginPassword = this.state.password;
   console.log(this.state.username,this.state.password)
-  axios.get('/api/user')
-  .then(response =>{
+  // let query= {email: loginUsername, password: loginPassword}
+  this.setState({
+       redirectTo: '/'
+  });
+  axios.get("/api/user")
+   .then(response =>{
     let user = response.data
+    console.log(response)
        for (let i=0; i<user.length; i++){
       
      //if there is a match to both username and password it redirects to home page
       if(loginUsername === user[i].email && loginPassword === user[i].password){
         console.log(user[i])
-
+// console.log(this.props.handlers.userUpdateHandler())
         this.props.handlers.userUpdateHandler(user[i]);  /* update main app state with new user */        
         this.setState({
           userLoggedIn: user[i],
@@ -81,7 +86,7 @@ getUser = () => {
     
   
   console.log("On New User:", newUserInfo)
-  axios.post('/api/user', newUserInfo)
+  axios.post("/api/user", newUserInfo)
   .then(response =>{
     console.log(response)
   })

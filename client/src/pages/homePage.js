@@ -3,11 +3,13 @@ import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar"
 import UserProfile from '../components/UserProfile';
 import { EventList, EventListItem } from '../components/EventList';
+import { Redirect } from 'react-router-dom'
 
 class HomePage extends Component {
 
   // Run this when component starts up
   componentDidMount() {
+    console.log(this.props.user)
     console.log("logged in user: ", this.props.user.firstName, this.props.user.lastName);
   }
 
@@ -29,6 +31,10 @@ class HomePage extends Component {
   }
 
   render() {
+    if( this.props.user.firstName==="George"){
+
+      return <Redirect to={{ pathname: "/landing" }} />
+    } else
     return (
       <div>
         <Container>

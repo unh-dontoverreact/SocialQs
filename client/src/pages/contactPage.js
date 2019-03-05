@@ -1,23 +1,31 @@
 
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import ContactSearch from "../components/ContactSearch";
-import { ContactList, ContactListItem } from '../components/ContactList'
-import NewContact from "../components/NewContact/index";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
-
+import ContactTable from "../components/ContactTable";
+import { Redirect } from 'react-router-dom'
 import ContactGroups from "../components/ContactSearch/ContactGroups";
 
 import axios from 'axios';
 
 class ContactPage extends Component {
+ 
 state = {
+  contacts: [],
   addContact: false,
   contactName: "",
   contactfirstName: "",
   contactlastName: "",
-  contactemail: ""
+  contactemail: "",
+  userID: "",
+  searching: "",
+   group: "",
+  
 }
+
+
 // if any input field changes it updates the state
 handleInputChange = event => {
   // Getting the value and name of the input
@@ -37,111 +45,114 @@ handleInputChange = event => {
   }
 };
 
-// if user clicks add contact it renders the NewContact component
-displayContactForm =() =>{
-  this.setState({
-    addContact: true
-  })
-}
+
   // Run this when component starts up
   componentDidMount() {
     console.log("contact page logged in user: ", this.props.user.firstName, this.props.user.lastName);
-  }
-  
-  // results component rendering
-  renderContacts = () => {
-   
-    return  this.props.user.contacts.map((contact, i) => {
-      // let contact = {contact.firstName} + " " {contact.lastName }
-      return  <ContactListItem 
-        key = {i}  
-        lastName={contact.lastName}
-        firstName={contact.firstName}
-        birthDate={contact.birthDate}
-        email={contact.email}
-        />    
-            
-    });
-  
+// setting the userID state to retrieve contacts
+    this.setState({
+      userID: this.props.user._id
+    })
+// axios call to retrieve contacts
+    axios.get("/api/user/" + this.props.user._id + "/contacts")
+    .then(response =>{
+      //filtering response to users contacts
+                 let cont =    response.data.filter(
+              userscontacts => userscontacts.userID === this.props.user._id) 
+              console.log(cont)
+        // setting the global contacts state to the users contacts
+      this.props.contactHandlers.handleContactLoad(cont); 
+
+     // setting the search list to correspond with contacts
+      let contactList = []
+      for (let i =0; i<this.props.contacts.length; i++){
+       contactList.push(this.props.contacts[i].firstName + " " + this.props.contacts[i].lastName)
+      }
+      this.setState({
+        contacts: contactList
+      })
+         
+     
+    })
+       
   }
 
-// axios request to contact database and checks for matched based on input fields
-
-  setContactFirstName =(event) =>{
-    this.setState({firstName: event.target.value})
-    console.log(this.state.firstName)
-     }
-  setContactLastName =(event) =>{
-    this.setState({lastName: event.target.value})
-    console.log(this.state.lastName)
-     }
-  //if user clicks new contact it changes state of existing to false and renders new contact component
-  createContact=() => {
-   this.setState({existing:false})
-  }
-
-  //if on NewContact component and you click back to contact form it changes state of existing to true and renders normal contact page and contact components
-  returnToContact =() =>{
-    this.setState({existing:true})
-  }
- 
-// creates a new contact and post them to contact database based on the state which is set by input fields
- newContact =() => {
-  
-  let newContactInfo ={
-    firstName: this.state.contactfirstName,
-    lastName: this.state.contactlastName,
-    email: this.state.contactemail,
-    image: this.state.contactimage
-  }
-  console.log("On New Contact:", newContactInfo)
-  axios.post('/api/contacts', newContactInfo)
-  .then(response =>{
-    console.log(response)
-  })
-  .catch(error => {
-    console.log(error.response)
-});
-this.setState({addContact:false})
-}
 
 // allows user to upload a contact image in the state
-    constructor(props) {
-        super(props);
-        this.state = { 
-            pictures: [],
-            upload: [],
-            existing: true,
-            test: 
-    [
-      "Betty",
-      "Fred",
-      "Davis",
-      "JoJo",
-      "Tim",
-      "Sally",
-      "Yoshi",
-      "Mario",
-      "Luigi",
-      "Princess Peach"
-      ] 
-        };
+    // constructor(props) {
+    //     super(props);
+    //     this.state = { 
+    //         pictures: [],
+    //         upload: [],
+    //         existing: true   
+    //     };
 
-        this.onDrop = this.onDrop.bind(this);
-    }
+    //     this.onDrop = this.onDrop.bind(this);
+    // }
  
-    onDrop(pictureFiles, pictureDataURLs) {
+    // onDrop(pictureFiles, pictureDataURLs) {
      
-           this.setState({
-            pictures: this.state.pictures.concat(pictureFiles),
-            upload:pictureDataURLs,
-            image: pictureDataURLs
-        });
-           console.log(this.state.image)   
+    //        this.setState({
+    //         pictures: this.state.pictures.concat(pictureFiles),
+    //         upload:pictureDataURLs,
+    //         image: pictureDataURLs
+    //     });
+    //        console.log(this.state.image)   
+    // }
+
+    filterSearch=() =>{
+     this.setState({
+       contactNamesearch: true
+     })
+  }
+  // if user clicks on group icons it will display group filter results
+    displayGroup =(event)=>{
+      this.setState({
+        searching:"Group",
+        group: event.target.name
+
+      })
+      console.log(this.state.group)
+    }
+    //if user is on contact search results and hits back it will return to search component
+    backToSearch =()=>{
+      this.setState({
+        searching:false
+      })
     }
 
+    // establishing global searchTerm state
+    test = newSearchTerm =>{
+           this.props.contactHandlers.handleSearchChange(newSearchTerm)
+      console.log(this.props.searchTerm)
+      
+    }
+    // user clicks go next to search bar it renders contacts filtered by name
+    displaySearchedContacts=()=>{
+      this.setState({
+        searching:"Name"
+      })
+    }
+
+    // this sets the chosen contact globally so the data will be accessable on the contact display page
+    setContact=(contact) =>{
+     
+      this.props.setChosenContact(contact)
+      console.log(this.props.contactChosen)
+    }
+    deleteContact=(contact) =>{
+      axios.delete("/api/user/" + this.props.user._id + "/contacts/" + contact._id)
+      .then(response =>{ console.log(response)})
+      
+      console.log(contact.firstName + " " + contact.lastName + " Deleted")
+
+    }
     render() {
-      if (this.state.addContact) {
+      if( this.props.user.firstName==="George"){
+
+        return <Redirect to={{ pathname: "/landing" }} />
+      }
+     else if (this.state.searching==="Name") {
       return (
         <div>
    
@@ -151,40 +162,96 @@ this.setState({addContact:false})
             <Col size="s1">
             <Sidebar user={this.props.user}/>
             </Col>
+            <div onClick ={this.backToSearch}> Back to Search </div>
             <Col size="s11">
-            <p></p>
-            <NewContact newContact={this.newContact}handleInputChange={this.handleInputChange}/>   
-              {/* <div style={{border: "1px purple", borderRadius: "20px", padding: "20px"}}>
-                  {this.props.user.contacts.length ? (
-                    <ContactList>
-                      {this.renderContacts()}  
-                    </ContactList>
-                  ) : (
-                    <h4 id="noresults-lbl">No Contacts available</h4>
-                  )}
-                  </div> */}
+           
+            {
+            this.props.contacts.filter(
+              contact => contact.firstName + " " + contact.lastName === this.props.searchTerm || contact.firstName === this.props.searchTerm || contact.lastName === this.props.searchTerm).map((contact, i) => (
+                <ContactTable
+                    key={i}
+                    value ={contact}
+                    contactName={contact.firstName + " " + contact.lastName}
+                    relationship={contact.email}
+                    setContact ={()=>this.setContact(contact)}
+                    deleteContact ={()=>this.deleteContact(contact)}              />
+            ))
+        }
             </Col>
           </Row>
         </Container>   
         </div> )
-      } else {
+      } 
+      else if (this.state.searching==="Group"){
+       
         return (
+        
+          <div>
+     
+          <Container>
+            
+            <Row>
+              <Col size="s1">
+              <Sidebar user={this.props.user}/>
+              </Col>
+              <div onClick ={this.backToSearch}> Back to Search </div>
+              <Col size="s11">
+           
+              {
+              this.props.contacts.filter(contact => contact.firstName==="Cheyra").map((contact, i) => (
+                  <ContactTable
+                      key={i}
+                      contactName={contact.firstName + " " + contact.lastName}
+                      relationship={contact.email}
+                  />
+              ))
+          }
+              </Col>
+            </Row>
+          </Container>   
+          </div> )
+      }
+      else  {
+        return (
+          <div>
           <div className="row">
           <Col size="s1">
           <Sidebar user={this.props.user}/>
           </Col>
           <div className="row">
           <div className="col s4">
+         
+                    <button className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" onClick={this.displaySearchedContacts}>
+                        {" "}
+                        Go{" "}
+                    </button>
+               
           <ContactSearch
-        contactOptions={this.state.test}
+        contactOptions={this.state.contacts}
+        launchContactDisplay={this.launchContactDisplay}
+        searchTerm={this.searchTerm}
+        test ={this.test}
       />
+         
       </div>
-      <div  className=" offset-s10 col s2  ">
-       <button className="new-contact white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" onClick={this.displayContactForm}>Add a Contact</button>
+      
+      <div  className=" offset-s8 col s2  ">
+      <Link
+                    to={"/contacts/addnew"}
+                    onClick={this.props.launchContactDisplay}
+                >
+                        <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4" >Add a Contact</button>
+                        </Link>
+               
        </div>
        </div>
+       <ContactGroups 
+       displayGroup={this.displayGroup}
+       />
+<div> </div>
+ 
+</div>
 
-<ContactGroups/>
 </div>
         )
       };
