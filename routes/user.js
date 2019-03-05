@@ -7,7 +7,8 @@ const passport = require("../passport");
 router.post("/", (req, res) => {
     console.log("user signup");
 
-    const { username, password, email } = req.body;
+    const { username, password, email, firstName, lastName } = req.body;
+
     // ADD VALIDATION -- error if user already exists
     db.User.findOne({ username: username }, (err, user) => {
         if (err) {
@@ -17,10 +18,13 @@ router.post("/", (req, res) => {
                 error: "Sorry, already a user with the username: ${username}",
             });
         } else {
+            /* Unique user - add to the database */
             const newUser = new db.User({
                 username: username,
                 password: password,
                 email: email,
+                firstName: firstName,
+                lastName: lastName,
             });
             newUser.save((err, savedUser) => {
                 if (err) {
@@ -32,7 +36,7 @@ router.post("/", (req, res) => {
     });
 });
 
-// POST("/user/login") - authenticate the user (add to local session) and return the user info
+// POST("/user/login") - authenticate the user (add to local session) and return the user object
 router.post(
     "/login",
     function(req, res, next) {
@@ -42,16 +46,13 @@ router.post(
     },
     passport.authenticate("local"),
     (req, res) => {
-        console.log("logged in", req.user);
-        var userInfo = {
-            username: req.user.username,
-        };
-        res.send(userInfo);
+        console.log("logged in ", req.user.email);
+        res.send(req.user);
     }
 );
 
 // GET("/user/") -- return the current logged in username and database key (_id)
-router.get("/", (req, res, next) => {
+router.get("/", (req, res /*, next */) => {
     console.log("===== user!!======");
     console.log(req.user);
     if (req.user) {
