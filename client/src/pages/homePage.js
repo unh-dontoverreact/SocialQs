@@ -4,8 +4,41 @@ import Sidebar from "../components/Sidebar"
 import UserProfile from '../components/UserProfile';
 import { EventList, EventListItem } from '../components/EventList';
 import { Redirect } from 'react-router-dom'
+import NewEvent from '../components/NewEvent';
+import Axios from 'axios';
 
 class HomePage extends Component {
+
+  state = {
+    date: "",
+    title: "",
+    contact: []
+  }
+
+  //when we click enter new event, use state as new event and send to db
+  enterNewEvent = () => {
+    
+    let newEvent={
+      date: this.state.date,
+      title: this.state.title,
+      contact: this.state.contact
+    }
+
+    Axios.post('api/events', newEvent)
+    .catch(error => {
+      console.log(error.response)
+    }).then(this.renderEventList())
+  }
+
+  //set state as user enters event info 
+  newEvent = event => {
+
+    const {name, value } = event.target;
+    
+    this.setState({
+      [name]: value
+    })
+  }
 
   // Run this when component starts up
   componentDidMount() {
@@ -24,7 +57,7 @@ class HomePage extends Component {
           id={event.id}
           date={event.date}
           title={event.title}
-          contact={event.contact}
+          contact={event.contact.join(", ")}
         />
       )
     });
@@ -39,14 +72,18 @@ class HomePage extends Component {
       <div>
         <Container>
           <Row>
-            <Col size="s3">
+            <Col>
               <Sidebar user={this.props.user} />
             </Col>
-            <Col size="s9">
+            <Col>
               <UserProfile user={this.props.user} />
               <EventList user={this.props.user}>
                 {this.renderEventList()}
               </EventList>
+              <NewEvent 
+                handleNewEvent={this.newEvent}
+                enterNewEvent={this.enterNewEvent}
+                />
             </Col>
           </Row>
         </Container>

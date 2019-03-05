@@ -8,12 +8,18 @@ export function ContactList({ children }) {
 }
 
 //Mark - deleteContact - possibly unneeded code
+<<<<<<< HEAD
 export function deleteContact(id) {
     console.log("Delete User", id);
+=======
+export function deleteContact() {
+  console.log("Delete User");
+>>>>>>> d720c8091aa9a053fea11d803a518adabb896b0d
 }
 
 // ContactListItem - details of a contact
 export function ContactListItem(props) {
+<<<<<<< HEAD
     return (
         <li className="collection-item">
             <Container>
@@ -45,4 +51,36 @@ export function ContactListItem(props) {
             </Container>
         </li>
     );
+=======
+  return (
+    <li className="collection-item">
+      <Container>
+        <Row>
+          <Col size="s12">
+            <table className="striped responsive-table">
+              <tbody>
+                <tr>
+                  <td>
+                    {props.firstName} {props.lastName}
+                  </td>
+                  <td>{props.birthDate}</td>
+                  <td>{props.email}</td>
+                  <td>
+                    {/* Mark - onClick to delete user  */}
+                    <button
+                      onClick={() => deleteContact(props.id)}
+                      className="deleteContact"
+                    >
+                      <i className="material-icons">delete_forever</i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Col>
+        </Row>
+      </Container>
+    </li>
+  );
+>>>>>>> d720c8091aa9a053fea11d803a518adabb896b0d
 }

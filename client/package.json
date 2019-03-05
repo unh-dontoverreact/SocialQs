@@ -1,14 +1,16 @@
 {
-  "name": "mern",
+  "name": "socialqs",
   "version": "0.1.0",
-  "description": "Mern Demo",
+  "description": "SocialQs React app",
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.18.0",
+    "materialize-css": "^1.0.0",
     "react": "^16.6.3",
     "react-calendar": "^2.18.1",
-    "react-dom": "^16.6.3",
+    "react-images-upload": "^1.2.6",
+    "react-materialize": "^2.6.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.1"
   },
@@ -17,6 +19,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",

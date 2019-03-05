@@ -18,11 +18,16 @@
     "prettier"
   ],
   "extends": [
-      "plugin:react/recommended",
-      "plugin:prettier/recommended"
+      "plugin:prettier/recommended",
+      "prettier/flowtype",
+      "prettier/react",
+      "prettier/standard"
   ],
   "rules": {
+<<<<<<< HEAD
     "react/prop-types": "off",
+=======
+>>>>>>> d720c8091aa9a053fea11d803a518adabb896b0d
       "no-duplicate-case": "error",
       "no-empty": "error",
       "no-console": "off",

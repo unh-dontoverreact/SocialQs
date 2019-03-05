@@ -1,10 +1,15 @@
 import React from "react";
 import "./index.css";
+<<<<<<< HEAD
+=======
+//import photo from "../../../public/assets/images/mormonfamilyreunion"
+>>>>>>> d720c8091aa9a053fea11d803a518adabb896b0d
 
 const LandingPageSideBar = props => (
     <div className="row  all-landing-page-info">
         <div className="Landing-Page-Pitch-display card col s6">
             <h2> Are you a Social Misfit?</h2>
+<<<<<<< HEAD
 
             <h5> Do you struggle with remembering important dates?</h5>
             <h5>
@@ -38,6 +43,26 @@ const LandingPageSideBar = props => (
             <h5>
                 It allows you to set interval reminders to connect with someone.
             </h5>
+=======
+            <h3> Do you struggle with... </h3>
+            <h5>Remembering important dates?</h5>
+            <h5>Keeping up with your family or friends?</h5>
+
+            <h5>Finding a reason to reach out and start conversation?</h5>
+            <h5>Remembering a significant others name?</h5>
+
+            <h4>If yes, this site for you!</h4>
+        </div>
+
+        <div className="col cards s6">
+            <h2> SocialQ’s - A Personal Relationship Manager </h2>
+            <h5> Keep track connections even if they've not online </h5>
+            <h5>Display a timeline of upcoming important events. </h5>
+            <h5>
+                Gentle reminders "cue" you when an important event is coming up.
+            </h5>
+            <h5>Set interval reminders to connect with someone.</h5>
+>>>>>>> d720c8091aa9a053fea11d803a518adabb896b0d
 
             <div className="row">
                 <div className="col s8">
@@ -57,6 +82,12 @@ const LandingPageSideBar = props => (
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+=======
+        <div className="image2">
+            <img src="assets/images/mfrpng.png" alt="beach people" />
+        </div>
+>>>>>>> d720c8091aa9a053fea11d803a518adabb896b0d
     </div>
 );
 
