@@ -74,6 +74,7 @@ class HomePage extends Component {
               <EventList user={this.props.user}>
                 {this.renderEventList()}
               </EventList>
+              <br/>
               <NewEvent 
                 handleNewEvent={this.newEvent}
                 enterNewEvent={this.enterNewEvent}

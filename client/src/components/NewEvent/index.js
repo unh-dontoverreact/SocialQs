@@ -1,7 +1,7 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
-import { Modal, Button, Icon } from "react-materialize";
+import { Modal, Button} from "react-materialize";
 
 class NewEvent extends React.Component {
     render() {
@@ -10,9 +10,7 @@ class NewEvent extends React.Component {
                 className="new-event-display card z-depth-2 center-align"
                 header="Create New Event"
                 trigger={
-                    <Button>
-                        <Icon>add_circle_outline</Icon>
-                    </Button>
+                    <Button center waves="light" className="white-text #4a148c purple darken-4 z-depth-5">Create New Event</Button>
                 }
             >
                     <form>
