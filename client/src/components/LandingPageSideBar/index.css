@@ -1,25 +1,25 @@
-  .all-landing-page-info{
-  background-image: ("./mormonfamilyreunion.jpg");
-  background-repeat: no-repeat;
-  background-position: bottom;
-  opacity: .9
-}  
+.all-landing-page-info {
+    background-image: ("./mormonfamilyreunion.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    opacity: 0.9;
+}
 
 .Landing-Page-Pitch-display {
-     height:100%;
-padding: 20px; 
-  border: 2px;
-  border-style: outset;
-  border-color: black;
-  color: whitesmoke;
-  background-color: #612469 !important
+    height: 100%;
+    padding: 20px;
+    border: 2px;
+    border-style: outset;
+    border-color: black;
+    color: whitesmoke;
+    background-color: #612469 !important;
 }
-.tag{
-    color: #612469
+.tag {
+    color: #612469;
 }
 
 .image2 {
-  height: 30px;
-  width: 30px;
-  float: left;
+    height: 30px;
+    width: 30px;
+    float: left;
 }
