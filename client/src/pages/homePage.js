@@ -67,7 +67,7 @@ class HomePage extends Component {
         <Container>
           <Row>
             <Col>
-              <Sidebar user={this.props.user} />
+              <Sidebar user={this.props.user} handlers={this.props.handlers}/>
             </Col>
             <Col>
               <UserProfile user={this.props.user} />
