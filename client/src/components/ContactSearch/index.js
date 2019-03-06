@@ -3,7 +3,12 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 
 
+
 class ContactSearch extends Component {
+  // state = {
+  //   searching: false
+  // }
+
     static propTypes = {
       contactOptions: PropTypes.instanceOf(Array)
     };
@@ -23,15 +28,18 @@ class ContactSearch extends Component {
         // Whether or not the contact list is shown
         showcontactOptions: false,
         // What the user has entered
-        userInput: ""
+        userInput: "",
+        searching: false
+        
       };
     }
   
     // Event fired when the input value is changed
     onChange = e => {
-      const { contactOptions } = this.props;
+           const { contactOptions } = this.props;
       const userInput = e.currentTarget.value;
-  
+      this.props.test(userInput);
+    // console.log(this.props.searchTerm)
       // Filter our contacts that don't contain the user's input
       const filteredcontactOptions = contactOptions.filter(
         contactOptions =>
@@ -46,6 +54,8 @@ class ContactSearch extends Component {
         showcontactOptions: true,
         userInput: e.currentTarget.value
       });
+      // this.props.contactHandlers.handleSearchChange("hello");
+      // console.log(this.props.searchTerm)
     };
   
     // Event fired when the user clicks on a suggestion
@@ -57,6 +67,8 @@ class ContactSearch extends Component {
         showcontactOptions: false,
         userInput: e.currentTarget.innerText
       });
+      // let searchterm=()=>{this.props.searchTerm(this.state.userInput)}
+      this.props.test( e.currentTarget.innerText);
     };
   
     // Event fired when the user presses a key down
@@ -89,8 +101,16 @@ class ContactSearch extends Component {
         this.setState({ activecontactOptions: activecontactOptions + 1 });
       }
     };
+    searchContactlist=()=>{
+      console.log(this.state.userInput)
+      this.setState({
+        searching:true
+      })
+      
+    }
   
     render() {
+     
       const {
         onChange,
         onClick,
@@ -132,7 +152,7 @@ class ContactSearch extends Component {
         } else {
             contactOptionsListComponent = (
             <div class="no-contactOptionss">
-              <em>No contactOptions, you're on your own!</em>
+              <em>No contact found by that name.</em>
             </div>
           );
         }
@@ -141,7 +161,8 @@ class ContactSearch extends Component {
       return (
      
         <div>
-           
+           <div className = "row">
+           <div  className=" col s5  ">
           <input
             type="text"
             placeholder ="Enter Contact Name Here"
@@ -149,12 +170,23 @@ class ContactSearch extends Component {
             onKeyDown={onKeyDown}
             value={userInput}
           />
+          </div>
+         <div  className=" col s2  ">
+        
+                        
+                         
+                       
+       
+       </div>
+       </div>
         <div>  {contactOptionsListComponent} </div>
         
-       
+      
         </div>
         
       )
+    
+      
     }
   }
   
