@@ -9,12 +9,8 @@ class LandingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pictures: [],
-      upload: [],
       existing: true,
     };
-
-    this.onDrop = this.onDrop.bind(this);
   }
 
   state = {
@@ -100,15 +96,6 @@ class LandingPage extends Component {
         console.log(error.response);
       });
   };
-
-  onDrop(pictureFiles, pictureDataURLs) {
-    this.setState({
-      pictures: this.state.pictures.concat(pictureFiles),
-      upload: pictureDataURLs,
-      image: pictureDataURLs,
-    });
-    console.log(this.state.image);
-  }
 
   // renders components to landing page
   render() {
