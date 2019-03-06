@@ -1,7 +1,7 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
-import { Table, Icon} from "react-materialize";
+import { Table, Icon } from "react-materialize";
 
 //event list
 export function EventList({ children }) {
