@@ -57,15 +57,14 @@ getSearchTerm = () => {
 getChosenContact =() => {
   return this.state.contactChosen();
 }
-    handleUserUpdate = newUser => {
-        console.log("newUser: ", newUser);
-        console.log(
-            "updating global user state to",
-            newUser.firstName,
-            newUser.lastName
-        );
-        this.setState({ user: newUser });
-    };
+handleUserUpdate = (loginStatus, newUser) => {
+  console.log(
+      "updating global logged in user state to",
+      newUser.firstName,
+      newUser.lastName
+  );
+  this.setState({ loggedIn: loginStatus, user: newUser });
+};
     handleContactLoad = newContacts => {
         this.setState({ contacts: newContacts });
     };
@@ -106,7 +105,8 @@ handleSearchChange: this.handleSearchChange
                         <Route
                             exact
                             path="/"
-                            render={() => <HomePage user={this.state.user} contacts={this.state.contacts}/>}
+                            render={() => <HomePage user={this.state.user} handlers={this.eventHandlers} contacts={this.state.contacts}/>}
+          
                         />
                         <Route
                             exact

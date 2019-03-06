@@ -49,18 +49,18 @@ class HomePage extends Component {
   //renders list of events
   renderEventList = () => {
 
-    return this.props.user.events.map((event, i) => {
+    // return this.props.user.events.map((event, i) => {
 
-      return (
-        <EventListItem
-          key={i}
-          id={event.id}
-          date={event.date}
-          title={event.title}
-          contact={event.contact.join(", ")}
-        />
-      )
-    });
+    //   return (
+    //     <EventListItem
+    //       key={i}
+    //       id={event.id}
+    //       date={event.date}
+    //       title={event.title}
+    //       contact={event.contact.join(", ")}
+    //     />
+    //   )
+    // });
   }
 
   render() {
@@ -73,7 +73,7 @@ class HomePage extends Component {
         <Container>
           <Row>
             <Col>
-              <Sidebar user={this.props.user} />
+              <Sidebar user={this.props.user} handlers={this.props.handlers}/>
             </Col>
             <Col>
               <UserProfile user={this.props.user} />
