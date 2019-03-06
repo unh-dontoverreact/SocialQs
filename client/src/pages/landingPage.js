@@ -128,7 +128,8 @@ getUser = () => {
       <Redirect to={{ pathname: this.state.redirectTo }} />
      
       )
-  } else if (this.state.existing) {
+  } 
+  if (this.state.existing) {
     return (
       <div>
       
