@@ -7,6 +7,7 @@ import ContactPage from "./pages/contactPage";
 import AddContactPage from "./pages/addContactPage";
 import ContactDisplayPage from "./pages/contactDisplayPage";
 import Nav from "./components/Nav";
+import EventPage from "./pages/eventPage";
 
 class App extends Component {
     
@@ -147,7 +148,15 @@ handleSearchChange: this.handleSearchChange
                                 <LandingPage handlers={this.eventHandlers} />
                             )}
                         />
+                        <Route
+                            exact
+                            path="/events"
+                            render={() => (
+                                <EventPage user={this.state.user} handlers={this.eventHandlers}/>
+                            )}
+                        />
                         <Route exact path="*" component={LandingPage} />
+                        
                     </Switch>
                 </div>
             </Router>
