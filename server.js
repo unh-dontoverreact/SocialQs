@@ -7,6 +7,8 @@ const MongoStore = require("connect-mongo")(session);
 const dbConnection = require("./database");
 const passport = require("./passport");
 const routes = require("./routes");
+var multer = require("multer")
+var fs = require("fs");
 const user = require("./routes/user");
 
 // Application Configurable Constants
@@ -32,6 +34,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
+
+// multer middleware
+// app.use(multer({ dest: "./uploads/",
+//     rename: function (fieldname, filename) {
+//     return filename;
+//     },
+//     }))
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

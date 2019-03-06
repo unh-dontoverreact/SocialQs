@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const { contactSchema } = require("./contact");
+// const  {contactSchema }  = require("./contact");
+// const contactSchemaDisplay = mongoose.model(contactSchema).schema;
 const { eventSchema } = require("./event");
 const bcrypt = require("bcryptjs");
 mongoose.promise = Promise;
@@ -12,7 +13,7 @@ const userSchema = new Schema({
     firstName: { type: String },
     lastName: { type: String },
     image: { type: String },
-    contacts: [contactSchema],
+    // contacts: [contactSchema],
     events: [eventSchema],
 });
 

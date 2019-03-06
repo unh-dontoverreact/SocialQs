@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar"
 import UserProfile from '../components/UserProfile';
-import { EventList, EventListItem } from '../components/EventList';
+// import { EventList, EventListItem } from '../components/EventList';
+import { EventList } from '../components/EventList';
+import { Redirect } from 'react-router-dom'
 import NewEvent from '../components/NewEvent';
 import Axios from 'axios';
 
@@ -41,27 +43,32 @@ class HomePage extends Component {
 
   // Run this when component starts up
   componentDidMount() {
+    console.log(this.props.user)
     console.log("logged in user: ", this.props.user.firstName, this.props.user.lastName);
   }
 
   //renders list of events
   renderEventList = () => {
 
-    return this.props.user.events.map((event, i) => {
+    // return this.props.user.events.map((event, i) => {
 
-      return (
-        <EventListItem
-          key={i}
-          id={event.id}
-          date={event.date}
-          title={event.title}
-          contact={event.contact.join(", ")}
-        />
-      )
-    });
+    //   return (
+    //     <EventListItem
+    //       key={i}
+    //       id={event.id}
+    //       date={event.date}
+    //       title={event.title}
+    //       contact={event.contact.join(", ")}
+    //     />
+    //   )
+    // });
   }
 
   render() {
+    if( this.props.user.firstName==="George"){
+
+      return <Redirect to={{ pathname: "/landing" }} />
+    } else
     return (
       <div>
         <Container>

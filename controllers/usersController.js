@@ -3,13 +3,24 @@ const { User: db } = require("../models");
 // Defining methods for the usersController
 module.exports = {
     findAll: function(req, res) {
-        db.User.find(req.query)
-            .sort({ username: -1 })
+        console.log(req.email);
+        // let query = { email: req.email, password: req.password };
+        db.User.find()
+            // .sort({ username: -1 })
+            .populate("Contact")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     findById: function(req, res) {
         db.User.findById(req.params.id)
+            // .populate({ path: "Contact", model: Contact }, "_id")
+            // .exec((err, user) => {
+            //     if (err || !user)
+            //         return res.status("400").json({
+            //             error: "User not found",
+            //         });
+            //     res.json(user);
+            // });
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

@@ -4,12 +4,12 @@ import "./style.css";
 
 // ContactList - renders an unorderd list of book items
 export function ContactList({ children }) {
-  return <ul className="collection">{children}</ul>;
+    return <ul className="collection">{children}</ul>;
 }
 
 //Mark - deleteContact - possibly unneeded code
-export function deleteContact() {
-  console.log("Delete User");
+export function deleteContact(id) {
+    console.log("Delete User", id);
 }
 
 // ContactListItem - details of a contact
