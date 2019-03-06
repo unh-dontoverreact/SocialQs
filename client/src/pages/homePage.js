@@ -3,6 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar"
 import UserProfile from '../components/UserProfile';
 // import { EventList, EventListItem } from '../components/EventList';
+import { EventList } from '../components/EventList';
 import { Redirect } from 'react-router-dom'
 import NewEvent from '../components/NewEvent';
 import Axios from 'axios';
