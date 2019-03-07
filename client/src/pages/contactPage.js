@@ -47,34 +47,25 @@ handleInputChange = event => {
 
 
   // Run this when component starts up
-  componentDidMount() {
+ async componentDidMount() {
     console.log("contact page logged in user: ", this.props.user.firstName, this.props.user.lastName);
 // setting the userID state to retrieve contacts
     this.setState({
       userID: this.props.user._id
     })
-// axios call to retrieve contacts
-    // axios.get("/api/user/" + this.props.user._id + "/contacts")
-    // .then(response =>{
-    //   //filtering response to users contacts
-    //              let cont =    response.data.filter(
-    //           userscontacts => userscontacts.userID === this.props.user._id) 
-    //           console.log(cont)
-    //     // setting the global contacts state to the users contacts
-    //   this.props.contactHandlers.handleContactLoad(cont); 
+  await   this.props.resetUser(this.props.user._id)
+
 
     //  // setting the search list to correspond with contacts
-    //   let contactList = []
-    //   for (let i =0; i<this.props.contacts.length; i++){
-    //    contactList.push(this.props.contacts[i].firstName + " " + this.props.contacts[i].lastName)
-    //   }
-    //   this.setState({
-    //     contacts: contactList
-    //   })
-         
-     
-    // })
-       
+      let contactList = []
+      for (let i =0; i<this.props.user.contacts.length; i++){
+       contactList.push(this.props.user.contacts[i].firstName + " " + this.props.user.contacts[i].lastName)
+      }
+      this.setState({
+        contacts: contactList
+      })
+         console.log(this.props.user.contacts)
+             
   }
 
 
@@ -166,7 +157,7 @@ handleInputChange = event => {
             <Col size="s11">
            
             {
-            this.props.contacts.filter(
+            this.props.user.contacts.filter(
               contact => contact.firstName + " " + contact.lastName === this.props.searchTerm || contact.firstName === this.props.searchTerm || contact.lastName === this.props.searchTerm).map((contact, i) => (
                 <ContactTable
                     key={i}
@@ -198,7 +189,7 @@ handleInputChange = event => {
               <Col size="s11">
            
               {
-              this.props.contacts.filter(contact => contact.firstName==="Cheyra").map((contact, i) => (
+              this.props.user.contacts.filter(contact => contact.firstName==="Cheyra").map((contact, i) => (
                   <ContactTable
                       key={i}
                       contactName={contact.firstName + " " + contact.lastName}

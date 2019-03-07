@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 
-class ContactDisplayPage extends Component {
-    componentDidMount() {
+ class ContactDisplayPage extends Component {
+ componentDidMount() {
+    //  await  this.props.resetUser(this.props.user._id)
         console.log(this.props.contactChosen);
+       
+                //   this.props.setChosenContact(this.props.user.contacts[(this.props.user.contacts.length-1)])
+
     }
     render() {
         return (

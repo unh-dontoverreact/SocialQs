@@ -7,7 +7,7 @@ import ContactPage from "./pages/contactPage";
 import AddContactPage from "./pages/addContactPage";
 import ContactDisplayPage from "./pages/contactDisplayPage";
 import Nav from "./components/Nav";
-
+import Axios from 'axios';
 class App extends Component {
     
     state = {
@@ -48,9 +48,9 @@ class App extends Component {
     getUser = () => {
         return this.state.user();
     };
-    getContacts = () => {
-        return this.state.contacts();
-    };
+    // getContacts = () => {
+    //     return this.state.contacts();
+    // };
 getSearchTerm = () => {
   return this.state.searchTerm();
 }
@@ -65,14 +65,21 @@ handleUserUpdate = (loginStatus, newUser) => {
   );
   this.setState({ loggedIn: loginStatus, user: newUser });
 };
-    handleContactLoad = newContacts => {
-        this.setState({ contacts: newContacts });
-    };
+    // handleContactLoad = newContacts => {
+    //     this.setState({ contacts: newContacts });
+    // };
 handleSearchChange= newSearchTerm =>{
   this.setState({ searchTerm: newSearchTerm });
 }
 setChosenContact = newContactChosen =>{
   this.setState({contactChosen: newContactChosen })
+}
+resetUser = (id) => {
+    Axios.get("api/user/" + id)
+    .then(response=>{
+        this.setState({ user: response.data });
+   
+ })
 }
 
     handleLogout = user => {
@@ -83,9 +90,9 @@ setChosenContact = newContactChosen =>{
       console.log("deleting user", user.id);
     };
 contactEventHandlers ={
-  handleContactLoad: this.handleContactLoad,
+//   handleContactLoad: this.handleContactLoad,
   logoutHandler: this.handleLogout,
-getContacts: this.getContacts,
+// getContacts: this.getContacts,
 getSearchTerm: this.getSearchTerm,
 handleSearchChange: this.handleSearchChange
 
@@ -105,7 +112,7 @@ handleSearchChange: this.handleSearchChange
                         <Route
                             exact
                             path="/"
-                            render={() => <HomePage user={this.state.user} handlers={this.eventHandlers} contacts={this.state.contacts}/>}
+                            render={() => <HomePage user={this.state.user} handlers={this.eventHandlers} resetUser ={this.resetUser} />}
           
                         />
                         <Route
@@ -114,11 +121,11 @@ handleSearchChange: this.handleSearchChange
                             render={() => (
                                 <ContactPage
                                     user={this.state.user}
-                                    contacts={this.state.contacts}
                                     contactChosen ={this.state.contactChosen}
                                     searchTerm={this.state.searchTerm}
                                     contactHandlers={this.contactEventHandlers}
                                     setChosenContact ={this.setChosenContact}
+                                    resetUser ={this.resetUser}
                                 />
                             )}
                         />
@@ -127,9 +134,10 @@ handleSearchChange: this.handleSearchChange
                             path="/contacts/display"
                             render={() => (
                                 <ContactDisplayPage user={this.state.user} 
-                                contacts={this.state.contacts} 
-                                searchTerm={this.state.searchTerm}
+                                 searchTerm={this.state.searchTerm}
                                 contactChosen ={this.state.contactChosen}
+                                setChosenContact ={this.setChosenContact}
+                                resetUser ={this.resetUser}
                                 />
                             )}
                         />
@@ -137,7 +145,7 @@ handleSearchChange: this.handleSearchChange
                             exact
                             path="/contacts/addnew"
                             render={() => (
-                                <AddContactPage user={this.state.user} contacts={this.state.contacts} searchTerm={this.state.searchTerm}   contactChosen ={this.state.contactChosen} setChosenContact ={this.setChosenContact}/>
+                                <AddContactPage user={this.state.user} searchTerm={this.state.searchTerm}   contactChosen ={this.state.contactChosen} setChosenContact ={this.setChosenContact} resetUser={this.resetUser}/>
                             )}
                         />
                         <Route

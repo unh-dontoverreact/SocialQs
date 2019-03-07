@@ -15,8 +15,12 @@ class AddContactPage extends Component {
     }
     componentDidMount() {
         console.log("contact page logged in user: ", this.props.user.firstName, this.props.user.lastName);
-        console.log(this.props.contacts)
         console.log(this.props.user)
+        // this.setState({
+        //   userID: this.props.user._id
+          
+        // });
+        // this.props.resetUser(this.props.user._id)
     }
     // sets user input of new contact to state
     handleInputChange = event => {
@@ -34,7 +38,7 @@ class AddContactPage extends Component {
       };
 
       // establishes new contact and posts it to Mongo DB
-    newContact =() => {
+ newContact =() => {
   
         let newContactInfo ={
           firstName: this.state.contactfirstName,
@@ -45,15 +49,24 @@ class AddContactPage extends Component {
         }
         console.log("On New Contact:", newContactInfo)
         console.log(this.state.userID)
-        axios.post("/api/user/" + this.props.user._id + "/contacts", newContactInfo)
+       axios.post("/api/user/" + this.props.user._id + "/contacts", newContactInfo)
         .then(response =>{
           console.log(response)
-          this.props.setChosenContact(response.data)
+         
+      //     axios.get("api/user/" + this.props.user._id)
+      //     .then(response=>{
+      //         this.setState({ user: response.data });
+         
+      //  })
+          this.props.setChosenContact(newContactInfo)
+          // console.log(this.props.user.contacts)
         })
+                
         .catch(error => {
           console.log(error.response)
       });
-    
+      // this.props.resetUser(this.state.userID)
+     
       }
     render() {
         if (this.state.addContact){
