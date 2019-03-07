@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
     //gets user info
     getUser: function() {
-        return axios.get("/api/user", userData);
+        return axios.get("/api/user" + id, userData);
     },
 
     // creates a new user

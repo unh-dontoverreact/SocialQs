@@ -13,7 +13,12 @@ const userSchema = new Schema({
     firstName: { type: String },
     lastName: { type: String },
     image: { type: String },
-    // contacts: [contactSchema],
+    contacts: [{
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the Note model
+      ref: "Contact"
+    }],
     events: [eventSchema],
 });
 
@@ -40,8 +45,8 @@ userSchema.pre("save", function(next) {
     }
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema, "user");
 
 module.exports = {
-    User: User,
-};
+    User:User,
+}

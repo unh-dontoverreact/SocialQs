@@ -54,26 +54,26 @@ handleInputChange = event => {
       userID: this.props.user._id
     })
 // axios call to retrieve contacts
-    axios.get("/api/user/" + this.props.user._id + "/contacts")
-    .then(response =>{
-      //filtering response to users contacts
-                 let cont =    response.data.filter(
-              userscontacts => userscontacts.userID === this.props.user._id) 
-              console.log(cont)
-        // setting the global contacts state to the users contacts
-      this.props.contactHandlers.handleContactLoad(cont); 
+    // axios.get("/api/user/" + this.props.user._id + "/contacts")
+    // .then(response =>{
+    //   //filtering response to users contacts
+    //              let cont =    response.data.filter(
+    //           userscontacts => userscontacts.userID === this.props.user._id) 
+    //           console.log(cont)
+    //     // setting the global contacts state to the users contacts
+    //   this.props.contactHandlers.handleContactLoad(cont); 
 
-     // setting the search list to correspond with contacts
-      let contactList = []
-      for (let i =0; i<this.props.contacts.length; i++){
-       contactList.push(this.props.contacts[i].firstName + " " + this.props.contacts[i].lastName)
-      }
-      this.setState({
-        contacts: contactList
-      })
+    //  // setting the search list to correspond with contacts
+    //   let contactList = []
+    //   for (let i =0; i<this.props.contacts.length; i++){
+    //    contactList.push(this.props.contacts[i].firstName + " " + this.props.contacts[i].lastName)
+    //   }
+    //   this.setState({
+    //     contacts: contactList
+    //   })
          
      
-    })
+    // })
        
   }
 

@@ -43,9 +43,15 @@ class HomePage extends Component {
 
   // Run this when component starts up
   componentDidMount() {
-    console.log(this.props.user)
+    console.log(this.props.user.contacts)
     console.log("logged in user: ", this.props.user.firstName, this.props.user.lastName);
+    Axios.get("api/user/" + this.props.user._id)
+       .then(response=>{
+        this.props.handlers.userUpdateHandler(true, response.data)
+      console.log(this.props.user.contacts)
+    })
   }
+  
 
   //renders list of events
   renderEventList = () => {
