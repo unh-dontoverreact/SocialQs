@@ -3,13 +3,12 @@ const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
   date: { type: Date, required: true },
-  title: { type: String, required: true},
-  contact: { type: Array }
+  title: { type: String, required: true },
+  contact: { type: Array },
 });
 
-const Event = mongoose.model("Event", eventSchema);
+const Event = mongoose.model("Event", eventSchema, "event");
 
 module.exports = {
-  Event : Event,
-  eventSchema : eventSchema
-}
+  Event: Event,
+};
