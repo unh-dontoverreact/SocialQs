@@ -14,13 +14,13 @@ class App extends Component {
       user : { firstName: "George", 
                lastName: "Jetson",
                image: "",
-              
+               contacts: [{firstName: "Jane",  lastName: "Jetson", birthDate: "11/10/1935", email: "jane@gmail.com" },
+        {firstName: "Judy",  lastName: "Jetson", birthDate: "6/5/1958",   email: "judy@gmail.com"},
+        {firstName: "Elroy", lastName: "Jetson", birthDate: "5/1/1963",   email: "elroy@gmail.com"}],
                events:   [{date: "4/8/2019", title: "Jane's birthday", contact: ["Jane"]},
                           {date: "4/6/2019", title: "Jane's birthday party", contact: ["Jane Jetson", "Judy Jetson", "Elroy Jetson"]}]           
         },
-        contacts: [{firstName: "Jane",  lastName: "Jetson", birthDate: "11/10/1935", email: "jane@gmail.com" },
-        {firstName: "Judy",  lastName: "Jetson", birthDate: "6/5/1958",   email: "judy@gmail.com"},
-        {firstName: "Elroy", lastName: "Jetson", birthDate: "5/1/1963",   email: "elroy@gmail.com"}],
+       
         searchTerm: "",
         contactChosen: "" 
     }
@@ -30,13 +30,13 @@ class App extends Component {
         user : { firstName: "", 
                  lastName: "J",
                  image: "",
-                
+                 contacts: [{firstName : "", lastName : ""},
+                 {firstName : "", lastName : ""},
+                 {firstName : "", lastName : ""}],
                  events:   [{date: "", title: "", contact: [""]},
                             {date: "", title: "", contact: [""]}]           
         },
-        contacts: [{firstName : "", lastName : ""},
-        {firstName : "", lastName : ""},
-        {firstName : "", lastName : ""}],
+        
         searchTerm: "",
         contactChosen: ""  
       }); 

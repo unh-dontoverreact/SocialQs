@@ -31,8 +31,7 @@ class LandingPage extends Component {
     };
 
     // axios request to user database and checks for matched based on input fields
-    gUser = () => {
-      
+    getUser = () => {
         axios
             .post("/user/login", {
                 username: this.state.username,
@@ -121,7 +120,7 @@ class LandingPage extends Component {
             return (
                 <div>
                     <Login
-                        getUser={this.gUser}
+                        getUser={this.getUser}
                         handleInputChange={this.handleInputChange}
                     />
 

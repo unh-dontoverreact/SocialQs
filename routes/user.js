@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
                 res.json(savedUser);
             });
         }
-    });
+    })
 });
 
 // POST("/user/login") - authenticate the user (add to local session) and return the user object
