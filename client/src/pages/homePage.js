@@ -29,16 +29,16 @@ class HomePage extends Component {
           id={event.id}
           date={event.date}
           title={event.title}
-          contact={event.contact}
+          contact={event.contact.join(", ")}
         />
-      );
+      )
     });
   };
 
   render() {
-    if (this.props.user.firstName === "George") {
+    if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
-    } else
+    } else {
       return (
         <div>
           <Container>
@@ -58,6 +58,7 @@ class HomePage extends Component {
           </Container>
         </div>
       );
+    }
   }
 }
 
