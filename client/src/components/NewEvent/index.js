@@ -34,12 +34,12 @@ class NewEvent extends React.Component {
                         />
                     </Row>
 
-                    <button
+                    <Button
                         className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
                         onClick={this.props.enterNewEvent}
                     >
                         Create
-                    </button>
+                    </Button>
                 </form>
             </div>
         );
