@@ -3,7 +3,7 @@ const router = express.Router();
 const { User: db } = require("../models");
 const passport = require("../passport");
 
-// POST("/user/") -- register a new user in the database if it is not a duplicate
+// POST("/auth/") -- register a new user in the database if it is not a duplicate
 router.post("/", (req, res) => {
   console.log("user signup");
 
@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
   });
 });
 
-// POST("/user/login") - authenticate the user (add to local session) and return the user object
+// POST("/auth/login") - authenticate the user (add to local session) and return the user object
 router.post(
   "/login",
   function(req, res, next) {

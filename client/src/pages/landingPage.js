@@ -27,7 +27,7 @@ class LandingPage extends Component {
   // axios request to user database and checks for matched based on input fields
   gUser = () => {
     axios
-      .post("/user/login", {
+      .post("/auth/login", {
         username: this.state.username,
         password: this.state.password,
       })
@@ -87,7 +87,7 @@ class LandingPage extends Component {
 
     console.log("On New User:", newUserInfo);
     axios
-      .post("/user/", newUserInfo)
+      .post("/auth/", newUserInfo)
       .then(response => {
         // TODO: record success to the screen
         console.log(response);
