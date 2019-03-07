@@ -9,7 +9,7 @@ const passport = require("./passport");
 const routes = require("./routes");
 var multer = require("multer")
 var fs = require("fs");
-const user = require("./routes/user");
+const user = require("./routes/auth");
 
 // Application Configurable Constants
 const PORT = process.env.PORT || 3001;
@@ -52,7 +52,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Define Express API routes here
-app.use("/user", user);
+app.use("/auth", user);
 app.use(routes);
 
 // React Routes - Send every other request to the React app
