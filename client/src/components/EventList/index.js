@@ -1,6 +1,7 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
+import { Table, Icon } from "react-materialize";
 
 //event list
 export function EventList({ children }) {
@@ -8,7 +9,7 @@ export function EventList({ children }) {
         <div id="eventSection">
             <h4 className="center-align">Upcoming Events</h4>
 
-            <table id="eventList" className="striped">
+            <Table id="eventList" className="striped">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -19,7 +20,7 @@ export function EventList({ children }) {
                 </thead>
 
                 <tbody>{children}</tbody>
-            </table>
+            </Table>
         </div>
     );
 }
@@ -36,25 +37,25 @@ export function EventListItem(props) {
                     className="eventActions"
                     onClick={() => props.handleQueEventClick(props.id)}
                 >
-                    <i className="material-icons">alarm</i>
+                    <Icon>alarm</Icon>
                 </span>
                 <span
                     className="eventActions"
                     onClick={() => props.handleFrequencyEventClick(props.id)}
                 >
-                    <i className="material-icons">date_range</i>
+                    <Icon>date_range</Icon>
                 </span>
                 <span
                     className="eventActions"
                     onClick={() => props.handleCompletedEventClick(props.id)}
                 >
-                    <i className="material-icons">beenhere</i>
+                    <Icon>beenhere</Icon>
                 </span>
                 <span
                     className="eventActions"
                     onClick={() => props.handleDeleteEventClick(props.id)}
                 >
-                    <i className="material-icons">delete_forever</i>
+                    <Icon className="material-icons">delete_forever</Icon>
                 </span>
             </td>
         </tr>

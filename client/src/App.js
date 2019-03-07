@@ -7,6 +7,7 @@ import ContactPage from "./pages/contactPage";
 import AddContactPage from "./pages/addContactPage";
 import ContactDisplayPage from "./pages/contactDisplayPage";
 import Nav from "./components/Nav";
+import EventPage from "./pages/eventPage";
 import Footer from "./components/Footer/footer";
 
 class App extends Component {
@@ -54,7 +55,7 @@ class App extends Component {
   };
 
   //---------
-  //  Login/Logout Click Handlers 
+  //  Login/Logout Click Handlers
   //---------
 
   // handleUserUpdate() - called to log a new user into the app, stores their state
@@ -74,7 +75,7 @@ class App extends Component {
   };
 
   //---------
-  // Contact Page Click Handlers 
+  // Contact Page Click Handlers
   //---------
   handleContactLoad = newContacts => {
     this.setState({ contacts: newContacts });
@@ -172,9 +173,19 @@ class App extends Component {
               path="/landing"
               render={() => <LandingPage handlers={this.eventHandlers} />}
             />
+            <Route
+              exact
+              path="/events"
+              render={() => (
+                <EventPage
+                  user={this.state.user}
+                  handlers={this.eventHandlers}
+                />
+              )}
+            />
             <Route exact path="*" component={LandingPage} />
           </Switch>
-          <Footer/> 
+          <Footer />
         </div>
       </Router>
     );
