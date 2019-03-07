@@ -37,10 +37,10 @@
     "connect-mongo": "^2.0.3",
     "crypto": "^1.0.1",
     "dotenv": "^6.2.0",
+    "eslint-plugin-flowtype": "^3.4.2",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "if-env": "^1.0.4",
-    "eslint-plugin-flowtype": "^3.4.2",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.4.13",
     "morgan": "^1.9.1",
@@ -48,6 +48,7 @@
     "passport-local": "^1.0.0",
     "prettier": "^1.16.4",
     "react-dom": "^16.8.3",
-    "react-images-upload": "^1.2.6"
+    "react-images-upload": "^1.2.6",
+    "styled-components": "^4.1.3"
   }
 }

@@ -7,6 +7,7 @@ import ContactPage from "./pages/contactPage";
 import AddContactPage from "./pages/addContactPage";
 import ContactDisplayPage from "./pages/contactDisplayPage";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer/footer";
 
 class App extends Component {
   state = {
@@ -173,6 +174,7 @@ class App extends Component {
             />
             <Route exact path="*" component={LandingPage} />
           </Switch>
+          <Footer/> 
         </div>
       </Router>
     );
