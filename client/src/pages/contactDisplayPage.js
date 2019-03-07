@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
-import Redirect from "react-materialize"
+import Redirect from "react-materialize";
 
 class ContactDisplayPage extends Component {
   componentDidMount() {

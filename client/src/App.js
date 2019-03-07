@@ -8,6 +8,7 @@ import AddContactPage from "./pages/addContactPage";
 import ContactDisplayPage from "./pages/contactDisplayPage";
 import Nav from "./components/Nav";
 import Axios from "axios";
+import EventPage from "./pages/eventPage";
 import Footer from "./components/Footer/footer";
 
 class App extends Component {
@@ -177,6 +178,16 @@ class App extends Component {
               exact
               path="/landing"
               render={() => <LandingPage handlers={this.eventHandlers} />}
+            />
+            <Route
+              exact
+              path="/events"
+              render={() => (
+                <EventPage
+                  user={this.state.user}
+                  handlers={this.eventHandlers}
+                />
+              )}
             />
             <Route exact path="*" component={LandingPage} />
           </Switch>

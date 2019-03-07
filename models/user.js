@@ -21,7 +21,12 @@ const userSchema = new Schema({
       ref: "Contact",
     },
   ],
-  events: [eventSchema],
+  events: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Event",
+    },
+  ],
 });
 
 // Define schema methods
