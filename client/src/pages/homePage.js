@@ -14,20 +14,42 @@ class HomePage extends Component {
         contact: [],
     };
 
-    //when we click enter new event, use state as new event and send to db
-    enterNewEvent = () => {
-        let newEvent = {
-            date: this.state.date,
-            title: this.state.title,
-            contact: this.state.contact,
-        };
+  //when we click enter new event, use state as new event and send to db
+  enterNewEvent = () => {
+    
+    let newEvent={
+      date: this.state.date,
+      title: this.state.title,
+      contact: this.state.contact
+    }
 
-        Axios.post("api/events", newEvent)
-            .catch(error => {
-                console.log(error.response);
-            })
-            .then(this.renderEventList());
-    };
+    Axios.post('api/events', newEvent)
+    .catch(error => {
+      console.log(error.response)
+    }).then(this.renderEventList())
+  }
+
+  //set state as user enters event info 
+  newEvent = event => {
+
+    const {name, value } = event.target;
+    
+    this.setState({
+      [name]: value
+    })
+  }
+
+  // Run this when component starts up
+  componentDidMount() {
+    console.log(this.props.user.contacts)
+    console.log("logged in user: ", this.props.user.firstName, this.props.user.lastName);
+    Axios.get("api/user/" + this.props.user._id)
+       .then(response=>{
+        this.props.handlers.userUpdateHandler(true, response.data)
+      console.log(this.props.user.contacts)
+    })
+  }
+  
 
     //set state as user enters event info
     newEvent = event => {

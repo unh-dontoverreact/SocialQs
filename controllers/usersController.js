@@ -11,17 +11,12 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    // pulls contacts into user after login is successful
     findById: function(req, res) {
         db.User.findById(req.params.id)
-            // .populate({ path: "Contact", model: Contact }, "_id")
-            // .exec((err, user) => {
-            //     if (err || !user)
-            //         return res.status("400").json({
-            //             error: "User not found",
-            //         });
-            //     res.json(user);
-            // });
-            .then(dbModel => res.json(dbModel))
+                    .populate({ path:"contacts",
+            model:"Contact" })
+                        .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     create: function(req, res) {

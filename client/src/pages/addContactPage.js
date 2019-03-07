@@ -40,7 +40,7 @@ class AddContactPage extends Component {
           firstName: this.state.contactfirstName,
           lastName: this.state.contactlastName,
           email: this.state.contactemail,
-          image: this.state.contactimage,
+          // image: this.state.contactimage,
           userID: this.props.user._id
         }
         console.log("On New Contact:", newContactInfo)

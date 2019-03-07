@@ -1,5 +1,7 @@
+// const db  = require("../models");
 const { Contact: db } = require("../models");
-// const { User: datab } = require("../models");
+const { User: udb } = require("../models");
+// const User = require("../models/user");
 // const Contact = require("../models/contact");
 // Defining methods for the contactsController
 module.exports = {
@@ -16,9 +18,17 @@ module.exports = {
     },
     create: function(req, res) {
         console.log("Creating contact: ", req.body);
-        // let newContact = new Contact(req.body);
         db.Contact.create(req.body)
-            .then(dbModel => res.json(dbModel))
+            .then(function(dbContact) {
+                return udb.User.findOneAndUpdate(
+                    { _id: req.params.id },
+                    { $push: { contacts: dbContact._id } }
+                );
+            })
+            .then(function(dbUser) {
+                // If the User was updated successfully, send it back to the client
+                res.json(dbUser);
+            })
             .catch(err => res.status(422).json(err));
     },
     update: function(req, res) {

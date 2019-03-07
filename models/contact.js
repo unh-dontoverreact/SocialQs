@@ -9,9 +9,10 @@ const contactSchema = new Schema({
     userID: { type: String, required: true },
 });
 
-const Contact = mongoose.model("Contact", contactSchema);
+const Contact = mongoose.model("Contact", contactSchema, "contact");
 
 module.exports = {
     Contact: Contact,
+}
     //   contactSchema : contactSchema
-};
+
