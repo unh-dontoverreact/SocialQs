@@ -19,7 +19,7 @@ class Sidebar extends Component {
     logout(event) {
         console.log("logging out");
         axios
-            .post("/user/logout")
+            .post("/auth/logout")
             .then(response => {
                 console.log("logged out");
                 console.log(response.data);
