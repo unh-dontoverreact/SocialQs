@@ -36,8 +36,9 @@ class LandingPage extends Component {
         console.log(response);
         if (response.status === 200) {
           // update App.js state
-          this.props.handlers.userUpdateHandler(true, response.data);
-
+          if (this.props.handlers !== undefined) {
+            this.props.handlers.userUpdateHandler(true, response.data);
+          }
           // update the state to redirect to home
           this.setState({
             redirectTo: "/",

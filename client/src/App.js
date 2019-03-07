@@ -7,160 +7,184 @@ import ContactPage from "./pages/contactPage";
 import AddContactPage from "./pages/addContactPage";
 import ContactDisplayPage from "./pages/contactDisplayPage";
 import Nav from "./components/Nav";
-import Axios from 'axios';
-class App extends Component {
-    
-    state = {
-      user : { firstName: "George", 
-               lastName: "Jetson",
-               image: "",
-               contacts: [{firstName: "Jane",  lastName: "Jetson", birthDate: "11/10/1935", email: "jane@gmail.com" },
-        {firstName: "Judy",  lastName: "Jetson", birthDate: "6/5/1958",   email: "judy@gmail.com"},
-        {firstName: "Elroy", lastName: "Jetson", birthDate: "5/1/1963",   email: "elroy@gmail.com"}],
-               events:   [{date: "4/8/2019", title: "Jane's birthday", contact: ["Jane"]},
-                          {date: "4/6/2019", title: "Jane's birthday party", contact: ["Jane Jetson", "Judy Jetson", "Elroy Jetson"]}]           
-        },
-       
-        searchTerm: "",
-        contactChosen: "" 
-    }
-  
-    resetState = () => {
-      this.setState ({
-        user : { firstName: "", 
-                 lastName: "J",
-                 image: "",
-                 contacts: [{firstName : "", lastName : ""},
-                 {firstName : "", lastName : ""},
-                 {firstName : "", lastName : ""}],
-                 events:   [{date: "", title: "", contact: [""]},
-                            {date: "", title: "", contact: [""]}]           
-        },
-        
-        searchTerm: "",
-        contactChosen: ""  
-      }); 
-    }
- 
-  
-  // export default App;
+import Axios from "axios";
+import Footer from "./components/Footer/footer";
 
-    getUser = () => {
-        return this.state.user();
-    };
-    // getContacts = () => {
-    //     return this.state.contacts();
-    // };
-getSearchTerm = () => {
-  return this.state.searchTerm();
-}
-getChosenContact =() => {
-  return this.state.contactChosen();
-}
-handleUserUpdate = (loginStatus, newUser) => {
-  console.log(
+class App extends Component {
+  state = {
+    user: {
+      firstName: "",
+      lastName: "",
+      image: "",
+      contacts: [{ firstName: "", lastName: "" }],
+      events: [{ date: "", title: "", contact: [""] }],
+    },
+
+    loggedIn: false,
+    searchTerm: "",
+    contactChosen: "",
+  };
+
+  resetState = () => {
+    this.setState({
+      user: {
+        firstName: "",
+        lastName: "J",
+        image: "",
+        contacts: [{ firstName: "", lastName: "" }],
+        events: [{ date: "", title: "", contact: [""] }],
+      },
+
+      loggedIn: false,
+      searchTerm: "",
+      contactChosen: "",
+    });
+  };
+
+  getUser = () => {
+    return this.state.user();
+  };
+  getContacts = () => {
+    return this.state.contacts();
+  };
+  getSearchTerm = () => {
+    return this.state.searchTerm();
+  };
+  getChosenContact = () => {
+    return this.state.contactChosen();
+  };
+
+  //---------
+  //  Login/Logout Click Handlers
+  //---------
+
+  // handleUserUpdate() - called to log a new user into the app, stores their state
+  handleUserUpdate = (loginStatus, newUser) => {
+    console.log(
       "updating global logged in user state to",
       newUser.firstName,
       newUser.lastName
-  );
-  this.setState({ loggedIn: loginStatus, user: newUser });
-};
-    // handleContactLoad = newContacts => {
-    //     this.setState({ contacts: newContacts });
-    // };
-handleSearchChange= newSearchTerm =>{
-  this.setState({ searchTerm: newSearchTerm });
-}
-setChosenContact = newContactChosen =>{
-  this.setState({contactChosen: newContactChosen })
-}
-resetUser = (id) => {
-    Axios.get("api/user/" + id)
-    .then(response=>{
-        this.setState({ user: response.data });
-   
- })
-}
+    );
+    this.setState({ loggedIn: loginStatus, user: newUser });
+  };
 
-    handleLogout = user => {
-        console.log("logging out", user.firstName, user.lastName);
-        this.resetState();
-    };
-    handleDeleteUser = user => {
-      console.log("deleting user", user.id);
-    };
-contactEventHandlers ={
-//   handleContactLoad: this.handleContactLoad,
-  logoutHandler: this.handleLogout,
-// getContacts: this.getContacts,
-getSearchTerm: this.getSearchTerm,
-handleSearchChange: this.handleSearchChange
+  // handleLogout() - called to log a user out of the system, clears their state
+  handleLogout = user => {
+    console.log("logging out", user.firstName, user.lastName);
+    this.resetState();
+  };
 
-}
-    eventHandlers = {
-        userUpdateHandler: this.handleUserUpdate,
-               logoutHandler: this.handleLogout,
-        getUser: this.getUser,
-    };
+  //---------
+  // Contact Page Click Handlers
+  //---------
+  handleContactLoad = newContacts => {
+    this.setState({ contacts: newContacts });
+  };
+  handleSearchChange = newSearchTerm => {
+    this.setState({ searchTerm: newSearchTerm });
+  };
+  setChosenContact = newContactChosen => {
+    this.setState({ contactChosen: newContactChosen });
+  };
+  handleDeleteUser = user => {
+    console.log("deleting user", user.id);
+  };
+  resetUser = id => {
+    Axios.get("api/user/" + id).then(response => {
+      this.setState({ user: response.data });
+    });
+  };
 
-    render() {
-        return (
-            <Router>
-                <div>
-                    <Nav />
-                    <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => <HomePage user={this.state.user} handlers={this.eventHandlers} resetUser ={this.resetUser} />}
-          
-                        />
-                        <Route
-                            exact
-                            path="/contacts"
-                            render={() => (
-                                <ContactPage
-                                    user={this.state.user}
-                                    contactChosen ={this.state.contactChosen}
-                                    searchTerm={this.state.searchTerm}
-                                    contactHandlers={this.contactEventHandlers}
-                                    setChosenContact ={this.setChosenContact}
-                                    resetUser ={this.resetUser}
-                                />
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/contacts/display"
-                            render={() => (
-                                <ContactDisplayPage user={this.state.user} 
-                                 searchTerm={this.state.searchTerm}
-                                contactChosen ={this.state.contactChosen}
-                                setChosenContact ={this.setChosenContact}
-                                resetUser ={this.resetUser}
-                                />
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/contacts/addnew"
-                            render={() => (
-                                <AddContactPage user={this.state.user} searchTerm={this.state.searchTerm}   contactChosen ={this.state.contactChosen} setChosenContact ={this.setChosenContact} resetUser={this.resetUser}/>
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/landing"
-                            render={() => (
-                                <LandingPage handlers={this.eventHandlers} />
-                            )}
-                        />
-                        <Route exact path="*" component={LandingPage} />
-                    </Switch>
-                </div>
-            </Router>
-        );
-    }
+  //---------
+  // Event Handlers Package to be passed to the child pages
+  //---------
+  contactEventHandlers = {
+    handleContactLoad: this.handleContactLoad,
+    logoutHandler: this.handleLogout,
+    getContacts: this.getContacts,
+    getSearchTerm: this.getSearchTerm,
+    handleSearchChange: this.handleSearchChange,
+  };
+
+  eventHandlers = {
+    userUpdateHandler: this.handleUserUpdate,
+    logoutHandler: this.handleLogout,
+    getUser: this.getUser,
+  };
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Nav />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <HomePage
+                  user={this.state.user}
+                  handlers={this.eventHandlers}
+                  loggedIn={this.state.loggedIn}
+                  resetUser={this.resetUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/contacts"
+              render={() => (
+                <ContactPage
+                  user={this.state.user}
+                  contactChosen={this.state.contactChosen}
+                  searchTerm={this.state.searchTerm}
+                  contactHandlers={this.contactEventHandlers}
+                  setChosenContact={this.setChosenContact}
+                  loggedIn={this.state.loggedIn}
+                  resetUser={this.resetUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/contacts/display"
+              render={() => (
+                <ContactDisplayPage
+                  user={this.state.user}
+                  searchTerm={this.state.searchTerm}
+                  contactChosen={this.state.contactChosen}
+                  setChosenContact={this.setChosenContact}
+                  loggedIn={this.state.loggedIn}
+                  resetUser={this.resetUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/contacts/addnew"
+              render={() => (
+                <AddContactPage
+                  user={this.state.user}
+                  searchTerm={this.state.searchTerm}
+                  contactChosen={this.state.contactChosen}
+                  setChosenContact={this.setChosenContact}
+                  loggedIn={this.state.loggedIn}
+                  resetUser={this.resetUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/landing"
+              render={() => <LandingPage handlers={this.eventHandlers} />}
+            />
+            <Route exact path="*" component={LandingPage} />
+          </Switch>
+          <Footer/>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

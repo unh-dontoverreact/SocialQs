@@ -3,6 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import NewContact from "../components/NewContact";
 import axios from "axios";
+import Redirect from "react-materialize"
 
 class AddContactPage extends Component {
     state={
@@ -16,10 +17,10 @@ class AddContactPage extends Component {
     componentDidMount() {
         console.log("contact page logged in user: ", this.props.user.firstName, this.props.user.lastName);
         console.log(this.props.user)
-        // this.setState({
-        //   userID: this.props.user._id
+        this.setState({
+          userID: this.props.user._id
           
-        // });
+        });
         // this.props.resetUser(this.props.user._id)
     }
     // sets user input of new contact to state
@@ -69,7 +70,10 @@ class AddContactPage extends Component {
      
       }
     render() {
-        if (this.state.addContact){
+      if (!this.props.loggedIn) {
+        return <Redirect to={{ pathname: "/landing" }} />;
+      }
+        else if (this.state.addContact){
             return (    
                 <div>
    
