@@ -29,7 +29,7 @@ class HomePage extends Component {
           id={event.id}
           date={event.date}
           title={event.title}
-          contact={event.contact.join(", ")}
+          contact={event.contact}
         />
       )
     });
