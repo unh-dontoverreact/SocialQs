@@ -1,49 +1,38 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
-import { Modal, Button, Input } from "react-materialize";
+import { Row, Button, Input } from "react-materialize";
 
 class NewEvent extends React.Component {
     render() {
         return (
-            <Modal
-                className="new-event-display card z-depth-2 center-align"
-                header="Create New Event"
-                trigger={
-                    <Button
-                        center
-                        waves="light"
-                        className="white-text #4a148c purple darken-4 z-depth-5"
-                    >
-                        Create New Event
-                    </Button>
-                }
-            >
-                <form>
-                    <div>
+        <div className="new-event-display card z-depth-2 center-align">
+        <h4>Create New Event </h4>
+                <form className="center-align">
+                    <Row >
                         <Input
                             name="date"
                             type="date"
                             placeholder="Event Date"
                             onChange={this.props.handleNewEvent}
                         />
-                    </div>
-                    <div>
+                    </Row>
+                    <Row>
                         <Input
                             name="title"
                             type="text"
                             placeholder="Describe the Event"
                             onChange={this.props.handleNewEvent}
                         />
-                    </div>
-                    <div>
+                    </Row>
+                    <Row>
                         <Input
                             name="contact"
                             type="text"
                             placeholder="Add contacts"
                             onChange={this.props.handleNewEvent}
                         />
-                    </div>
+                    </Row>
 
                     <button
                         className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
@@ -52,7 +41,7 @@ class NewEvent extends React.Component {
                         Create
                     </button>
                 </form>
-            </Modal>
+            </div>
         );
     }
 }

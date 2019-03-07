@@ -14,7 +14,10 @@ class EventPage extends Component {
   };
 
   //when we click enter new event, use state as new event and send to db
-  enterNewEvent = () => {
+  enterNewEvent = (x) => {
+
+    x.preventDefault();
+
     let newEvent = {
       date: this.state.date,
       title: this.state.title,
@@ -36,16 +39,6 @@ class EventPage extends Component {
       [name]: value,
     });
   };
-
-  // Run this when component starts up
-  componentDidMount() {
-    console.log(this.props.user);
-    console.log(
-      "logged in user: ",
-      this.props.user.firstName,
-      this.props.user.lastName
-    );
-  }
 
   //renders list of events
   renderEventList = () => {
