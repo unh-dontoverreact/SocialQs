@@ -1,63 +1,61 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
-import Sidebar from "../components/Sidebar"
-import UserProfile from '../components/UserProfile';
+import Sidebar from "../components/Sidebar";
+import UserProfile from "../components/UserProfile";
 // import { EventList, EventListItem } from '../components/EventList';
-import { EventList } from '../components/EventList';
-import { Redirect } from 'react-router-dom'
-import NewEvent from '../components/NewEvent';
-import Axios from 'axios';
+import { EventList } from "../components/EventList";
+import { Redirect } from "react-router-dom";
+import NewEvent from "../components/NewEvent";
+import Axios from "axios";
 
 class HomePage extends Component {
-
   state = {
     date: "",
     title: "",
-    contact: []
-  }
+    contact: [],
+  };
 
   //when we click enter new event, use state as new event and send to db
   enterNewEvent = () => {
-    
-    let newEvent={
+    let newEvent = {
       date: this.state.date,
       title: this.state.title,
-      contact: this.state.contact
-    }
+      contact: this.state.contact,
+    };
 
-    Axios.post('api/events', newEvent)
-    .catch(error => {
-      console.log(error.response)
-    }).then(this.renderEventList())
-  }
+    Axios.post("api/events", newEvent)
+      .catch(error => {
+        console.log(error.response);
+      })
+      .then(this.renderEventList());
+  };
 
-  //set state as user enters event info 
+  //set state as user enters event info
   newEvent = event => {
+    const { name, value } = event.target;
 
-    const {name, value } = event.target;
-    
     this.setState({
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   // Run this when component starts up
   componentDidMount() {
-    console.log(this.props.user.contacts)
-    console.log("logged in user: ", this.props.user.firstName, this.props.user.lastName);
-    Axios.get("api/user/" + this.props.user._id)
-       .then(response=>{
-        this.props.handlers.userUpdateHandler(true, response.data)
-      console.log(this.props.user.contacts)
-    })
+    console.log(this.props.user.contacts);
+    console.log(
+      "logged in user: ",
+      this.props.user.firstName,
+      this.props.user.lastName
+    );
+    Axios.get("api/user/" + this.props.user._id).then(response => {
+      this.props.handlers.userUpdateHandler(true, response.data);
+      console.log(this.props.user.contacts);
+    });
   }
-  
 
   //renders list of events
   renderEventList = () => {
-
     // return this.props.user.events.map((event, i) => {
-
     //   return (
     //     <EventListItem
     //       key={i}
@@ -68,33 +66,37 @@ class HomePage extends Component {
     //     />
     //   )
     // });
-  }
+  };
 
   render() {
-    if( this.props.user.firstName==="George"){
-
-      return <Redirect to={{ pathname: "/landing" }} />
-    } else
-    return (
-      <div>
-        <Container>
-          <Row>
-            <Col>
-              <Sidebar user={this.props.user} handlers={this.props.handlers}/>
-            </Col>
-            <Col>
-              <UserProfile user={this.props.user} />
-              <EventList user={this.props.user}>
-                {this.renderEventList()}
-              </EventList>
-              <NewEvent 
-                handleNewEvent={this.newEvent}
-                enterNewEvent={this.enterNewEvent}
+    if (!this.props.loggedIn) {
+      return <Redirect to={{ pathname: "/landing" }} />;
+    } else {
+      return (
+        <div>
+          <Container>
+            <Row>
+              <Col>
+                <Sidebar
+                  user={this.props.user}
+                  handlers={this.props.handlers}
                 />
-            </Col>
-          </Row>
-        </Container>
-      </div>)
+              </Col>
+              <Col>
+                <UserProfile user={this.props.user} />
+                <EventList user={this.props.user}>
+                  {this.renderEventList()}
+                </EventList>
+                <NewEvent
+                  handleNewEvent={this.newEvent}
+                  enterNewEvent={this.enterNewEvent}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
+    }
   }
 }
 
