@@ -31,4 +31,10 @@ router
   .post(eventsController.create)
   .get(eventsController.findAll);
 
+//Matches with "/api/user/:id/events/:eventId"
+router
+  .route("/:id/events/:eventid")
+  .get(eventsController.findById)
+  .delete(eventsController.remove);  
+
 module.exports = router;
