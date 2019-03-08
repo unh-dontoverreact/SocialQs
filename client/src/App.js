@@ -7,6 +7,7 @@ import ContactPage from "./pages/contactPage";
 import AddContactPage from "./pages/addContactPage";
 import ContactDisplayPage from "./pages/contactDisplayPage";
 import Nav from "./components/Nav";
+import Axios from "axios";
 import EventPage from "./pages/eventPage";
 import Footer from "./components/Footer/footer";
 
@@ -89,6 +90,11 @@ class App extends Component {
   handleDeleteUser = user => {
     console.log("deleting user", user.id);
   };
+  resetUser = id => {
+    Axios.get("api/user/" + id).then(response => {
+      this.setState({ user: response.data });
+    });
+  };
 
   //---------
   // Event Handlers Package to be passed to the child pages
@@ -107,7 +113,6 @@ class App extends Component {
     getUser: this.getUser,
   };
 
-  // Render() - our main react app page switching router
   render() {
     return (
       <Router>
@@ -121,8 +126,8 @@ class App extends Component {
                 <HomePage
                   user={this.state.user}
                   handlers={this.eventHandlers}
-                  contacts={this.state.contacts}
                   loggedIn={this.state.loggedIn}
+                  resetUser={this.resetUser}
                 />
               )}
             />
@@ -132,12 +137,12 @@ class App extends Component {
               render={() => (
                 <ContactPage
                   user={this.state.user}
-                  contacts={this.state.contacts}
                   contactChosen={this.state.contactChosen}
                   searchTerm={this.state.searchTerm}
                   contactHandlers={this.contactEventHandlers}
                   setChosenContact={this.setChosenContact}
                   loggedIn={this.state.loggedIn}
+                  resetUser={this.resetUser}
                 />
               )}
             />
@@ -147,10 +152,11 @@ class App extends Component {
               render={() => (
                 <ContactDisplayPage
                   user={this.state.user}
-                  contacts={this.state.contacts}
                   searchTerm={this.state.searchTerm}
                   contactChosen={this.state.contactChosen}
+                  setChosenContact={this.setChosenContact}
                   loggedIn={this.state.loggedIn}
+                  resetUser={this.resetUser}
                 />
               )}
             />
@@ -160,11 +166,11 @@ class App extends Component {
               render={() => (
                 <AddContactPage
                   user={this.state.user}
-                  contacts={this.state.contacts}
                   searchTerm={this.state.searchTerm}
                   contactChosen={this.state.contactChosen}
                   setChosenContact={this.setChosenContact}
                   loggedIn={this.state.loggedIn}
+                  resetUser={this.resetUser}
                 />
               )}
             />
@@ -185,7 +191,7 @@ class App extends Component {
             />
             <Route exact path="*" component={LandingPage} />
           </Switch>
-          <Footer />
+          <Footer/>
         </div>
       </Router>
     );

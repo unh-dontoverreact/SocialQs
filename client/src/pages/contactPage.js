@@ -44,7 +44,7 @@ class ContactPage extends Component {
   };
 
   // Run this when component starts up
-  componentDidMount() {
+  async componentDidMount() {
     console.log(
       "contact page logged in user: ",
       this.props.user.firstName,
@@ -54,26 +54,21 @@ class ContactPage extends Component {
     this.setState({
       userID: this.props.user._id,
     });
-    // axios call to retrieve contacts
-    // axios.get("/api/user/" + this.props.user._id + "/contacts")
-    // .then(response =>{
-    //   //filtering response to users contacts
-    //              let cont =    response.data.filter(
-    //           userscontacts => userscontacts.userID === this.props.user._id)
-    //           console.log(cont)
-    //     // setting the global contacts state to the users contacts
-    //   this.props.contactHandlers.handleContactLoad(cont);
+    await this.props.resetUser(this.props.user._id);
 
     //  // setting the search list to correspond with contacts
-    //   let contactList = []
-    //   for (let i =0; i<this.props.contacts.length; i++){
-    //    contactList.push(this.props.contacts[i].firstName + " " + this.props.contacts[i].lastName)
-    //   }
-    //   this.setState({
-    //     contacts: contactList
-    //   })
-
-    // })
+    let contactList = [];
+    for (let i = 0; i < this.props.user.contacts.length; i++) {
+      contactList.push(
+        this.props.user.contacts[i].firstName +
+          " " +
+          this.props.user.contacts[i].lastName
+      );
+    }
+    this.setState({
+      contacts: contactList,
+    });
+    console.log(this.props.user.contacts);
   }
 
   // allows user to upload a contact image in the state
@@ -135,7 +130,7 @@ class ContactPage extends Component {
     this.props.setChosenContact(contact);
     console.log(this.props.contactChosen);
   };
-  
+
   deleteContact = contact => {
     axios
       .delete("/api/user/" + this.props.user._id + "/contacts/" + contact._id)
@@ -159,7 +154,7 @@ class ContactPage extends Component {
               </Col>
               <div onClick={this.backToSearch}> Back to Search </div>
               <Col size="s11">
-                {this.props.contacts
+                {this.props.user.contacts
                   .filter(
                     contact =>
                       contact.firstName + " " + contact.lastName ===
@@ -167,6 +162,33 @@ class ContactPage extends Component {
                       contact.firstName === this.props.searchTerm ||
                       contact.lastName === this.props.searchTerm
                   )
+                  .map((contact, i) => (
+                    <ContactTable
+                      key={i}
+                      value={contact}
+                      contactName={contact.firstName + " " + contact.lastName}
+                      relationship={contact.email}
+                      setContact={() => this.setContact(contact)}
+                      deleteContact={() => this.deleteContact(contact)}
+                    />
+                  ))}
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
+    } else if (this.state.searching === "Group") {
+      return (
+        <div>
+          <Container>
+            <Row>
+              <Col size="s1">
+                <Sidebar user={this.props.user} />
+              </Col>
+              <div onClick={this.backToSearch}> Back to Search </div>
+              <Col size="s11">
+                {this.props.user.contacts
+                  .filter(contact => contact.firstName === "Cheyra")
                   .map((contact, i) => (
                     <ContactTable
                       key={i}

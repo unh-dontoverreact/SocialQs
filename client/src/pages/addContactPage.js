@@ -3,7 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import NewContact from "../components/NewContact";
 import axios from "axios";
-import Redirect from "react-materialize"
+import Redirect from "react-materialize";
 
 class AddContactPage extends Component {
   state = {
@@ -20,8 +20,11 @@ class AddContactPage extends Component {
       this.props.user.firstName,
       this.props.user.lastName
     );
-    console.log(this.props.contacts);
     console.log(this.props.user);
+    this.setState({
+      userID: this.props.user._id,
+    });
+    // this.props.resetUser(this.props.user._id)
   }
   // sets user input of new contact to state
   handleInputChange = event => {
@@ -50,36 +53,43 @@ class AddContactPage extends Component {
       .post("/api/user/" + this.props.user._id + "/contacts", newContactInfo)
       .then(response => {
         console.log(response);
-        this.props.setChosenContact(response.data);
+
+        //     axios.get("api/user/" + this.props.user._id)
+        //     .then(response=>{
+        //         this.setState({ user: response.data });
+
+        //  })
+        this.props.setChosenContact(newContactInfo);
+        // console.log(this.props.user.contacts)
       })
+
       .catch(error => {
         console.log(error.response);
       });
+    // this.props.resetUser(this.state.userID)
   };
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
-    } else {
-      if (this.state.addContact) {
-        return (
-          <div>
-            <Container>
-              <Row>
-                <Col size="s1">
-                  <Sidebar user={this.props.user} />
-                </Col>
-                <Col size="s11">
-                  <p />
-                  <NewContact
-                    newContact={this.newContact}
-                    handleInputChange={this.handleInputChange}
-                  />
-                </Col>
-              </Row>
-            </Container>
-          </div>
-        );
-      }
+    } else if (this.state.addContact) {
+      return (
+        <div>
+          <Container>
+            <Row>
+              <Col size="s1">
+                <Sidebar user={this.props.user} />
+              </Col>
+              <Col size="s11">
+                <p />
+                <NewContact
+                  newContact={this.newContact}
+                  handleInputChange={this.handleInputChange}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
     }
   }
 }
