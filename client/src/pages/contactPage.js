@@ -17,6 +17,7 @@ class ContactPage extends Component {
     contactfirstName: "",
     contactlastName: "",
     contactemail: "",
+    contactbirthDate: "",
     userID: "",
     searching: "",
     group: "",
