@@ -46,6 +46,11 @@ class AddContactPage extends Component {
       lastName: this.state.contactlastName,
       email: this.state.contactemail,
       birthDate: this.state.contactbirthDate,
+      address: this.state.contactAddress,
+      relationship: this.state.contactRelationship,
+      occupation: this.state.contactOccupation,
+      hobbies: this.state.contactHobbies,
+      notes: this.state.contactNotes,
       // image: this.state.contactimage,
       userID: this.props.user._id,
     };
