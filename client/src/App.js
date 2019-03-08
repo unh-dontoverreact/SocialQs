@@ -7,7 +7,7 @@ import ContactPage from "./pages/contactPage";
 import AddContactPage from "./pages/addContactPage";
 import ContactDisplayPage from "./pages/contactDisplayPage";
 import Nav from "./components/Nav";
-import Axios from "axios";
+import axios from "axios";
 import EventPage from "./pages/eventPage";
 import Footer from "./components/Footer/footer";
 
@@ -90,10 +90,11 @@ class App extends Component {
   handleDeleteUser = user => {
     console.log("deleting user", user.id);
   };
-  resetUser = id => {
-    Axios.get("api/user/" + id).then(response => {
-      this.setState({ user: response.data });
-    });
+  resetUser = async id => {
+        const {data} = await axios.get("api/user/" + id);
+    console.log(data)
+    this.setState({ user: data}, ()=>{console.log(this.state.user)})
+    
   };
 
   //---------
