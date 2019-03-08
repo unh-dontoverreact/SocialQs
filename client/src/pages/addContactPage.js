@@ -12,6 +12,7 @@ class AddContactPage extends Component {
     contactfirstName: "",
     contactlastName: "",
     contactemail: "",
+    contactbirthDate: "",
     userID: "",
   };
   componentDidMount() {
@@ -44,6 +45,7 @@ class AddContactPage extends Component {
       firstName: this.state.contactfirstName,
       lastName: this.state.contactlastName,
       email: this.state.contactemail,
+      birthDate: this.state.contactbirthDate,
       // image: this.state.contactimage,
       userID: this.props.user._id,
     };

@@ -33,7 +33,7 @@ class ContactPage extends Component {
       [name]: value,
     });
     console.log(this.state.contactfirstName);
-
+    console.log(this.state.contactbirthDate);
     for (let i = 0; i < 3; i++) {
       if (
         this.state.contactName === this.state.test[i].firstName ||
