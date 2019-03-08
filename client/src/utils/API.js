@@ -86,4 +86,14 @@ export default {
   getEvents: function() {
     return axios.get("/api/user/" + id + "/events");
   },
+
+  // Get an event with given id
+  getEvent: function() {
+    return axios.get("/api/user/" + id + "/events/" + eventid);
+  },
+
+  // Delete an event with given id
+  deleteEvent: function() {
+    return axios.delete("/api/user/" + id + "/events/" + eventid);
+  },
 };
