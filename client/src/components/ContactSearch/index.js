@@ -151,7 +151,7 @@ class ContactSearch extends Component {
           );
         } else {
             contactOptionsListComponent = (
-            <div class="no-contactOptionss">
+            <div className="no-contactOptionss">
               <em>No contact found by that name.</em>
             </div>
           );

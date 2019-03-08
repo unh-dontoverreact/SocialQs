@@ -71,29 +71,7 @@ class ContactPage extends Component {
     });
     console.log(this.props.user.contacts);
   }
-
-  // allows user to upload a contact image in the state
-  // constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //         pictures: [],
-  //         upload: [],
-  //         existing: true
-  //     };
-
-  //     this.onDrop = this.onDrop.bind(this);
-  // }
-
-  // onDrop(pictureFiles, pictureDataURLs) {
-
-  //        this.setState({
-  //         pictures: this.state.pictures.concat(pictureFiles),
-  //         upload:pictureDataURLs,
-  //         image: pictureDataURLs
-  //     });
-  //        console.log(this.state.image)
-  // }
-
+  
   filterSearch = () => {
     this.setState({
       contactNamesearch: true,
