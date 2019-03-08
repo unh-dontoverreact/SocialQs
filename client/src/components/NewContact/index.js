@@ -60,6 +60,24 @@ const NewContact = props => (
                         Email Address
                     </span>
                 </div>
+                {/* Mark adding enter birthday fields */}
+                <div className="input-field">
+                    <input
+                        placeholder="Enter Birthday - example 09/29/1987"
+                        name="contactbirthDate"
+                        id="birthDate"
+                        type="date"
+                        className="validate .center-align"
+                        onChange={props.handleInputChange}
+                    />
+   <span
+                        className="helper-text"
+                        data-error="Please enter a date"
+                        data-success="right"
+                    >
+                        Birthday
+                    </span>
+                </div>
             </form>
             {/* <div> {props.image }</div> */}
             <Link
