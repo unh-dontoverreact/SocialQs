@@ -18,6 +18,11 @@ class ContactPage extends Component {
     contactlastName: "",
     contactemail: "",
     contactbirthDate: "",
+    contactAddress: "",
+    contactRelationship:"",
+    contactOccupation:"",
+    contactHobbies:"",
+    contactNotes:"",
     userID: "",
     searching: "",
     group: "",
@@ -147,6 +152,11 @@ class ContactPage extends Component {
                       value={contact}
                       contactName={contact.firstName + " " + contact.lastName}
                       relationship={contact.email}
+                      contactAddress={contact.address}
+                      contactRelationship={contact.relationship}
+                      contactOccupation={contact.occupation}
+                      contactHobbies={contact.hobbies}
+                      contactNotes={contact.notes}
                       setContact={() => this.setContact(contact)}
                       deleteContact={() => this.deleteContact(contact)}
                     />
@@ -174,6 +184,11 @@ class ContactPage extends Component {
                       value={contact}
                       contactName={contact.firstName + " " + contact.lastName}
                       relationship={contact.email}
+                      contactAddress={contact.address}
+                      contactRelationship={contact.relationship}
+                      contactOccupation={contact.occupation}
+                      contactHobbies={contact.hobbies}
+                      contactNotes={contact.notes}
                       setContact={() => this.setContact(contact)}
                       deleteContact={() => this.deleteContact(contact)}
                     />
@@ -200,6 +215,11 @@ class ContactPage extends Component {
                       key={i}
                       contactName={contact.firstName + " " + contact.lastName}
                       relationship={contact.email}
+                      contactAddress={contact.address}
+                      contactRelationship={contact.relationship}
+                      contactOccupation={contact.occupation}
+                      contactHobbies={contact.hobbies}
+                      contactNotes={contact.notes}
                     />
                   ))}
               </Col>
