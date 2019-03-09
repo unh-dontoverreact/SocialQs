@@ -29,6 +29,10 @@ export default {
     return axios.delete("/api/user/" + id + "/contacts/" + contactid);
   },
 
+  // Updates the contact with given id
+  updateContact: function(id) {
+    return axios.put("/api/user/" + id + "/contacts/" + contactid, contactData);
+  },
   // Saves a contact to the database
   saveContact: function(contactData) {
     return axios.post("/api/user/" + id + "/contacts", contactData);
