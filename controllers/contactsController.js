@@ -1,8 +1,6 @@
-// const db  = require("../models");
 const { Contact: db } = require("../models");
 const { User: udb } = require("../models");
-// const User = require("../models/user");
-// const Contact = require("../models/contact");
+
 // Defining methods for the contactsController
 module.exports = {
   findAll: function(req, res) {

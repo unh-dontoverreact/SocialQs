@@ -2,19 +2,21 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import { EventList } from "../components/EventList";
+import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
-
 
 class HomePage extends Component {
   // Run this when component starts up
   componentDidMount() {
-       console.log(
+    console.log(
       "logged in user: ",
       this.props.user.firstName,
       this.props.user.lastName
     );
-  
-    this.props.resetUser(this.props.user._id);
+    if (this.props.loggedIn) {
+      
+      this.props.refreshUser(this.props.user._id);
+    }
   }
 
   render() {
@@ -24,12 +26,13 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-            <Row>
-              <Col>
-                <Sidebar
+          <Sidebar
                   user={this.props.user}
                   handlers={this.props.handlers}
                 />
+            <Row>
+              <Col>
+              <ContactList user={this.props.user} />
               </Col>
               <Col>
               <EventList user={this.props.user}/>

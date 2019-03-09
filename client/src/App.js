@@ -90,11 +90,12 @@ class App extends Component {
   handleDeleteUser = user => {
     console.log("deleting user", user.id);
   };
-  resetUser = async id => {
-        const {data} = await axios.get("api/user/" + id);
-    console.log(data)
-    this.setState({ user: data}, ()=>{console.log(this.state.user)})
-    
+  refreshUser = async id => {
+    const { data } = await axios.get("/api/user/" + id);
+    console.log(data);
+    this.setState({ user: data }, () => {
+      console.log(this.state.user.contacts);
+    });
   };
 
   //---------
@@ -128,7 +129,7 @@ class App extends Component {
                   user={this.state.user}
                   handlers={this.eventHandlers}
                   loggedIn={this.state.loggedIn}
-                  resetUser={this.resetUser}
+                  refreshUser={this.refreshUser}
                 />
               )}
             />
@@ -143,7 +144,7 @@ class App extends Component {
                   contactHandlers={this.contactEventHandlers}
                   setChosenContact={this.setChosenContact}
                   loggedIn={this.state.loggedIn}
-                  resetUser={this.resetUser}
+                  refreshUser={this.refreshUser}
                 />
               )}
             />
@@ -157,7 +158,7 @@ class App extends Component {
                   contactChosen={this.state.contactChosen}
                   setChosenContact={this.setChosenContact}
                   loggedIn={this.state.loggedIn}
-                  resetUser={this.resetUser}
+                  refreshUser={this.refreshUser}
                 />
               )}
             />
@@ -171,7 +172,7 @@ class App extends Component {
                   contactChosen={this.state.contactChosen}
                   setChosenContact={this.setChosenContact}
                   loggedIn={this.state.loggedIn}
-                  resetUser={this.resetUser}
+                  refreshUser={this.refreshUser}
                 />
               )}
             />
@@ -192,7 +193,7 @@ class App extends Component {
             />
             <Route exact path="*" component={LandingPage} />
           </Switch>
-          <Footer/>
+          <Footer />
         </div>
       </Router>
     );
