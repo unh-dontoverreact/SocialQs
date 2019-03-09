@@ -247,7 +247,7 @@ class ContactPage extends Component {
                 <ContactSearch
                   contactOptions={this.state.contacts}
                   launchContactDisplay={this.launchContactDisplay}
-                  searchTerm={this.searchTerm}
+                  // searchTerm={this.searchTerm}
                   test={this.test}
                 />
               </div>
