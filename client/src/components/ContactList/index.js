@@ -16,6 +16,7 @@ export class ContactList extends React.Component {
               lastName={contact.lastName}
               email={contact.email}
               birthDate={contact.birthDate}
+              tags=""
               handleDeleteContactClick={this.deleteContact}
             />
           );
@@ -38,6 +39,7 @@ export class ContactList extends React.Component {
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Birthdate</th>
+                        <th>Tags</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

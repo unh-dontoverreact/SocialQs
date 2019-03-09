@@ -11,6 +11,7 @@ function ContactListItem(props) {
             <td>{props.lastName}</td>
             <td>{props.email}</td>
             <td>{moment(props.birthDate).format("MM-DD-YYYY")}</td>
+            <td></td>
             <td>
                 <span
                     className="contactActions"
