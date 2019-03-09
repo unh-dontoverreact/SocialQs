@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
-import { EventList, EventListItem } from "../components/EventList";
+import { EventList } from "../components/EventList";
 import { Redirect } from "react-router-dom";
 
 class HomePage extends Component {
@@ -18,21 +18,6 @@ class HomePage extends Component {
     }
   }
 
-  //renders list of events
-  renderEventList = () => {
-    return this.props.user.events.map((event, i) => {
-      return (
-        <EventListItem
-          key={i}
-          id={event.id}
-          date={event.date}
-          title={event.title}
-          contact={event.contact}
-        />
-      );
-    });
-  };
-
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
@@ -47,10 +32,8 @@ class HomePage extends Component {
                   handlers={this.props.handlers}
                 />
               </Col>
-              <Col>
-                <EventList user={this.props.user}>
-                  {this.renderEventList()}
-                </EventList>
+              <Col>Home
+              <EventList user={this.props.user}/>
               </Col>
             </Row>
           </Container>

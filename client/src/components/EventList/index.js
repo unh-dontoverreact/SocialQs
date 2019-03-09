@@ -1,12 +1,30 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
-import { Table, Icon } from "react-materialize";
+import { Table } from "react-materialize";
+import EventListItem from "./EventListItem"
 
-//event list
-export function EventList({ children }) {
-    return (
-        <div id="eventSection">
+export class EventList extends React.Component {
+
+    //renders list of events
+  renderEventList = () => {
+    return this.props.user.events.map((event, i) => {
+      return (
+        <EventListItem
+          key={i}
+          id={event.id}
+          date={event.date}
+          title={event.title}
+          contact={event.contact}
+          handleDeleteEventClick={this.props.handleDeleteEventClick}
+        />
+      );
+    });
+  };
+
+    render() {
+        return(
+            <div id="eventSection">
             <h4 className="center-align">Upcoming Events</h4>
 
             <Table id="eventList" className="striped">
@@ -19,45 +37,12 @@ export function EventList({ children }) {
                     </tr>
                 </thead>
 
-                <tbody>{children}</tbody>
+                <tbody>
+                {this.renderEventList()}
+                </tbody>
             </Table>
         </div>
-    );
+        )
+    }
 }
 
-//table details of one event
-export function EventListItem(props) {
-    return (
-        <tr>
-            <td>{props.date}</td>
-            <td>{props.title}</td>
-            <td>{props.contact}</td>
-            <td>
-                <span
-                    className="eventActions"
-                    onClick={() => props.handleQueEventClick(props.id)}
-                >
-                    <Icon>alarm</Icon>
-                </span>
-                <span
-                    className="eventActions"
-                    onClick={() => props.handleFrequencyEventClick(props.id)}
-                >
-                    <Icon>date_range</Icon>
-                </span>
-                <span
-                    className="eventActions"
-                    onClick={() => props.handleCompletedEventClick(props.id)}
-                >
-                    <Icon>beenhere</Icon>
-                </span>
-                <span
-                    className="eventActions"
-                    onClick={() => props.handleDeleteEventClick(props.id)}
-                >
-                    <Icon className="material-icons">delete_forever</Icon>
-                </span>
-            </td>
-        </tr>
-    );
-}
