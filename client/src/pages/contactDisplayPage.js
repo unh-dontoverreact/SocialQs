@@ -56,7 +56,8 @@ class ContactDisplayPage extends Component {
                   {this.props.contactChosen.firstName +
                     " " +
                     this.props.contactChosen.lastName}{" "}
-                </h3>
+                    {/* add all other contact info */}
+                </h3> 
               </Col>
             </Row>
           </Container>
