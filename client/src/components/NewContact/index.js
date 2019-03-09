@@ -97,14 +97,6 @@ const NewContact = props => (
         </div>
         {/* changing relationship to a drop down menu  */}
         <div className="input-field">
-          {/* <input
-            placeholder="Enter your relationship to contact"
-            name="contactRelationship"
-            id="relationship"
-            type="text"
-            className="validate .center-align"
-            onChange={props.handleInputChange}
-          /> */}
           {/* import from materialize - drop down */}
           <Input
             s={12}
@@ -120,14 +112,6 @@ const NewContact = props => (
             <option value="Co-Worker">Co-Worker</option>
             <option value="Pet-Friend">Pet-Friend</option>
           </Input>
-          {/* <label>Materialize Multiple Select</label> */}
-          {/* <span
-            className="helper-text"
-            data-error="Please enter your relationship"
-            data-success="right"
-          >
-            Relationship
-          </span> */}
         </div>
         <div className="input-field">
           <input
