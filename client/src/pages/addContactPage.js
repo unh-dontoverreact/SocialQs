@@ -3,7 +3,6 @@ import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import NewContact from "../components/NewContact";
 import axios from "axios";
-// import Redirect from "react-materialize";
 import { Redirect } from "react-router-dom";
 
 class AddContactPage extends Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import { Link } from "react-router-dom";
+
 
 const NewContact = props => (
   <div className="valign-wrapper center-align new-contact-container">
