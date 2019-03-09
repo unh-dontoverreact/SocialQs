@@ -9,11 +9,23 @@ class ContactDisplayPage extends Component {
     contact: "",
   };
   componentDidMount() {
-    console.log(this.props.contacts);
     this.setState({
       userID: this.props.user._id,
+      contactID: this.props.contactChosen._id,
     });
   }
+  loadUpdatedContact = () => {
+    let awaitload = async () => {
+      await this.props.refreshUser(this.props.user._id);
+      let updatedContact = this.props.user.contacts.filter(
+        contact => contact._id === this.state.contactID
+      );
+      console.log(updatedContact);
+      this.props.setChosenContact(updatedContact[0]);
+    };
+
+    return awaitload();
+  };
 
   render() {
     if (!this.props.loggedIn) {
@@ -34,6 +46,7 @@ class ContactDisplayPage extends Component {
                   <ContactUpdateModal
                     userID={this.props.contactChosen.userID}
                     contactID={this.props.contactChosen._id}
+                    loadUpdatedContact={this.loadUpdatedContact}
                   />
                 </div>
                 <h1 className="center"> Contact Display </h1>
