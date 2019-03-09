@@ -4,15 +4,15 @@ import Sidebar from "../components/Sidebar";
 import Redirect from "react-materialize";
 import ContactUpdateModal from "../components/ContactUpdate";
 class ContactDisplayPage extends Component {
-    state={
-        user: "",
-        contact: ""
-    }
+  state = {
+    user: "",
+    contact: "",
+  };
   componentDidMount() {
-       console.log(this.props.contacts);
+    console.log(this.props.contacts);
     this.setState({
-userID: this.props.user._id
-    })
+      userID: this.props.user._id,
+    });
   }
 
   render() {
@@ -28,14 +28,16 @@ userID: this.props.user._id
               <Col size="s3">
                 <Sidebar user={this.props.user} />
               </Col>
-              
-              
+
               <Col size="s9">
-              <div className="right-align">
-              <ContactUpdateModal userID={this.props.contactChosen.userID} contactID={this.props.contactChosen._id} />
-              </div>
+                <div className="right-align">
+                  <ContactUpdateModal
+                    userID={this.props.contactChosen.userID}
+                    contactID={this.props.contactChosen._id}
+                  />
+                </div>
                 <h1 className="center"> Contact Display </h1>
-                
+
                 <h3 className="center">
                   {this.props.contactChosen.firstName +
                     " " +

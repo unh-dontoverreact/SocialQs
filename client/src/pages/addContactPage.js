@@ -62,16 +62,17 @@ class AddContactPage extends Component {
       .then(async response => {
         console.log(response);
 
-      const load = async () => { await this.props.refreshUser(this.props.user._id);
-        this.props.setChosenContact(this.props.user.contacts[this.props.user.contacts.length-1]);
+        const load = async () => {
+          await this.props.refreshUser(this.props.user._id);
+          this.props.setChosenContact(
+            this.props.user.contacts[this.props.user.contacts.length - 1]
+          );
 
-        this.setState({
-          contactAdded:true
-        })
-  
-      }
-      return load()
-       
+          this.setState({
+            contactAdded: true,
+          });
+        };
+        return load();
       })
 
       .catch(error => {
