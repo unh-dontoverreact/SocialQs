@@ -17,6 +17,9 @@ class ContactUpdateModal extends Component {
       )
       .then(response => {
         console.log(response);
+        // connects to function which updates the contactChosen displaying pn page
+        const loadUpdatedContact = this.props.loadUpdatedContact();
+        return loadUpdatedContact;
       })
       .catch(error => {
         // TODO: record error to screen
@@ -53,7 +56,11 @@ class ContactUpdateModal extends Component {
             label="First Name"
           />
         </Row>
-        <Button waves="light" onClick={this.updateContact}>
+        <Button
+          waves="light"
+          className="modal-close"
+          onClick={this.updateContact}
+        >
           Save Changes<Icon right>insert_chart</Icon>
         </Button>
       </Modal>
