@@ -128,7 +128,7 @@ class ContactSearch extends Component {
       if (showcontactOptions && userInput) {
         if (filteredcontactOptions.length) {
             contactOptionsListComponent = (
-            <ul class="contactOptions">
+            <ul className="contactOptions">
               {filteredcontactOptions.map((contactOptions, index) => {
                 let className;
   

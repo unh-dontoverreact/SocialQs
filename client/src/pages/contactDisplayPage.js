@@ -5,12 +5,15 @@ import Redirect from "react-materialize";
 
 class ContactDisplayPage extends Component {
   componentDidMount() {
-    console.log(this.props.contactChosen);
+    this.props.refreshUser(this.props.user._id);
+    console.log(this.props.contacts);
   }
 
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
+    } else if (this.props.contactChosen.firstName === undefined) {
+      return <h2> Contact Loading... </h2>;
     } else {
       return (
         <div>
