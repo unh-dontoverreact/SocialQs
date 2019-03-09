@@ -3,7 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import NewContact from "../components/NewContact";
 import axios from "axios";
-import Redirect from "react-materialize";
+import { Redirect } from "react-router-dom";
 
 class AddContactPage extends Component {
   state = {
@@ -61,8 +61,17 @@ class AddContactPage extends Component {
       .then(async response => {
         console.log(response);
 
-        await this.props.refreshUser(this.props.user._id);
-        this.props.setChosenContact(newContactInfo);
+        const load = async () => {
+          await this.props.refreshUser(this.props.user._id);
+          this.props.setChosenContact(
+            this.props.user.contacts[this.props.user.contacts.length - 1]
+          );
+
+          this.setState({
+            contactAdded: true,
+          });
+        };
+        return load();
       })
 
       .catch(error => {

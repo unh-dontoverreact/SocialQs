@@ -30,7 +30,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Contact.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Contact.findOneAndUpdate({ _id: req.params.contactid }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
