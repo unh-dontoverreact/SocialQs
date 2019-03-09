@@ -24,6 +24,8 @@ class EventPage extends Component {
               <Col>
                 <EventList
                   user={this.props.user}
+                  handlers={this.props.eventHandlers}
+                  refreshUser={this.props.refreshUser}
                 />
               </Col>
             </Row>
