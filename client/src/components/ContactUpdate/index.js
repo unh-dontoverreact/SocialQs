@@ -8,7 +8,8 @@ class ContactUpdateModal extends Component {
     }
 //on click to save updated changes
   updateContact = () => {
-axios.put("/api/user/5c81a6613a6fd023dcb66e14/contacts/5c81a6943a6fd023dcb66e15", {
+      
+axios.put("/api/user/" + this.props.userID + "/contacts/" + this.props.contactID, {
     firstName: this.state.firstName,
      })
   .then(response => {

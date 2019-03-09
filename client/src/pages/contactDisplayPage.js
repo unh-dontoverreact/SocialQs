@@ -9,8 +9,7 @@ class ContactDisplayPage extends Component {
         contact: ""
     }
   componentDidMount() {
-    this.props.refreshUser(this.props.user._id);
-    console.log(this.props.contacts);
+       console.log(this.props.contacts);
     this.setState({
 userID: this.props.user._id
     })
@@ -33,7 +32,7 @@ userID: this.props.user._id
               
               <Col size="s9">
               <div className="right-align">
-              <ContactUpdateModal />
+              <ContactUpdateModal userID={this.props.contactChosen.userID} contactID={this.props.contactChosen._id} />
               </div>
                 <h1 className="center"> Contact Display </h1>
                 

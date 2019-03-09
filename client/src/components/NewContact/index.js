@@ -80,9 +80,9 @@ const NewContact = props => (
                 </div>
             </form>
             <div> {props.image }</div>
-            <Link
-                to={"/contacts/display"}
-                // onClick={this.props.launchContactDisplay}
+            {/* <Link
+                to={"/contacts/display"} */}
+                {/* // onClick={this.props.launchContactDisplay} */}
             >
                 <button
                     className="contact-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
@@ -90,7 +90,7 @@ const NewContact = props => (
                 >
                     Add Contact
                 </button>
-            </Link>
+            {/* </Link> */}
         </div>
     </div>
 );
