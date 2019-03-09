@@ -78,6 +78,92 @@ const NewContact = props => (
                         Birthday
                     </span>
                 </div>
+                {/* Mark adding 5 catagories 1. address 2.relationship 3.occupation 4. hobbies 5. largenotes */}
+                <div className="input-field">
+                    <input
+                        placeholder="Enter address - example 123 Sesame Street "
+                        name="contactAddress"
+                        id="address"
+                        type="text"
+                        className="validate .center-align"
+                        onChange={props.handleInputChange}
+                    />
+   <span
+                        className="helper-text"
+                        data-error="Please enter an address"
+                        data-success="right"
+                    >
+                        Address
+                    </span>
+                </div>
+                <div className="input-field">
+                    <input
+                        placeholder="Enter your relationship to contact"
+                        name="contactRelationship"
+                        id="relationship"
+                        type="text"
+                        className="validate .center-align"
+                        onChange={props.handleInputChange}
+                    />
+   <span
+                        className="helper-text"
+                        data-error="Please enter your relationship"
+                        data-success="right"
+                    >
+                        Relationship
+                    </span>
+                </div>
+                <div className="input-field">
+                    <input
+                        placeholder="Enter Occupation - example Doctor"
+                        name="contactOccupation"
+                        id="occupation"
+                        type="text"
+                        className="validate .center-align"
+                        onChange={props.handleInputChange}
+                    />
+   <span
+                        className="helper-text"
+                        data-error="Please enter an occupation"
+                        data-success="right"
+                    >
+                        Occupation
+                    </span>
+                </div>
+                <div className="input-field">
+                    <input
+                        placeholder="Enter Hobbies - example: Fishing, baseball..."
+                        name="contactHobbies"
+                        id="hobbies"
+                        type="text"
+                        className="validate .center-align"
+                        onChange={props.handleInputChange}
+                    />
+   <span
+                        className="helper-text"
+                        data-error="Please enter hobbies"
+                        data-success="right"
+                    >
+                        Hobbies
+                    </span>
+                </div>
+                <div className="input-field">
+                    <input
+                        placeholder="Enter General Notes"
+                        name="contactNotes"
+                        id="notes"
+                        type="text"
+                        className="validate .center-align"
+                        onChange={props.handleInputChange}
+                    />
+   <span
+                        className="helper-text"
+                        data-error="Please enter notes"
+                        data-success="right"
+                    >
+                        Notes
+                    </span>
+                </div>
             </form>
             <div> {props.image }</div>
             {/* <Link

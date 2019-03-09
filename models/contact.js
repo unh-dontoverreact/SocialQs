@@ -6,6 +6,11 @@ const contactSchema = new Schema({
   lastName: { type: String, required: true },
   email: { type: String },
   birthDate: { type: Date },
+  address: { type: String},
+  relationship: { type: String},
+  occupation: { type: String},
+  hobbies: { type: String},
+  notes: { type: String},
   userID: { type: String, required: true },
 });
 
