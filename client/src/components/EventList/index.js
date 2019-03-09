@@ -3,8 +3,20 @@ import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
 import { Table } from "react-materialize";
 import EventListItem from "./EventListItem"
+import Axios from "axios";
 
 export class EventList extends React.Component {
+
+    //When user clicks delete an event
+  handleDeleteEventClick = id => {
+    console.log("delete clicked!", id);
+
+    Axios.delete("api/user/" + this.props.user._id + "/events/" + id).catch(
+      error => {
+        console.log(error.response);
+      }
+    );
+  };
 
     //renders list of events
   renderEventList = () => {
@@ -12,11 +24,11 @@ export class EventList extends React.Component {
       return (
         <EventListItem
           key={i}
-          id={event.id}
+          id={event._id}
           date={event.date}
           title={event.title}
           contact={event.contact}
-          handleDeleteEventClick={this.props.handleDeleteEventClick}
+          handleDeleteEventClick={this.handleDeleteEventClick}
         />
       );
     });

@@ -31,7 +31,7 @@ class HomePage extends Component {
                   handlers={this.props.handlers}
                 />
               </Col>
-              <Col>Home
+              <Col>
               <EventList user={this.props.user}/>
               </Col>
             </Row>

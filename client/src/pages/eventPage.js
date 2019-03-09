@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
-import { EventList} from "../components/EventList";
+import { EventList } from "../components/EventList";
 import { Redirect } from "react-router-dom";
 import NewEvent from "../components/NewEvent";
 import Axios from "axios";
@@ -14,8 +14,7 @@ class EventPage extends Component {
   };
 
   //when we click enter new event, use state as new event and send to db
-  enterNewEvent = (x) => {
-
+  enterNewEvent = x => {
     x.preventDefault();
 
     let newEvent = {
@@ -24,11 +23,11 @@ class EventPage extends Component {
       contact: this.state.contact,
     };
 
-    Axios.post("api/user/" + this.props.user._id + "/events", newEvent)
-      .catch(error => {
+    Axios.post("api/user/" + this.props.user._id + "/events", newEvent).catch(
+      error => {
         console.log(error.response);
-      })
-      .then(this.renderEventList());
+      }
+    );
   };
 
   //set state as user enters event info
@@ -39,11 +38,6 @@ class EventPage extends Component {
       [name]: value,
     });
   };
-
-   //When user clicks delete an event
-   handleDeleteEventClick = (id) => {
-console.log("delete clicked!", id);
-  }
 
   render() {
     if (this.props.user.firstName === "George") {
@@ -60,9 +54,9 @@ console.log("delete clicked!", id);
                 />
               </Col>
               <Col>
-                <EventList 
-                user={this.props.user}
-                handleDeleteEventClick={this.handleDeleteEventClick}/>
+                <EventList
+                  user={this.props.user}
+                />
                 <br />
                 <NewEvent
                   handleNewEvent={this.newEvent}
