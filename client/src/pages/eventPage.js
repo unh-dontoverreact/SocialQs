@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
-import { EventList, EventListItem } from "../components/EventList";
+import { EventList} from "../components/EventList";
 import { Redirect } from "react-router-dom";
 import NewEvent from "../components/NewEvent";
 import Axios from "axios";
@@ -40,20 +40,10 @@ class EventPage extends Component {
     });
   };
 
-  //renders list of events
-  renderEventList = () => {
-    return this.props.user.events.map((event, i) => {
-      return (
-        <EventListItem
-          key={i}
-          id={event.id}
-          date={event.date}
-          title={event.title}
-          contact={event.contact.join(", ")}
-        />
-      );
-    });
-  };
+   //When user clicks delete an event
+   handleDeleteEventClick = (id) => {
+console.log("delete clicked!", id);
+  }
 
   render() {
     if (this.props.user.firstName === "George") {
@@ -70,9 +60,9 @@ class EventPage extends Component {
                 />
               </Col>
               <Col>
-                <EventList user={this.props.user}>
-                  {this.renderEventList()}
-                </EventList>
+                <EventList 
+                user={this.props.user}
+                handleDeleteEventClick={this.handleDeleteEventClick}/>
                 <br />
                 <NewEvent
                   handleNewEvent={this.newEvent}
