@@ -15,8 +15,9 @@ export class EventList extends React.Component {
       };
     
       //when we click enter new event, use state as new event and send to db
-      enterNewEvent = x => {
+      enterNewEvent = async x => {
         x.preventDefault();
+        console.log("FELICIA ENTER PROPS", this.props);
     
         let newEvent = {
           date: this.state.date,
@@ -24,11 +25,14 @@ export class EventList extends React.Component {
           contact: this.state.contact,
         };
     
-        Axios.post("api/user/" + this.props.user._id + "/events", newEvent).catch(
+        await Axios.post("api/user/" + this.props.user._id + "/events", newEvent).catch(
           error => {
             console.log(error.response);
           }
         );
+
+        await this.props.refreshUser(this.props.user._id)
+
       };
     
       //set state as user enters event info
@@ -41,14 +45,18 @@ export class EventList extends React.Component {
       };
 
     //When user clicks delete an event
-  handleDeleteEventClick = id => {
+  handleDeleteEventClick = async id => {
     console.log("delete clicked!", id);
+    console.log("FELICIA DELETE PROPS", this.props);
 
-    Axios.delete("api/user/" + this.props.user._id + "/events/" + id).catch(
+    await Axios.delete("api/user/" + this.props.user._id + "/events/" + id).catch(
       error => {
         console.log(error.response);
       }
     );
+
+    await this.props.refreshUser(this.props.user._id)
+
   };
 
     //renders list of events

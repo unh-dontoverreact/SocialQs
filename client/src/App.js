@@ -188,6 +188,7 @@ class App extends Component {
                 <EventPage
                   user={this.state.user}
                   handlers={this.eventHandlers}
+                  refreshUser={this.refreshUser}
                 />
               )}
             />
