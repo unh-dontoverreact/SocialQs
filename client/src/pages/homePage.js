@@ -5,17 +5,18 @@ import { EventList } from "../components/EventList";
 import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
 
-
 class HomePage extends Component {
   // Run this when component starts up
   componentDidMount() {
-       console.log(
+    console.log(
       "logged in user: ",
       this.props.user.firstName,
       this.props.user.lastName
     );
-  
-    this.props.resetUser(this.props.user._id);
+    if (this.props.loggedIn) {
+      
+      this.props.refreshUser(this.props.user._id);
+    }
   }
 
   render() {

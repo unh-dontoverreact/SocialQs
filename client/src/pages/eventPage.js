@@ -48,7 +48,8 @@ console.log("delete clicked!", id);
   render() {
     if (this.props.user.firstName === "George") {
       return <Redirect to={{ pathname: "/landing" }} />;
-    } else
+    } 
+    else
       return (
         <div>
           <Container>
