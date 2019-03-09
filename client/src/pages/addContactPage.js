@@ -7,7 +7,7 @@ import Redirect from "react-materialize";
 
 class AddContactPage extends Component {
   state = {
-    addContact: true,
+    contactAdded: false,
     contactName: "",
     contactfirstName: "",
     contactlastName: "",
@@ -20,11 +20,11 @@ class AddContactPage extends Component {
       this.props.user.firstName,
       this.props.user.lastName
     );
-    console.log(this.props.user);
+    console.log(this.props.user.contacts);
     this.setState({
       userID: this.props.user._id,
     });
-    // this.props.resetUser(this.props.user._id)
+    this.props.refreshUser(this.props.user._id);
   }
   // sets user input of new contact to state
   handleInputChange = event => {
@@ -48,30 +48,26 @@ class AddContactPage extends Component {
       userID: this.props.user._id,
     };
     console.log("On New Contact:", newContactInfo);
-    console.log(this.state.userID);
+
     axios
       .post("/api/user/" + this.props.user._id + "/contacts", newContactInfo)
-      .then(response => {
+      .then(async response => {
         console.log(response);
 
-        //     axios.get("api/user/" + this.props.user._id)
-        //     .then(response=>{
-        //         this.setState({ user: response.data });
-
-        //  })
+        await this.props.refreshUser(this.props.user._id);
         this.props.setChosenContact(newContactInfo);
-        // console.log(this.props.user.contacts)
       })
 
       .catch(error => {
         console.log(error.response);
       });
-    // this.props.resetUser(this.state.userID)
   };
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
-    } else if (this.state.addContact) {
+    } else if (this.state.contactAdded) {
+      return <Redirect to={{ pathname: "/contacts/display" }} />;
+    } else {
       return (
         <div>
           <Container>

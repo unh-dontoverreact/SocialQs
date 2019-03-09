@@ -55,7 +55,7 @@ class ContactPage extends Component {
     this.setState({
       userID: this.props.user._id,
     });
-    await this.props.resetUser(this.props.user._id);
+    await this.props.refreshUser(this.props.user._id);
 
     //  // setting the search list to correspond with contacts
     let contactList = [];
@@ -71,7 +71,7 @@ class ContactPage extends Component {
     });
     console.log(this.props.user.contacts);
   }
-  
+
   filterSearch = () => {
     this.setState({
       contactNamesearch: true,
