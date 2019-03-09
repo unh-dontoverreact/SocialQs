@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import { EventList } from "../components/EventList";
+import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
 
 class HomePage extends Component {
@@ -25,14 +26,15 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-            <Row>
-              <Col>
-                <Sidebar
+          <Sidebar
                   user={this.props.user}
                   handlers={this.props.handlers}
                 />
+            <Row>
+              <Col>
+              <ContactList user={this.props.user} />
               </Col>
-              <Col>Home
+              <Col>
               <EventList user={this.props.user}/>
               </Col>
             </Row>
