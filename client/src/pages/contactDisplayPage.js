@@ -14,6 +14,7 @@ class ContactDisplayPage extends Component {
       contactID: this.props.contactChosen._id,
     });
   }
+  // when a contact is updated it rerenders the contact information
   loadUpdatedContact = () => {
     let awaitload = async () => {
       await this.props.refreshUser(this.props.user._id);

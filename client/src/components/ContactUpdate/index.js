@@ -17,6 +17,7 @@ class ContactUpdateModal extends Component {
       )
       .then(response => {
         console.log(response);
+        // connects to function which updates the contactChosen displaying pn page
         const loadUpdatedContact = this.props.loadUpdatedContact();
         return loadUpdatedContact;
       })
