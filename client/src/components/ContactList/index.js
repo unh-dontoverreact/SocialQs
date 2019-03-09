@@ -1,47 +1,52 @@
 import React from "react";
-import { Container, Row, Col } from "../Grid";
+import { Table } from "react-materialize";
+import ContactListItem  from "./ContactListItem"
 import "./style.css";
 
 // ContactList - renders an unorderd list of book items
-export function ContactList({ children }) {
-    return <ul className="collection">{children}</ul>;
-}
+export class ContactList extends React.Component {
 
-//Mark - deleteContact - possibly unneeded code
-export function deleteContact(id) {
-    console.log("Delete User", id);
-}
+    renderContactList = () => {
+        return this.props.user.contacts.map((contact, i) => {
+          return (
+            <ContactListItem
+              key={i}
+              id={contact.id}
+              firstName={contact.firstName}
+              lastName={contact.lastName}
+              email={contact.email}
+              birthDate={contact.birthDate}
+              handleDeleteContactClick={this.deleteContact}
+            />
+          );
+        });
+      };
 
-// ContactListItem - details of a contact
-export function ContactListItem(props) {
-  return (
-    <li className="collection-item">
-      <Container>
-        <Row>
-          <Col size="s12">
-            <table className="striped responsive-table">
-              <tbody>
-                <tr>
-                  <td>
-                    {props.firstName} {props.lastName}
-                  </td>
-                  <td>{props.birthDate}</td>
-                  <td>{props.email}</td>
-                  <td>
-                    {/* Mark - onClick to delete user  */}
-                    <button
-                      onClick={() => deleteContact(props.id)}
-                      className="deleteContact"
-                    >
-                      <i className="material-icons">delete_forever</i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </Col>
-        </Row>
-      </Container>
-    </li>
-  );
+  deleteContact(id) {
+    console.log("Delete contact", id);
+    }   
+
+    render() {
+        return(
+            <div id="contactSection">
+            <h4 className="center-align">Contacts</h4>
+
+            <Table id="contactList" className="striped">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Birthdate</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {this.renderContactList()}
+                </tbody>
+            </Table>
+        </div>
+        )
+    }
 }

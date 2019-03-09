@@ -52,7 +52,7 @@ router.post(
   }
 );
 
-// GET("/user/") -- return the current logged in username and database key (_id)
+// GET("/auth/") -- return the current logged in username and database key (_id)
 router.get("/", (req, res /*, next */) => {
   console.log("===== user!!======");
   console.log(req.user);
@@ -63,7 +63,7 @@ router.get("/", (req, res /*, next */) => {
   }
 });
 
-// POST("/user/logout") -- unauthenticates the user from the request and clears the session
+// POST("/auth/logout") -- unauthenticates the user from the request and clears the session
 router.post("/logout", (req, res) => {
   if (req.user) {
     req.logout();
