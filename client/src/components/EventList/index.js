@@ -90,12 +90,14 @@ export class EventList extends React.Component {
     return (
       <div id="eventSection">
         <h4 className="center-align">Upcoming Events</h4>
-        <Button
-          className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
-          onClick={this.toggleAddEventForm.bind(this)}
-        >
-          <Icon>add_circle_outline</Icon>
-        </Button>
+        {this.state.hiddenNewForm && (
+          <Button
+            className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
+            onClick={this.toggleAddEventForm.bind(this)}
+          >
+            <Icon>add_circle_outline</Icon>
+          </Button>
+        )}
 
         {!this.state.hiddenNewForm && (
           <NewEvent
