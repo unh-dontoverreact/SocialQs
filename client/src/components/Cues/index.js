@@ -5,9 +5,9 @@
 //    cueItem() - puts up on cue and prompt
 
 import React from "react";
-import { Button, Toast } from "react-materialize";
+import { Button, Icon, Toast } from "react-materialize";
 
-const CUE_TIMEOUT = 5000; // 5 seconds
+const CUE_TIMEOUT = 3000; // 3 seconds
 
 export class Cues extends React.Component {
   state = {
@@ -42,7 +42,7 @@ export class Cues extends React.Component {
               window.Materialize.toast(cue, CUE_TIMEOUT);
             }}
           >
-            Get Cue
+            <span>Get Cue  <Icon>chat_bubble_outline</Icon></span>
           </Button>
         </div>
       );
