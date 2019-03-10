@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ContactSearch from "../components/ContactSearch";
-import { Col, Row, Container } from "../components/Grid";
+import { Col } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";

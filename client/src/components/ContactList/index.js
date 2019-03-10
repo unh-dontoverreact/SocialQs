@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Icon, Modal, Button, Input } from "react-materialize";
+import { Table, Icon, Modal, Button } from "react-materialize";
 import ContactListItem from "./ContactListItem";
 import "./style.css";
 import { Link } from "react-router-dom";
