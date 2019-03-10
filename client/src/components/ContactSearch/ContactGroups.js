@@ -5,15 +5,15 @@ const ContactGroups = props => (
     <div className="contact-group-display">
         <div className="row">
             <button
-                name="friends-group-button"
-                className=""
+                name="Friends"
+                className="friends-button-group"
                 onClick={props.displayGroup}
             >
             Friends
                
             </button>
             <button
-                name="Coworkers"
+                name="Co-Workers"
                 className="coworkers-group-button"
                 onClick={props.displayGroup}
             >
@@ -32,11 +32,27 @@ const ContactGroups = props => (
                
             </button>
             <button
-                name="Pet"
+                name="Pet-Friend"
                 className=" pet-group-button "
                 onClick={props.displayGroup}
             >
             Pet
+               
+            </button>
+            <button
+                name="Display-All"
+                className="display-all-contacts-button "
+                onClick={props.displayAllContacts}
+            >
+            Show All
+               
+            </button>
+            <button
+                name="Hide-All"
+                className=" hide-all-contacts-button "
+                onClick={props.hideAllContacts}
+            >
+            Collapse
                
             </button>
         
