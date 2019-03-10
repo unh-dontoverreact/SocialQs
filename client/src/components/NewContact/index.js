@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-
+import {Input} from 'react-materialize'
 
 const NewContact = props => (
   <div className="valign-wrapper center-align new-contact-container">
@@ -95,22 +95,23 @@ const NewContact = props => (
             Address
           </span>
         </div>
+        {/* changing relationship to a drop down menu  */}
         <div className="input-field">
-          <input
-            placeholder="Enter your relationship to contact"
+          {/* import from materialize - drop down */}
+          <Input
+            s={12}
+            type="select"
+            label="Relationship to Contact"
+            defaultValue="2"
             name="contactRelationship"
             id="relationship"
-            type="text"
-            className="validate .center-align"
             onChange={props.handleInputChange}
-          />
-          <span
-            className="helper-text"
-            data-error="Please enter your relationship"
-            data-success="right"
           >
-            Relationship
-          </span>
+            <option value="Family">Family</option>
+            <option value="Friend">Friend</option>
+            <option value="Co-Worker">Co-Worker</option>
+            <option value="Pet-Friend">Pet-Friend</option>
+          </Input>
         </div>
         <div className="input-field">
           <input

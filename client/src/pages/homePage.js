@@ -4,23 +4,23 @@ import Sidebar from "../components/Sidebar";
 import { EventList } from "../components/EventList";
 import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
+import { Cues } from "../components/Cues";
 
 class HomePage extends Component {
-  state ={
-    filter: (contact =>contact.userID===this.props.user._id)
-  }
+  state = {
+    filter: contact => contact.userID === this.props.user._id,
+  };
   // Run this when component starts up
   componentDidMount() {
-    this.setState ({
-      filter: (contact =>contact.userID===this.props.user._id)
-    })
+    this.setState({
+      filter: contact => contact.userID === this.props.user._id,
+    });
     console.log(
       "logged in user: ",
       this.props.user.firstName,
       this.props.user.lastName
     );
     if (this.props.loggedIn) {
-      
       this.props.refreshUser(this.props.user._id);
     }
   }
@@ -32,19 +32,23 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-          <Sidebar
-                  user={this.props.user}
-                  handlers={this.props.handlers}
-                />
+            <Sidebar user={this.props.user} handlers={this.props.handlers} />
             <Row>
               <Col>
-              <ContactList user={this.props.user} filter = {this.state.filter}/>
+                <Cues cues={this.props.user.cues} />
               </Col>
               <Col>
-              <EventList 
-              user={this.props.user}
-              handleNewEvent={this.newEvent}
-              enterNewEvent={this.enterNewEvent}/>
+                <ContactList
+                  user={this.props.user}
+                  filter={this.state.filter}
+                />
+              </Col>
+              <Col>
+                <EventList
+                  user={this.props.user}
+                  handlers={this.props.eventHandlers}
+                  refreshUser={this.props.refreshUser}
+                />
               </Col>
             </Row>
           </Container>
