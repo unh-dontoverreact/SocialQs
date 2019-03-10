@@ -1,12 +1,13 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import { Icon } from "react-materialize";
+import moment from "moment";
 
 //table details of one event
 function EventListItem(props) {
     return (
         <tr>
-            <td>{props.date}</td>
+            <td>{moment(props.date).format("MM-DD-YYYY")}</td>
             <td>{props.title}</td>
             <td>{props.contact}</td>
             <td>
