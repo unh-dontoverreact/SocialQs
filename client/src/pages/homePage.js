@@ -35,10 +35,11 @@ class HomePage extends Component {
               <ContactList user={this.props.user} />
               </Col>
               <Col>
-              <EventList 
-              user={this.props.user}
-              handleNewEvent={this.newEvent}
-              enterNewEvent={this.enterNewEvent}/>
+              <EventList
+                  user={this.props.user}
+                  handlers={this.props.eventHandlers}
+                  refreshUser={this.props.refreshUser}
+                />
               </Col>
             </Row>
           </Container>
