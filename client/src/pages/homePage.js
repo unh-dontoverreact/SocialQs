@@ -4,8 +4,10 @@ import Sidebar from "../components/Sidebar";
 import { EventList } from "../components/EventList";
 import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
+import { Cues } from "../components/Cues";
 
 class HomePage extends Component {
+
   // Run this when component starts up
   componentDidMount() {
     console.log(
@@ -14,7 +16,6 @@ class HomePage extends Component {
       this.props.user.lastName
     );
     if (this.props.loggedIn) {
-      
       this.props.refreshUser(this.props.user._id);
     }
   }
@@ -26,13 +27,13 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-          <Sidebar
-                  user={this.props.user}
-                  handlers={this.props.handlers}
-                />
+            <Sidebar user={this.props.user} handlers={this.props.handlers} />
             <Row>
               <Col>
-              <ContactList user={this.props.user} />
+                <Cues cues={this.props.user.cues} />
+              </Col>
+              <Col>
+                <ContactList user={this.props.user} />
               </Col>
               <Col>
               <EventList

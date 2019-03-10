@@ -1,8 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// const  {contactSchema }  = require("./contact");
-// const contactSchemaDisplay = mongoose.model(contactSchema).schema;
-const { eventSchema } = require("./event");
 const bcrypt = require("bcryptjs");
 mongoose.promise = Promise;
 
@@ -27,6 +24,7 @@ const userSchema = new Schema({
       ref: "Event",
     },
   ],
+  cues: [String],
 });
 
 // Define schema methods
