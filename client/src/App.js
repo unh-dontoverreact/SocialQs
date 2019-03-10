@@ -19,6 +19,7 @@ class App extends Component {
       image: "",
       contacts: [{ firstName: "", lastName: "" }],
       events: [{ date: "", title: "", contact: [""] }],
+      cues: [""]
     },
 
     loggedIn: false,
@@ -34,7 +35,8 @@ class App extends Component {
         image: "",
         contacts: [{ firstName: "", lastName: "" }],
         events: [{ date: "", title: "", contact: [""] }],
-      },
+        cues: [""]
+    },
 
       loggedIn: false,
       searchTerm: "",
