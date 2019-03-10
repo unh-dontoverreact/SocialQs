@@ -6,8 +6,14 @@ import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
 
 class HomePage extends Component {
+  state ={
+    filter: (contact =>contact.userID===this.props.user._id)
+  }
   // Run this when component starts up
   componentDidMount() {
+    this.setState ({
+      filter: (contact =>contact.userID===this.props.user._id)
+    })
     console.log(
       "logged in user: ",
       this.props.user.firstName,
@@ -32,7 +38,7 @@ class HomePage extends Component {
                 />
             <Row>
               <Col>
-              <ContactList user={this.props.user} />
+              <ContactList user={this.props.user} filter = {this.state.filter}/>
               </Col>
               <Col>
               <EventList 

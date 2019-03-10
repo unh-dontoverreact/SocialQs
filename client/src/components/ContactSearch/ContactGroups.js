@@ -4,55 +4,43 @@ import "./index.css";
 const ContactGroups = props => (
     <div className="contact-group-display">
         <div className="row">
-            <div
-                name="Friends"
-                className="card group-card offset-s2 col s2"
+            <button
+                name="friends-group-button"
+                className=""
                 onClick={props.displayGroup}
             >
-                <img
-                    name="Friends"
-                    className="contact-avatars  "
-                    src={require("./friends.png")}
-                    alt="friends"
-                />
-                <span name="Friends" className=" group-name ">
-                    Friends
-                </span>
-            </div>
-            <div
+            Friends
+               
+            </button>
+            <button
                 name="Coworkers"
-                className="card group-card offset-s4 col s2"
+                className="coworkers-group-button"
                 onClick={props.displayGroup}
             >
-                <img
-                    name="Coworkers"
-                    className="contact-avatars "
-                    src={require("./coworkers.png")}
-                    alt="coworkers"
-                />
-                <span name="Coworkers" className=" group-name ">
-                    Coworkers
-                </span>
-            </div>
-        </div>
+            Coworkers
+               
+            </button>
+       
 
-        <div className="row ">
-            <div
+        
+            <button
                 name="Family"
-                className=" card group-card offset-s5 col s2 "
+                className="  family-group-button"
                 onClick={props.displayGroup}
             >
-                <img
-                    name="Family"
-                    className="contact-avatars "
-                    src={require("./family.png")}
-                    alt="family"
-                />
-                <span name="Family" className=" group-name">
-                    Family
-                </span>
-            </div>
-        </div>
+            Family
+               
+            </button>
+            <button
+                name="Pet"
+                className=" pet-group-button "
+                onClick={props.displayGroup}
+            >
+            Pet
+               
+            </button>
+        
+    </div>
     </div>
 );
 

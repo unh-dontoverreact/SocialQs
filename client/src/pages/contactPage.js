@@ -4,6 +4,8 @@ import ContactSearch from "../components/ContactSearch";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import ContactTable from "../components/ContactTable";
+// import  renderContactList from "../components/ContactList";
+import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
 import ContactGroups from "../components/ContactSearch/ContactGroups";
 
@@ -26,6 +28,7 @@ class ContactPage extends Component {
     userID: "",
     searching: "",
     group: "",
+    filter: (contact =>contact.userID===this.props.user._id)
   };
 
   // if any input field changes it updates the state
@@ -79,16 +82,20 @@ class ContactPage extends Component {
 
   filterSearch = () => {
     this.setState({
-      contactNamesearch: true,
+      filter: (contact=>contact.firstName + " " + contact.lastName ===
+      this.props.searchTerm ||
+    contact.firstName === this.props.searchTerm ||
+    contact.lastName === this.props.searchTerm )
     });
   };
   // if user clicks on group icons it will display group filter results
   displayGroup = event => {
+    const group =event.target.name
     this.setState({
-      searching: "Group",
-      group: event.target.name,
+      filter: (contact=>contact.relationship === group)
+      
     });
-    console.log(this.state.group);
+    console.log(event.target.name);
   };
   //if user is on contact search results and hits back it will return to search component
   backToSearch = () => {
@@ -105,14 +112,26 @@ class ContactPage extends Component {
   // user clicks go next to search bar it renders contacts filtered by name
   displaySearchedContacts = () => {
     this.setState({
-      searching: "Name",
+      filter: (contact=>contact.firstName + " " + contact.lastName ===
+      this.props.searchTerm ||
+    contact.firstName === this.props.searchTerm ||
+    contact.lastName === this.props.searchTerm )
     });
+  };
+  setChosenContact = newContactChosen => {
+    // this.setState({ contactChosen: newContactChosen });
+    console.log(newContactChosen)
   };
 
   // this sets the chosen contact globally so the data will be accessable on the contact display page
-  setContact = contact => {
-    this.props.setChosenContact(contact);
-    console.log(this.props.contactChosen);
+  setContact = event => {
+    // this.props.setChosenContact(event.target.value);
+    // console.log(this.props.contactChosen);
+    console.log("hello")
+    // console.log(event.target)
+    const test = this.props.user.contacts.find(contact => contact._id === event.target.value)
+    console.log(test)
+    this.props.setChosenContact(test)
   };
 
   deleteContact = contact => {
@@ -157,11 +176,12 @@ class ContactPage extends Component {
                       contactOccupation={contact.occupation}
                       contactHobbies={contact.hobbies}
                       contactNotes={contact.notes}
-                      setContact={() => this.setContact(contact)}
-                      deleteContact={() => this.deleteContact(contact)}
+                      // setContact={() => this.setContact(contact)}
+                      // deleteContact={() => this.deleteContact(contact)}
                     />
                   ))}
               </Col>
+              
             </Row>
           </Container>
         </div>
@@ -241,7 +261,7 @@ class ContactPage extends Component {
                   onClick={this.displaySearchedContacts}
                 >
                   {" "}
-                  Go{" "}
+                  Search{" "}
                 </button>
 
                 <ContactSearch
@@ -264,6 +284,13 @@ class ContactPage extends Component {
               </div>
             </div>
             <ContactGroups displayGroup={this.displayGroup} />
+             
+               <ContactList user={this.props.user}
+                filter={this.state.filter}
+                setContact={this.setContact}
+                      // deleteContact={() => this.deleteContact()}
+                />
+             
             <div> </div>
           </div>
         </div>
