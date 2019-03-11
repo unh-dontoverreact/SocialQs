@@ -82,11 +82,7 @@ export class ContactList extends React.Component {
   render() {
     return (
       <div id="contactSection">
-        {/* <h4 className="center-align">
-          Contacts <span className="contact-total">({this.props.user.contacts.length})</span>
-        </h4> */}
-
-        <Table id="contactList" className="striped">
+               <Table id="contactList" className="striped">
           <thead>
             <tr>
               <th>First Name</th>
