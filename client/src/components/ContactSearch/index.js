@@ -5,9 +5,7 @@ import PropTypes from "prop-types";
 
 
 class ContactSearch extends Component {
-  // state = {
-  //   searching: false
-  // }
+ 
 
     static propTypes = {
       contactOptions: PropTypes.instanceOf(Array)

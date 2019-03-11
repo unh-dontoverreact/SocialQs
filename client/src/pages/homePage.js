@@ -7,9 +7,14 @@ import { Redirect } from "react-router-dom";
 import { Cues } from "../components/Cues";
 
 class HomePage extends Component {
-
+  state = {
+    filter: contact => contact.userID === this.props.user._id,
+  };
   // Run this when component starts up
   componentDidMount() {
+    this.setState({
+      filter: contact => contact.userID === this.props.user._id,
+    });
     console.log(
       "logged in user: ",
       this.props.user.firstName,
@@ -33,10 +38,13 @@ class HomePage extends Component {
                 <Cues cues={this.props.user.cues} />
               </Col>
               <Col>
-                <ContactList user={this.props.user} />
+                <ContactList
+                  user={this.props.user}
+                  filter={this.state.filter}
+                />
               </Col>
               <Col>
-              <EventList
+                <EventList
                   user={this.props.user}
                   handlers={this.props.eventHandlers}
                   refreshUser={this.props.refreshUser}
