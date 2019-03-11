@@ -18,3 +18,36 @@ a.button {
   border-color: #612469;
   border-style: groove
   }
+  .contact-total{
+    color: #612469
+  }
+  #contact-list{
+    background-color:white
+  }
+  .striped{
+    background-color:white
+  }
+  .modal {
+    border: 2px;
+    border-color: #612469;
+    border-style: solid;
+    background-color:whitesmoke;
+    text-align: center;
+    width: 50%
+  }
+  .modal .modal-footer{
+      background-color: whitesmoke
+  }
+  .delete-button{
+    background-color:#757083 
+  }
+  .delete-button:hover{
+    background-color: purple
+  }
+
+  .delete-button:focus{
+    background-color: purple
+  }
+  .delete-question{
+   font-size:20px;
+  }

@@ -38,14 +38,15 @@ export class ContactList extends React.Component {
             handleDeleteContactClick={this.deleteContact}
             delete={
               <Modal
+              
                 header="Delete Contact"
                 trigger={
-                  <Button waves="light">
+                  <Button waves="light" className=" delete-button z-depth-3 btn-small">
                     Delete <Icon right>delete_forever</Icon>
                   </Button>
                 }
               >
-                <p>
+                <p className="delete-question">
                   Are you sure you want to delete{" "}
                   <span>
                     {contact.firstName} {contact.lastName}?{" "}
@@ -54,7 +55,7 @@ export class ContactList extends React.Component {
                 <Button
                   value={contact._id}
                   waves="light"
-                  className="modal-close"
+                  className="modal-close delete-button"
                   onClick={this.props.deleteContact}
                 >
                   Yes
@@ -65,7 +66,7 @@ export class ContactList extends React.Component {
               <Link to={"/contacts/display"}>
                 <button
                   value={contact._id}
-                  className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
+                  className=" white-text z-depth-3 waves-effect waves-light btn #4a148c purple darken-4"
                   onClick={this.props.setContact}
                 >
                   {" "}
@@ -81,11 +82,7 @@ export class ContactList extends React.Component {
   render() {
     return (
       <div id="contactSection">
-        <h4 className="center-align">
-          Contacts <span>({this.props.user.contacts.length})</span>
-        </h4>
-
-        <Table id="contactList" className="striped">
+               <Table id="contactList" className="striped">
           <thead>
             <tr>
               <th>First Name</th>
