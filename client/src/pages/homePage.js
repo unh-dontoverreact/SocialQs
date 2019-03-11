@@ -1,30 +1,149 @@
 import React, { Component } from "react";
-import { Col, Row, Container } from "../components/Grid";
+// import { Col, Row, Container } from "../components/Grid";
+import { Col, Row, Container } from "react-materialize";
+import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { EventList } from "../components/EventList";
 import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
 import { Cues } from "../components/Cues";
-
+import ContactGroups from "../components/ContactSearch/ContactGroups";
+import ContactSearch from "../components/ContactSearch";
+import axios from "axios";
 class HomePage extends Component {
   state = {
-    filter: contact => contact.userID === this.props.user._id,
+    filter: contact => contact.userID === 1,
+    addContact: false,
+    contactName: "",
+    contactfirstName: "",
+    contactlastName: "",
+    contactemail: "",
+    contactbirthDate: "",
+    contactAddress: "",
+    contactRelationship: "",
+    contactOccupation: "",
+    contactHobbies: "",
+    contactNotes: "",
+    userID: "",
+    searching: "",
+    group: "",
   };
-  // Run this when component starts up
-  componentDidMount() {
+
+  // refreshes contact drop down list
+  refreshDropdown = () => {
+    let contactList = [];
+    for (let i = 0; i < this.props.user.contacts.length; i++) {
+      contactList.push(
+        this.props.user.contacts[i].firstName +
+          " " +
+          this.props.user.contacts[i].lastName
+      );
+    }
     this.setState({
-      filter: contact => contact.userID === this.props.user._id,
+      contacts: contactList,
     });
+  };
+  // if any input field changes it updates the state
+  handleInputChange = event => {
+    // Getting the value and name of the input
+    const { name, value } = event.target;
+
+    // Updating the state
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  // Run this when component starts up
+  async componentDidMount() {
     console.log(
-      "logged in user: ",
+      "contact page logged in user: ",
       this.props.user.firstName,
       this.props.user.lastName
     );
     if (this.props.loggedIn) {
-      this.props.refreshUser(this.props.user._id);
+      await this.props.refreshUser(this.props.user._id);
+      this.refreshDropdown();
     }
+    // setting the userID state to retrieve contacts
+    this.setState({
+      userID: this.props.user._id,
+    });
   }
+  // sets filter to search by first and last name when you hit search button
+  filterSearch = () => {
+    this.setState({
+      filter: contact =>
+        contact.firstName + " " + contact.lastName === this.props.searchTerm ||
+        contact.firstName === this.props.searchTerm ||
+        contact.lastName === this.props.searchTerm,
+    });
+  };
+  displayAllContacts = () => {
+    this.setState({
+      filter: contact => contact.userID === this.props.user._id,
+    });
+  };
+  hideAllContacts = () => {
+    this.setState({
+      filter: contact => contact.userID === 1,
+    });
+  };
+  // if user clicks on group icons it will display group filter results
+  displayGroup = event => {
+    const group = event.target.name;
+    this.setState({
+      filter: contact => contact.relationship === group,
+    });
+  };
+  //if user is on contact search results and hits back it will return to search component
+  backToSearch = () => {
+    this.setState({
+      searching: false,
+    });
+  };
 
+  // establishing global searchTerm state
+  test = newSearchTerm => {
+    this.props.contactHandlers.handleSearchChange(newSearchTerm);
+    console.log(this.props.searchTerm);
+  };
+  // user clicks go next to search bar it renders contacts filtered by name
+  displaySearchedContacts = event => {
+    this.setState({
+      filter: contact =>
+        contact.firstName + " " + contact.lastName === this.props.searchTerm ||
+        contact.firstName === this.props.searchTerm ||
+        contact.lastName === this.props.searchTerm,
+    });
+    console.log(event.target.textContent);
+    console.log("hello");
+  };
+
+  // this sets the chosen contact globally so the data will be accessable on the contact display page
+  setContact = event => {
+    const newChosenContact = this.props.user.contacts.find(
+      contact => contact._id === event.target.value
+    );
+    this.props.setChosenContact(newChosenContact);
+  };
+
+  deleteContact = event => {
+    const contactID = event.target.value;
+    // console.log(event.target)
+
+    axios
+      .delete("/api/user/" + this.props.user._id + "/contacts/" + contactID)
+      .then(response => {
+        console.log(response);
+      });
+    const load = async () => {
+      await this.props.refreshUser(this.props.user._id);
+
+      this.refreshDropdown();
+    };
+    return load();
+  };
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
@@ -37,19 +156,61 @@ class HomePage extends Component {
               <Col>
                 <Cues cues={this.props.user.cues} />
               </Col>
-              <Col>
-                <ContactList
-                  user={this.props.user}
-                  filter={this.state.filter}
+            </Row>
+            <Row>
+              <Col l={2}>
+                <button
+                  className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
+                  onClick={this.displaySearchedContacts}
+                >
+                  {" "}
+                  Search{" "}
+                </button>
+              </Col>
+              <Col l={6}>
+                <ContactSearch
+                  contactOptions={this.state.contacts}
+                  test={this.test}
                 />
               </Col>
-              <Col>
-                <EventList
-                  user={this.props.user}
-                  handlers={this.props.eventHandlers}
-                  refreshUser={this.props.refreshUser}
-                />
-              </Col>
+            </Row>
+            <Row>
+            <Col l={6}>
+              <ContactGroups
+                displayGroup={this.displayGroup}
+                displayAllContacts={this.displayAllContacts}
+                hideAllContacts={this.hideAllContacts}
+              />
+            </Col>
+            <Col l={2} className="l4">
+              <Link
+                to={"/contacts/addnew"}
+                onClick={this.props.launchContactDisplay}
+              >
+                <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
+                  Add a Contact
+                </button>
+              </Link>
+            </Col>
+            </Row>
+            <Row>
+              {/* <Col> */}
+              <ContactList
+                user={this.props.user}
+                filter={this.state.filter}
+                setContact={this.setContact}
+                deleteContact={this.deleteContact}
+              />
+              {/* </Col> */}
+            </Row>
+            <Row>
+              {/* <Col> */}
+              <EventList
+                user={this.props.user}
+                handlers={this.props.eventHandlers}
+                refreshUser={this.props.refreshUser}
+              />
+              {/* </Col> */}
             </Row>
           </Container>
         </div>

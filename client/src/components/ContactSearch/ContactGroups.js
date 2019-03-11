@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import {Icon  } from "react-materialize";
 
 const ContactGroups = props => (
     <div className="contact-group-display">
@@ -9,7 +10,7 @@ const ContactGroups = props => (
                 className="friends-button-group"
                 onClick={props.displayGroup}
             >
-            Friends
+          <Icon tiny> face </Icon>  Friends
                
             </button>
             <button
@@ -17,7 +18,7 @@ const ContactGroups = props => (
                 className="coworkers-group-button"
                 onClick={props.displayGroup}
             >
-            Coworkers
+           <Icon tiny> work </Icon> Coworkers
                
             </button>
        
@@ -28,7 +29,7 @@ const ContactGroups = props => (
                 className="  family-group-button"
                 onClick={props.displayGroup}
             >
-            Family
+           <Icon tiny> favorite </Icon> Family
                
             </button>
             <button
@@ -36,7 +37,7 @@ const ContactGroups = props => (
                 className=" pet-group-button "
                 onClick={props.displayGroup}
             >
-            Pet
+           <Icon tiny>  pets </Icon> Pets
                
             </button>
             <button
@@ -44,7 +45,7 @@ const ContactGroups = props => (
                 className="display-all-contacts-button "
                 onClick={props.displayAllContacts}
             >
-            Show All
+          <Icon tiny> expand_more </Icon>  Show All
                
             </button>
             <button
@@ -52,7 +53,7 @@ const ContactGroups = props => (
                 className=" hide-all-contacts-button "
                 onClick={props.hideAllContacts}
             >
-            Collapse
+           <Icon tiny> expand_less </Icon> Collapse
                
             </button>
         
