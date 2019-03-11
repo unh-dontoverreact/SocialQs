@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./index.css";
 import { Button, Icon, Modal, Row, Input } from "react-materialize";
 import axios from "../../../node_modules/axios";
 
@@ -62,7 +63,10 @@ class ContactUpdateModal extends Component {
         <Modal
           header="Update Contact Information"
           trigger={
-            <Button waves="light">
+            <Button
+              waves="light"
+              className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
+            >
               EDIT CONTACT<Icon right>insert_chart</Icon>
             </Button>
           }
@@ -174,7 +178,7 @@ class ContactUpdateModal extends Component {
           </Row>
           <Button
             waves="light"
-            className="modal-close"
+            className="modal-close save-update-button z-depth-3 btn-small "
             onClick={this.updateContact}
           >
             Save Changes<Icon right>insert_chart</Icon>

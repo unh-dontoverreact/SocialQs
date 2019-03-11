@@ -175,23 +175,32 @@ class HomePage extends Component {
               </Col>
             </Row>
             <Row>
-            <Col l={6}>
-              <ContactGroups
-                displayGroup={this.displayGroup}
-                displayAllContacts={this.displayAllContacts}
-                hideAllContacts={this.hideAllContacts}
-              />
-            </Col>
-            <Col l={2} className="l4">
-              <Link
-                to={"/contacts/addnew"}
-                onClick={this.props.launchContactDisplay}
-              >
-                <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
-                  Add a Contact
-                </button>
-              </Link>
-            </Col>
+              {" "}
+              <h4 className="center-align">
+                Contacts{" "}
+                <span className="contact-total">
+                  ({this.props.user.contacts.length})
+                </span>
+              </h4>
+            </Row>
+            <Row>
+              <Col l={9}>
+                <ContactGroups
+                  displayGroup={this.displayGroup}
+                  displayAllContacts={this.displayAllContacts}
+                  hideAllContacts={this.hideAllContacts}
+                />
+              </Col>
+              <Col l={2} className="l1">
+                <Link
+                  to={"/contacts/addnew"}
+                  onClick={this.props.launchContactDisplay}
+                >
+                  <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
+                    Add a Contact
+                  </button>
+                </Link>
+              </Col>
             </Row>
             <Row>
               {/* <Col> */}
