@@ -132,6 +132,10 @@ class App extends Component {
                   handlers={this.eventHandlers}
                   loggedIn={this.state.loggedIn}
                   refreshUser={this.refreshUser}
+                  contactChosen={this.state.contactChosen}
+                  searchTerm={this.state.searchTerm}
+                  contactHandlers={this.contactEventHandlers}
+                  setChosenContact={this.setChosenContact}
                 />
               )}
             />

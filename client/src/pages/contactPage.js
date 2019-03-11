@@ -190,7 +190,7 @@ class ContactPage extends Component {
               deleteContact={this.deleteContact}
             />
 
-            <div> </div>
+            
           </div>
         </div>
       );
