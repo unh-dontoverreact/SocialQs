@@ -48,15 +48,14 @@ class ContactDisplayPage extends Component {
                     userID={this.props.contactChosen.userID}
                     loadUpdatedContact={this.loadUpdatedContact}
                     contactID={this.props.contactChosen._id}
-                    firstName ={this.props.contactChosen.firstName}
-                    lastName ={this.props.contactChosen.lastName}
-                    email ={this.props.contactChosen.email}
-                    birthday ={this.props.contactChosen.birthday}
-                    address ={this.props.contactChosen.address}
-                    occupation ={this.props.contactChosen.occupation}
-                     hobbies={this.props.contactChosen.hobbies}
-                    notes ={this.props.contactChosen.notes}
-                    
+                    firstName={this.props.contactChosen.firstName}
+                    lastName={this.props.contactChosen.lastName}
+                    email={this.props.contactChosen.email}
+                    birthday={this.props.contactChosen.birthday}
+                    address={this.props.contactChosen.address}
+                    occupation={this.props.contactChosen.occupation}
+                    hobbies={this.props.contactChosen.hobbies}
+                    notes={this.props.contactChosen.notes}
                   />
                 </div>
                 <h1 className="center"> Contact Display </h1>
@@ -65,8 +64,8 @@ class ContactDisplayPage extends Component {
                   {this.props.contactChosen.firstName +
                     " " +
                     this.props.contactChosen.lastName}{" "}
-                    {/* add all other contact info */}
-                </h3> 
+                  {/* add all other contact info */}
+                </h3>
               </Col>
             </Row>
           </Container>
