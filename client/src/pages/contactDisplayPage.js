@@ -46,8 +46,17 @@ class ContactDisplayPage extends Component {
                 <div className="right-align">
                   <ContactUpdateModal
                     userID={this.props.contactChosen.userID}
-                    contactID={this.props.contactChosen._id}
                     loadUpdatedContact={this.loadUpdatedContact}
+                    contactID={this.props.contactChosen._id}
+                    firstName ={this.props.contactChosen.firstName}
+                    lastName ={this.props.contactChosen.lastName}
+                    email ={this.props.contactChosen.email}
+                    birthday ={this.props.contactChosen.birthday}
+                    address ={this.props.contactChosen.address}
+                    occupation ={this.props.contactChosen.occupation}
+                     hobbies={this.props.contactChosen.hobbies}
+                    notes ={this.props.contactChosen.notes}
+                    
                   />
                 </div>
                 <h1 className="center"> Contact Display </h1>

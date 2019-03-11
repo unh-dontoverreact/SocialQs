@@ -4,9 +4,29 @@ import axios from "../../../node_modules/axios";
 
 class ContactUpdateModal extends Component {
   state = {
-    firstName: "",
+    
+    firstName: this.props.firstName,
+    lastName: this.props.lastName,
+    email: this.props.email,
+    birthday: this.props.birthday,
+    address: this.props.address,
+    occupation: this.props.occupation,
+     hobbies: this.props.hobbies,
+    notes: this.props.notes,
   };
-  //on click to save updated changes
+  resetUpdateModalValues=()=>{
+    this.setState({
+      firstName: this.props.firstName,
+    lastName: this.props.lastName,
+    email: this.props.email,
+    birthday: this.props.birthday,
+    address: this.props.address,
+    occupation: this.props.occupation,
+     hobbies: this.props.hobbies,
+    notes: this.props.notes,
+    })
+  }
+   //on click to save updated changes
   updateContact = () => {
     axios
       .put(
@@ -39,21 +59,102 @@ class ContactUpdateModal extends Component {
 
   render() {
     return (
+      <div>
       <Modal
-        header="Modal Header"
+        header="Update Contact Information"
         trigger={
-          <Button waves="light">
+          <Button  waves="light">
             EDIT CONTACT<Icon right>insert_chart</Icon>
           </Button>
         }
       >
         <Row>
           <Input
-            placeholder="info to update"
-            name="firstName"
-            onChange={this.setContactChanges}
+            // placeholder= {this.props.firstName}
+                      name="firstName"
+            onChange={(event)=>{this.setContactChanges(event)}}
             s={6}
             label="First Name"
+            defaultValue ={this.props.firstName}
+          />
+        </Row>
+         <Row>
+          <Input
+           defaultValue ={this.props.lastName}
+            name="lastName"
+            onChange={(event)=>{this.setContactChanges(event)}}
+            s={6}
+            label="Last Name"
+          />
+        </Row>
+        <Row>
+          <Input
+           defaultValue ={this.props.email}
+            name="email"
+            onChange={(event)=>{this.setContactChanges(event)}}
+            s={6}
+            label="Email Address"
+          /> 
+         </Row> 
+                  <Row>
+          <Input 
+            defaultValue ={this.props.birthday}
+             name="birthday"
+             onChange={(event)=>{this.setContactChanges(event)}}
+             s={6}
+             label="Birthday"
+           />
+         </Row>
+         <Row>
+           <Input
+          type ="select"
+            
+            name="relationship"
+            onChange={(event)=>{this.setContactChanges(event)}}
+            s={6}
+            label="Relationship"
+
+          >
+<option value="Family">Family</option>
+            <option value="Friend">Friend</option>
+            <option value="Co-Worker">Co-Worker</option>
+            <option value="Pet-Friend">Pet-Friend</option>
+            </Input>
+        </Row>
+        <Row>
+          <Input
+            defaultValue ={this.props.occupation}
+            name="occupation"
+            onChange={(event)=>{this.setContactChanges(event)}}
+            s={6}
+            label="Occupation"
+          />
+        </Row>
+        <Row>
+          <Input 
+             defaultValue ={this.props.address}
+             name="address"
+             onChange={(event)=>{this.setContactChanges(event)}}
+             s={6}
+             label="Address"
+           />
+         </Row>
+        <Row>
+          <Input
+           defaultValue ={this.props.hobbies}
+            name="hobbies"
+            onChange={(event)=>{this.setContactChanges(event)}}
+            s={6}
+            label="Hobbies"
+          />
+        </Row>
+        <Row>
+          <Input
+            defaultValue ={this.props.notes}
+            name="notes"
+            onChange={(event)=>{this.setContactChanges(event)}}
+            s={6}
+            label="Notes"
           />
         </Row>
         <Button
@@ -64,6 +165,7 @@ class ContactUpdateModal extends Component {
           Save Changes<Icon right>insert_chart</Icon>
         </Button>
       </Modal>
+      </div>
     );
   }
 }
