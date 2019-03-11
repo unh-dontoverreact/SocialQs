@@ -1,0 +1,17 @@
+.save-update-button {
+  background-color: #757083;
+}
+.save-update-button:hover {
+  background-color: purple;
+}
+.save-update-button:focus {
+  background-color: purple;
+}
+.modal {
+  border: 2px;
+  border-color: #612469;
+  border-style: solid;
+  background-color: whitesmoke;
+  text-align: center;
+  width: 50%;
+}
