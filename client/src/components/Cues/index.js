@@ -2,7 +2,7 @@
 //
 // Description:  A screen element that puts up a button on the screen and cycles through an array of supplied prompt messages
 //    render() - puts up a "Get Cue" button conditionally and cylces through the whole array as a toast
-//    cueItem() - puts up on cue and prompt
+//    cueItem() - puts up one cue / prompt
 
 import React from "react";
 import { Button, Icon, Toast } from "react-materialize";
@@ -42,7 +42,7 @@ export class Cues extends React.Component {
               window.Materialize.toast(cue, CUE_TIMEOUT);
             }}
           >
-            <span>Get Cue  <Icon>chat_bubble_outline</Icon></span>
+            <span><Icon>chat_bubble_outline</Icon>  You have {this.state.cues.length} cues available</span>
           </Button>
         </div>
       );
