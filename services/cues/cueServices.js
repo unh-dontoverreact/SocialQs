@@ -25,18 +25,18 @@ module.exports = {
       dbContacts.map(contact => {
         console.log("contact userID:", contact.userID);
 
-        // Add it to the user's database of cues
+        // for each parent,  add a cue for this contact's birthday
+        console.log(
+            "Birthday found: [" + contact.userID,
+            +" " + contact.firstName + " " + contact.lastName + " " + "]"
+          );
+          
+          // Add it to the user's database of cues
         const cueStr =
           contact.firstName.trim() +
           " " +
           contact.lastName.trim() +
           " has a birthday today";
-
-        // for each parent,  add a cue for this contact's birthday
-        console.log(
-          "Birthday found: [" + contact.userID,
-          +" " + contact.firstName + " " + contact.lastName + " " + "]"
-        );
 
         udb.User.update(
           { _id: contact.userID },
