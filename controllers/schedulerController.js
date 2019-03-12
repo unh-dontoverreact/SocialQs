@@ -1,4 +1,4 @@
-const cueScheduler = require("../models/scheduler/cueScheduler");
+const cueScheduler = require("../services/scheduler/cueScheduler");
 
 // Defined methods for the cuesController
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
   },
 
   test: function(req, res) {
-    cueScheduler.scheduleMinuteCues();
+    cueScheduler.controlTest();
     res.json({ msg: "starting test cue scheduler" });
   },
 };
