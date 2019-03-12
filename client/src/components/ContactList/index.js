@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Icon, Modal, Button } from "react-materialize";
+import { Table, Icon, Modal, Button, Row, Col } from "react-materialize";
 import ContactListItem from "./ContactListItem";
 import "./style.css";
 import { Link } from "react-router-dom";
@@ -8,6 +8,51 @@ import { Link } from "react-router-dom";
 export class ContactList extends React.Component {
   state = {
     contact: "",
+    startIndex: 0,
+    endIndex: 10,
+    page: 1,
+  };
+  moreContacts = () => {
+    if (this.props.user.contacts.length < this.state.endIndex + 10) {
+      this.setState({
+        startIndex: this.props.user.contacts.length - 11,
+        endIndex: this.props.user.contacts.length - 1,
+      });
+    } else if (this.state.endIndex === this.props.user.contacts.length - 1) {
+      this.setState({
+        startIndex: this.state.startIndex + 10,
+        endIndex: this.props.user.contacts.length - 1,
+      });
+    } else {
+      this.setState({
+        startIndex: this.state.startIndex + 10,
+        endIndex: this.state.endIndex + 10,
+      });
+    }
+    if (this.state.page < Math.ceil(this.props.user.contacts.length / 10)) {
+      this.setState({
+        page: this.state.page + 1,
+      });
+    }
+  };
+  lessContacts = () => {
+    if (this.state.startIndex - 10 < 0) {
+      this.setState({
+        startIndex: 0,
+        endIndex: 10,
+      });
+    } else if (this.state.startIndex === 0) {
+    } else {
+      this.setState({
+        startIndex: this.state.startIndex - 10,
+        endIndex: this.state.endIndex - 10,
+      });
+    }
+    if (this.state.page > 1) {
+      this.setState({
+        page: this.state.page - 1,
+      });
+    }
   };
   setContact = contact => {
     this.props.setContact(contact);
@@ -25,6 +70,7 @@ export class ContactList extends React.Component {
         }
         return 0;
       })
+      .slice(this.state.startIndex, this.state.endIndex)
       .map((contact, i) => {
         return (
           <ContactListItem
@@ -38,10 +84,12 @@ export class ContactList extends React.Component {
             handleDeleteContactClick={this.deleteContact}
             delete={
               <Modal
-              
                 header="Delete Contact"
                 trigger={
-                  <Button waves="light" className=" delete-button z-depth-3 btn-small">
+                  <Button
+                    waves="light"
+                    className=" delete-button z-depth-3 btn-small"
+                  >
                     Delete <Icon right>delete_forever</Icon>
                   </Button>
                 }
@@ -82,7 +130,7 @@ export class ContactList extends React.Component {
   render() {
     return (
       <div id="contactSection">
-               <Table id="contactList" className="striped">
+        <Table id="contactList" className="striped">
           <thead>
             <tr>
               <th>First Name</th>
@@ -96,7 +144,21 @@ export class ContactList extends React.Component {
           </thead>
 
           <tbody>{this.renderContactList()}</tbody>
+          {/* <Row className="center">   </Row> */}
         </Table>
+        <Row className="center-align">
+          <Col l={6} className="center-align   " onClick={this.lessContacts}>
+            <Icon>arrow_back</Icon>{" "}
+          </Col>
+          <Col l={6} className="center-align " onClick={this.moreContacts}>
+            <Icon>arrow_forward</Icon>
+          </Col>
+        </Row>
+        <Row>
+          <div className="center-align">
+            {this.state.page}/{Math.ceil(this.props.user.contacts.length / 10)}{" "}
+          </div>
+        </Row>
       </div>
     );
   }

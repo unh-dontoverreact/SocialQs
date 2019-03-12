@@ -39,7 +39,7 @@ const ContactGroups = props => (
         className="display-all-contacts-button btn-small z-depth-3 group-button "
         onClick={props.displayAllContacts}
       >
-        <Icon tiny> expand_more </Icon> Show All
+        <Icon tiny> expand_more </Icon> Show
       </Button>
       <Button
         name="Hide-All"
