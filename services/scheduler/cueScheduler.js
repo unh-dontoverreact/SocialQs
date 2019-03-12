@@ -65,6 +65,9 @@ const cueScheduler = {
   updateDailyCues() {
     console.log("updating cues for today's events");
 
+    // First clear all the old cues
+    cueService.clearAllCues();
+
     // Let's push some birthdays
     const today = new Date();
     const month = today.getMonth() + 1;
