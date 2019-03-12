@@ -14,10 +14,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   // find all contacts with a birthday of a given month & day
   findByBirthday: function(req, res) {
-    db.Contact.find({"birthday": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
-      .then(dbModel => res.json(dbModel))
+    db.Contact.find({
+      birthMonth: req.params.month,
+      birthDay: req.params.day,
+    })
+      .then(dbContacts => res.json(dbContacts))
       .catch(err => res.status(422).json(err));
   },
 
