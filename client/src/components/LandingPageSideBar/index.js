@@ -9,7 +9,7 @@ const LandingPageSideBar = props => (
       <Col m={6} s={6}>
         <Card
           header={
-            <CardTitle image="assets/images/depression-man-fog-beach.jpg">
+            <CardTitle image="assets/images/sadsilhouettegirl.jpg">
               Do you sometimes feel like a Social Misfit?
             </CardTitle>
           }
