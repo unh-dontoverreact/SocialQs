@@ -7,6 +7,7 @@ class ContactDisplayPage extends Component {
   state = {
     user: "",
     contact: "",
+
   };
   componentDidMount() {
     this.setState({
@@ -60,12 +61,31 @@ class ContactDisplayPage extends Component {
                 </div>
                 <h1 className="center"> Contact Display </h1>
 
-                <h3 className="center">
+                <h3 className="center"> Name -
                   {this.props.contactChosen.firstName +
                     " " +
                     this.props.contactChosen.lastName}{" "}
                   {/* add all other contact info */}
                 </h3>
+                <h4 className="center"> Email -  
+                  {this.props.contactChosen.email}
+                </h4>
+                <h5 className="center"> Birthday -  
+                  {this.props.contactChosen.birthday}
+                </h5>
+                <h5 className="center"> Address -  
+                  {this.props.contactChosen.address}
+                </h5>
+                <h5 className="center"> Occupation -  
+                  {this.props.contactChosen.occupation}
+                </h5>
+                <h5 className="center"> Hobbies -  
+                  {this.props.contactChosen.hobbies}
+                </h5>
+                <br></br>
+                <h6 className="center"> Notes -  
+                  {this.props.contactChosen.notes}
+                </h6>
               </Col>
             </Row>
           </Container>
