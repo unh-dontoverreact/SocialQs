@@ -3,7 +3,9 @@ import Styled from "styled-components";
 
 const Footer = () => (
     <FooterDiv>
-        <div className="bottom">&copy; Copyright 2019 Don't Over React</div>
+        <div className="bottom">&copy; Copyright 2019 - Don't Over React
+        {/* <img src="../public/assets/images/logo.jpg" alt="Don't Over React" />  */}
+         </div>
     </FooterDiv>
 );
 
@@ -14,7 +16,7 @@ const FooterDiv = Styled.div `
         margin-bottom:0;
         margin-top: 25px;
         text-align:center;
-        background-color: #612469;
+        background-image: radial-gradient(circle, #330C3F, #612469, #757083);
         color: white;
         overflow: auto;
         display: flex;

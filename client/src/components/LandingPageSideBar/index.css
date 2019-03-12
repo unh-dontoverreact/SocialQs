@@ -1,4 +1,5 @@
 .all-landing-page-info {
+    padding: 20px;
     background-image: ("./mormonfamilyreunion.jpg");
     background-repeat: no-repeat;
     background-position: bottom;
@@ -10,10 +11,24 @@
     padding: 20px;
     border: 2px;
     border-style: outset;
-    border-color: black;
-    color: whitesmoke;
+    border-color: 0 4px 8px 0 #757083(0,0,0,0.2);
+    color: #F5F5F5;
+    transition: 0.3s;
     background-color: #612469 !important;
 }
+
+.card {
+    height: 100%;
+    padding: 20px;
+    border: 2px;
+    /* border-style: outset; */
+    border-color: 0 4px 8px 0 #757083(0,0,0,0.2);
+    color: #F5F5F5;
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+    transition: 0.3s;
+    background-color: #612469 !important;
+}
+
 .tag {
     color: #612469;
 }

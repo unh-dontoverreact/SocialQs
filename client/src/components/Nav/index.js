@@ -38,9 +38,12 @@ const NavBar = Styled.div `
     top:0;
     display:grid;
     justify-items: center;
-    background-color: #612469;
+    background-image: radial-gradient(circle, #330C3F, #612469, #757083);
     box-shadow:0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
-    color:white;
+    // color: #F5F5F5;
+    a {
+        color: white;
+    }
     z-index: +1;
     `
     
