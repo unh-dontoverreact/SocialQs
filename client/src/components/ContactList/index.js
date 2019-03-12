@@ -14,6 +14,9 @@ export class ContactList extends React.Component {
     endpage: Math.ceil(this.props.user.contacts.length / 10)
   };
   componentDidMount(){
+      this.setState({
+        endpage: Math.ceil(this.props.user.contacts.length / 10)
+      })
     //   this.groupPageNum()
   }
   groupPageNum = () =>{
