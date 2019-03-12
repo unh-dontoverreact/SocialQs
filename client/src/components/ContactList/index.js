@@ -11,7 +11,28 @@ export class ContactList extends React.Component {
     startIndex: 0,
     endIndex: 10,
     page: 1,
+    endpage: Math.ceil(this.props.user.contacts.length / 10)
   };
+  componentDidMount(){
+    //   this.groupPageNum()
+  }
+  groupPageNum = () =>{
+      if(this.props.filter=== (contact => contact.userID === this.props.user._id) ) {
+    let groupPageTotal = 0
+    for (let i =0; i<this.props.user.contacts.length; i++){
+       
+  if (this.props.user.contacts[i].group === "Family"){
+     
+     groupPageTotal = groupPageTotal +1
+          
+
+      }
+        };
+        this.setState({
+            endpage:  Math.ceil(groupPageTotal   /10)
+           })
+}
+  }
   moreContacts = () => {
     if (this.props.user.contacts.length < this.state.endIndex + 10) {
       this.setState({
@@ -146,17 +167,17 @@ export class ContactList extends React.Component {
           <tbody>{this.renderContactList()}</tbody>
           {/* <Row className="center">   </Row> */}
         </Table>
-        <Row className="center-align">
+        <Row className="center-align arrow">
           <Col l={6} className="center-align   " onClick={this.lessContacts}>
-            <Icon>arrow_back</Icon>{" "}
+            <Icon className="arrow">arrow_back</Icon>{" "}
           </Col>
-          <Col l={6} className="center-align " onClick={this.moreContacts}>
-            <Icon>arrow_forward</Icon>
+          <Col l={6} className="center-align arrow " onClick={this.moreContacts}>
+            <Icon className="arrow">arrow_forward</Icon>
           </Col>
         </Row>
         <Row>
           <div className="center-align">
-            {this.state.page}/{Math.ceil(this.props.user.contacts.length / 10)}{" "}
+            {this.state.page}/{this.state.endpage}
           </div>
         </Row>
       </div>

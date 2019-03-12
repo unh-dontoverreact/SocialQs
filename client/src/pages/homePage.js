@@ -197,7 +197,7 @@ class HomePage extends Component {
                   onClick={this.props.launchContactDisplay}
                 >
                   <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
-                    Add a Contact
+                   <Icon>add</Icon> New Contact
                   </button>
                 </Link>
               </Col>
