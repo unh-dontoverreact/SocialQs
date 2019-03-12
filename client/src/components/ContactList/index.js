@@ -11,31 +11,36 @@ export class ContactList extends React.Component {
     startIndex: 0,
     endIndex: 10,
     page: 1,
-    endpage: Math.ceil(this.props.user.contacts.length / 10)
+    endpage: Math.ceil(this.props.user.contacts.length / 10),
+    all: true
   };
-  componentDidMount(){
-      this.setState({
-        endpage: Math.ceil(this.props.user.contacts.length / 10)
-      })
-    //   this.groupPageNum()
-  }
-  groupPageNum = () =>{
-      if(this.props.filter=== (contact => contact.userID === this.props.user._id) ) {
-    let groupPageTotal = 0
-    for (let i =0; i<this.props.user.contacts.length; i++){
+  
+//   componentDidMount(){
+//     //   this.setState({
+//     //     endpage: Math.ceil(this.props.user.contacts.length / 10)
+//     //   })
+//       this.groupPageNum()
+//   }
+//   groupPageNum = () =>{
+//       if(this.props.filter=== (contact => contact.userID === this.props.user._id) ) {
+//     let groupPageTotal = 0
+//     for (let i =0; i<this.props.user.contacts.length; i++){
        
-  if (this.props.user.contacts[i].group === "Family"){
+//   if (this.props.user.contacts[i].group === "Family"){
      
-     groupPageTotal = groupPageTotal +1
+//      groupPageTotal = groupPageTotal +1
           
 
-      }
-        };
-        this.setState({
-            endpage:  Math.ceil(groupPageTotal   /10)
-           })
-}
-  }
+//       }
+//         };
+//         this.setState({
+//             endpage:  Math.ceil(groupPageTotal   /10)
+//            })
+// }
+// else{ this.setState({
+//     endpage: Math.ceil(this.props.user.contacts.length / 10)
+// })}
+//   }
   moreContacts = () => {
     if (this.props.user.contacts.length < this.state.endIndex + 10) {
       this.setState({
@@ -58,6 +63,7 @@ export class ContactList extends React.Component {
         page: this.state.page + 1,
       });
     }
+
   };
   lessContacts = () => {
     if (this.state.startIndex - 10 < 0) {
@@ -77,6 +83,7 @@ export class ContactList extends React.Component {
         page: this.state.page - 1,
       });
     }
+    this.groupPageNum()
   };
   setContact = contact => {
     this.props.setContact(contact);
@@ -168,7 +175,7 @@ export class ContactList extends React.Component {
           </thead>
 
           <tbody>{this.renderContactList()}</tbody>
-          {/* <Row className="center">   </Row> */}
+        
         </Table>
         <Row className="center-align arrow">
           <Col l={6} className="center-align   " onClick={this.lessContacts}>
@@ -178,12 +185,17 @@ export class ContactList extends React.Component {
             <Icon className="arrow">arrow_forward</Icon>
           </Col>
         </Row>
-        <Row>
-          <div className="center-align">
-            {this.state.page}/{this.state.endpage}
-          </div>
-        </Row>
-      </div>
-    );
+    
+    </div>
+    )
+    //   return  (
+    //    <Row>
+    //       <div className="center-align">
+    //         {this.state.page}/{ Math.ceil(this.props.user.contacts.length / 10)}
+    //       </div>
+    //     </Row>
+      
+      
+    // );
   }
 }
