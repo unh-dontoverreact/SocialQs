@@ -1,4 +1,5 @@
 const schedule = require("node-schedule");
+const cueService = require("../cues/cueServices");
 
 // Uses CRON based scheduling...
 // *    *    *    *    *    *
@@ -15,7 +16,7 @@ let jobQueue = [];
 
 const cueScheduler = {
   startCueScheduler: function() {
-    startAllSchedules();
+    this.startAllSchedules();
   },
 
   stopCueScheduler: function() {
@@ -27,18 +28,11 @@ const cueScheduler = {
   },
 
   startAllSchedules() {
-    scheduleHourlyCues();
-    scheduleDailyCues();
-    scheduleMonthlyCues();
-    scheduleAnnualCues();
+    this.scheduleHourlyCues();
+    this.scheduleDailyCues();
+    this.scheduleMonthlyCues();
+    this.scheduleAnnualCues();
     console.log("all cue reminder jobs scheduled");
-  },
-
-  // Minute Scheduler - purposefully excluded,  only needed for test
-  scheduleMinuteCues() {
-    const job = schedule.scheduleJob("59 * * * * *", this.updateMinuteCues);
-    jobQueue.push(job);
-    console.log("scheulding job for every minte,  used for testing only");
   },
 
   // Kick off an update every hour on the hour
@@ -54,7 +48,7 @@ const cueScheduler = {
   },
 
   // Kick off first day of each month at midnight
-  scheduleMontlyCues() {
+  scheduleMonthlyCues() {
     const job = schedule.scheduleJob("0 0 0 1 * *", this.updateMonthlyCues);
     jobQueue.push(job);
   },
@@ -64,17 +58,22 @@ const cueScheduler = {
     jobQueue.push(job);
   },
 
-  // Minute Event Handler - purposefully excluded, only needed for test
-  updateMinuteCues() {
-    console.log("updated minute by minute cue");
-  },
-
   updateHourlyCues() {
     console.log("updating cues for this hour's events");
   },
 
   updateDailyCues() {
     console.log("updating cues for today's events");
+
+    // First clear all the old cues
+    cueService.clearAllCues();
+
+    // Let's push some birthdays
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    console.log("scheduler:  getting birthday contacts: ", month, "/", day);
+    cueService.cueContactsByBirthdate(month, day);
   },
 
   updateMonthlyCues() {
@@ -83,6 +82,12 @@ const cueScheduler = {
 
   updateAnnualCues() {
     console.log("updating cues for this year's events");
+  },
+
+  // Test Method only -- use to fire off one event
+  controlTest() {
+    console.log("firing off controlled test");
+    this.updateDailyCues();
   },
 };
 

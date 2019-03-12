@@ -31,6 +31,7 @@ export class Cues extends React.Component {
         <div>
           <Button
             id="Cue-btn"
+            className="white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
             onClick={() => {
               let cue = "No cues for you today";
               if (this.state.cues.length) {

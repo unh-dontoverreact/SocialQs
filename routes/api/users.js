@@ -15,18 +15,19 @@ router
   .get(usersController.findById)
   .put(usersController.update)
   .delete(usersController.remove);
+
 // Matches with "/api/users/:id/contacts"
 router
   .route("/:id/contacts")
-  // .put(usersController.update)
-  //     .delete(usersController.remove)
   .post(contactsController.create)
   .get(contactsController.findAll);
+
 // Matches with "/api/users/:id/contacts/:contactsid"
 router
   .route("/:id/contacts/:contactid")
   .delete(contactsController.remove)
   .put(contactsController.update);
+
 //Matches with "/api/user/:id/events"
 router
   .route("/:id/events")
