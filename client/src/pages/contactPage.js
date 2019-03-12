@@ -25,7 +25,8 @@ class ContactPage extends Component {
     userID: "",
     searching: "",
     group: "",
-    filter: contact => contact.userID === 1,
+    filter: contact => contact.userID === this.props.user._id,
+
   };
   // refreshes contact drop down list
   refreshDropdown = () => {
@@ -63,8 +64,19 @@ class ContactPage extends Component {
     this.setState({
       userID: this.props.user._id,
     });
-    await this.props.refreshUser(this.props.user._id);
+    const awaitLoad = async() =>{
+        await this.props.refreshUser(this.props.user._id);
     this.refreshDropdown();
+    // if (this.props.user.contacts.length === 10 ){
+    //   this.displayAllContacts()
+    // }
+    // else{
+    //   this.setState({
+    //     filter: ({limit:10}, contact => contact.userID === this.props.user._id),
+    //   });
+    // }
+    }
+    return awaitLoad()
   }
   // sets filter to search by first and last name when you hit search button
   filterSearch = () => {

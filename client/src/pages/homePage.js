@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Col, Row, Container } from "../components/Grid";
-import { Col, Row, Container } from "react-materialize";
+import { Col, Row, Container, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { EventList } from "../components/EventList";
@@ -12,7 +12,7 @@ import ContactSearch from "../components/ContactSearch";
 import axios from "axios";
 class HomePage extends Component {
   state = {
-    filter: contact => contact.userID === 1,
+    filter: contact => contact.userID === this.props.user._id,
     addContact: false,
     contactName: "",
     contactfirstName: "",
@@ -163,8 +163,8 @@ class HomePage extends Component {
                   className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
                   onClick={this.displaySearchedContacts}
                 >
-                  {" "}
-                  Search{" "}
+                  
+                  Search  <Icon>search</Icon>
                 </button>
               </Col>
               <Col l={6}>
