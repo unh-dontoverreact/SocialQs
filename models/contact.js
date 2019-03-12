@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const lastMod = require("./plugins/lastModified");
 const birthdatePlugin = require("./plugins/birthdate");
 
 const contactSchema = new Schema({
@@ -15,9 +14,6 @@ const contactSchema = new Schema({
   notes: { type: String },
   userID: { type: String, required: true },
 });
-
-// Plugin to track the last modified date for effecient queries
-contactSchema.plugin(lastMod, { index: true });
 
 // Plugin to add birthdate day and month for effecient queries
 contactSchema.plugin(birthdatePlugin, { index: true });
