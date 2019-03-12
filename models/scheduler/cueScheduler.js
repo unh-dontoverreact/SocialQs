@@ -36,7 +36,7 @@ const cueScheduler = {
 
   // Minute Scheduler - purposefully excluded,  only needed for test
   scheduleMinuteCues() {
-    const job = schedule.scheduleJob("59 * * * * *", this.updateMinuteCues);
+    const job = schedule.scheduleJob("* 0-59 * * * *", this.updateMinuteCues);
     jobQueue.push(job);
     console.log("scheulding job for every minte,  used for testing only");
   },
