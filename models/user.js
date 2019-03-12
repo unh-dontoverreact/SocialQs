@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
-var lastMod = require("./plugins/lastModified");
 
 mongoose.promise = Promise;
 
@@ -28,9 +27,6 @@ const userSchema = new Schema({
   ],
   cues: [String],
 });
-
-// Plugin to track the last modified date for effecient queries
-userSchema.plugin(lastMod, { index: true });
 
 // Define schema methods
 userSchema.methods = {
