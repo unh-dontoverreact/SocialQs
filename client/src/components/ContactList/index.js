@@ -10,65 +10,50 @@ export class ContactList extends React.Component {
     contact: "",
     startIndex: 0,
     endIndex: 10,
-    page: 1
-
+    page: 1,
   };
-  moreContacts =()=>{
-      if(this.props.user.contacts.length< this.state.endIndex + 10 ){
+  moreContacts = () => {
+    if (this.props.user.contacts.length < this.state.endIndex + 10) {
       this.setState({
-        startIndex: this.props.user.contacts.length -11,
-        endIndex: (this.props.user.contacts.length -1),
-       
-      })
+        startIndex: this.props.user.contacts.length - 11,
+        endIndex: this.props.user.contacts.length - 1,
+      });
+    } else if (this.state.endIndex === this.props.user.contacts.length - 1) {
+      this.setState({
+        startIndex: this.state.startIndex + 10,
+        endIndex: this.props.user.contacts.length - 1,
+      });
+    } else {
+      this.setState({
+        startIndex: this.state.startIndex + 10,
+        endIndex: this.state.endIndex + 10,
+      });
     }
-      else if(this.state.endIndex===(this.props.user.contacts.length -1)){
-        this.setState({
-            startIndex: (this.state.startIndex+10),
-            endIndex: (this.props.user.contacts.length -1),
-            
-                        
-          })
-      }
-      else{
-        this.setState({
-            startIndex: (this.state.startIndex+10),
-            endIndex: (this.state.endIndex + 10),
-            
-          })
-        }
-          if((this.state.page) < Math.ceil(this.props.user.contacts.length/10)){
-            this.setState({
-            page: (this.state.page + 1)
-            })
-          }
-      
-      
+    if (this.state.page < Math.ceil(this.props.user.contacts.length / 10)) {
+      this.setState({
+        page: this.state.page + 1,
+      });
     }
-  lessContacts =()=>{
-      if(this.state.startIndex-10 < 0 ){
+  };
+  lessContacts = () => {
+    if (this.state.startIndex - 10 < 0) {
       this.setState({
         startIndex: 0,
         endIndex: 10,
-      
-      })}
-      else if(this.state.startIndex===0){
- 
-      }
-      else{
-        this.setState({
-            startIndex: (this.state.startIndex-10),
-            endIndex: (this.state.endIndex - 10),
-       
-          })
-
-      }
-      if((this.state.page) > 1){
-        this.setState({
-        page: (this.state.page - 1)
-        })
-      }
-  
-  }
+      });
+    } else if (this.state.startIndex === 0) {
+    } else {
+      this.setState({
+        startIndex: this.state.startIndex - 10,
+        endIndex: this.state.endIndex - 10,
+      });
+    }
+    if (this.state.page > 1) {
+      this.setState({
+        page: this.state.page - 1,
+      });
+    }
+  };
   setContact = contact => {
     this.props.setContact(contact);
   };
@@ -84,7 +69,8 @@ export class ContactList extends React.Component {
           return 1;
         }
         return 0;
-      }).slice(this.state.startIndex, this.state.endIndex)
+      })
+      .slice(this.state.startIndex, this.state.endIndex)
       .map((contact, i) => {
         return (
           <ContactListItem
@@ -98,10 +84,12 @@ export class ContactList extends React.Component {
             handleDeleteContactClick={this.deleteContact}
             delete={
               <Modal
-              
                 header="Delete Contact"
                 trigger={
-                  <Button waves="light" className=" delete-button z-depth-3 btn-small">
+                  <Button
+                    waves="light"
+                    className=" delete-button z-depth-3 btn-small"
+                  >
                     Delete <Icon right>delete_forever</Icon>
                   </Button>
                 }
@@ -142,7 +130,7 @@ export class ContactList extends React.Component {
   render() {
     return (
       <div id="contactSection">
-               <Table id="contactList" className="striped">
+        <Table id="contactList" className="striped">
           <thead>
             <tr>
               <th>First Name</th>
@@ -156,17 +144,21 @@ export class ContactList extends React.Component {
           </thead>
 
           <tbody>{this.renderContactList()}</tbody>
-         {/* <Row className="center">   </Row> */}
-         
+          {/* <Row className="center">   </Row> */}
         </Table>
         <Row className="center-align">
-        <Col l={6} className="center-align   " onClick={this.lessContacts}><Icon >arrow_back</Icon> </Col> 
-        <Col l={6} className="center-align " onClick={this.moreContacts}><Icon  >arrow_forward</Icon></Col>         
-    
+          <Col l={6} className="center-align   " onClick={this.lessContacts}>
+            <Icon>arrow_back</Icon>{" "}
+          </Col>
+          <Col l={6} className="center-align " onClick={this.moreContacts}>
+            <Icon>arrow_forward</Icon>
+          </Col>
         </Row>
         <Row>
-         <div className="center-align">{this.state.page}/{Math.ceil(this.props.user.contacts.length/10)} </div> 
-         </Row>
+          <div className="center-align">
+            {this.state.page}/{Math.ceil(this.props.user.contacts.length / 10)}{" "}
+          </div>
+        </Row>
       </div>
     );
   }
