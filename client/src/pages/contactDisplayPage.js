@@ -3,6 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import {Redirect, Card} from "react-materialize";
 import ContactUpdateModal from "../components/ContactUpdate";
+import moment from "moment";
 
 class ContactDisplayPage extends Component {
   state = {
@@ -64,28 +65,28 @@ class ContactDisplayPage extends Component {
                 <h1 className="center"> Contact Display </h1>
 
                 <h3 className="center"> Name -
-                  {this.props.contactChosen.firstName +
+                {" "}  {this.props.contactChosen.firstName +
                     " " +
                     this.props.contactChosen.lastName}{" "}
                   {/* add all other contact info */}
                 </h3>
-                <h4 className="center"> Email -  
+                <h4 className="center"> Email -  {" "}
                   {this.props.contactChosen.email}
                 </h4>
-                <h5 className="center"> Birthday -  
-                  {this.props.contactChosen.birthDate}
+                <h5 className="center"> Birthday -  {" "}                       
+               {moment(this.props.contactChosen.birthDate).format("MM-DD-YYYY")} 
                 </h5>
-                <h5 className="center"> Address -  
+                <h5 className="center"> Address -  {" "}
                   {this.props.contactChosen.address}
                 </h5>
-                <h5 className="center"> Occupation -  
+                <h5 className="center"> Occupation -  {" "}
                   {this.props.contactChosen.occupation}
                 </h5>
-                <h5 className="center"> Hobbies -  
+                <h5 className="center"> Hobbies -  {" "}
                   {this.props.contactChosen.hobbies}
                 </h5>
                 <br></br>
-                <h6 className="center"> Notes -  
+                <h6 className="center"> Notes -  {" "}
                   {this.props.contactChosen.notes}
                 </h6>
                 </Card>
