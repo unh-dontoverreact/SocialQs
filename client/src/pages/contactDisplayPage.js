@@ -86,7 +86,7 @@ class ContactDisplayPage extends Component {
                       <td>Birthday</td>
                       <td>
                         {" "}
-                        {moment(this.props.contactChosen.birthDate).format(
+                        {moment(this.props.contactChosen.birthDate).utc().format(
                           "MM-DD-YYYY"
                         )}
                       </td>
