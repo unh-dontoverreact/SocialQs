@@ -51,3 +51,6 @@ a.button {
   .delete-question{
    font-size:20px;
   }
+  .arrow:hover{
+cursor:pointer
+  }
