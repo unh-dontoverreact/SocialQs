@@ -2,7 +2,7 @@ import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import { Icon, Button, Modal, Row, Input } from "react-materialize";
 import moment from "moment";
-import Axios from "axios";
+// import Axios from "axios";
 
 //table details of one event
 class EventListItem extends React.Component {
