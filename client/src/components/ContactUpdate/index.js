@@ -33,6 +33,13 @@ class ContactUpdateModal extends Component {
         "/api/user/" + this.props.userID + "/contacts/" + this.props.contactID,
         {
           firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+      birthday: this.state.birthday,
+      address: this.state.address,
+      occupation: this.state.occupation,
+      hobbies: this.state.hobbies,
+      notes: this.state.notes,
         }
       )
       .then(response => {
