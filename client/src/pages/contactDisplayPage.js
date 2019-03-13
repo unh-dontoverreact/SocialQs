@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
+import  EventListItem  from "../components/EventList/EventListItem/index";
 import { Redirect, Table } from "react-materialize";
 import ContactUpdateModal from "../components/ContactUpdate";
 import moment from "moment";
