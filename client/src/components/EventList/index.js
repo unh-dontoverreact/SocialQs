@@ -11,7 +11,9 @@ export class EventList extends React.Component {
     date: "",
     title: "",
     contact: [],
+    cueFrequency: "",
     hiddenNewForm: true,
+    userID: this.props.user._id
   };
 
   //when we click enter new event, use state as new event and send to db
@@ -22,13 +24,15 @@ export class EventList extends React.Component {
       date: this.state.date,
       title: this.state.title,
       contact: this.state.contact,
+      cueFrequency: this.state.cueFrequency,
     };
 
     this.setState({
       date: "",
       title: "",
       contacts: [],
-      hiddenNewForm: true,
+      cueFrequency: "",
+      hiddenNewForm: true
     });
 
     await Axios.post(
@@ -38,7 +42,7 @@ export class EventList extends React.Component {
       console.log(error.response);
     });
 
-    await this.props.refreshUser(this.props.user._id);
+    this.props.refreshUser(this.props.user._id);
   };
 
   //set state as user enters event info
@@ -58,12 +62,15 @@ export class EventList extends React.Component {
       console.log(error.response);
     });
 
-    await this.props.refreshUser(this.props.user._id);
+    this.props.refreshUser(this.props.user._id);
   };
 
   //renders list of events
   renderEventList = () => {
-    return this.props.user.events.map((event, i) => {
+
+    let eventsArray = this.props.user.events
+
+    return eventsArray.map((event, i) => {
       return (
         <EventListItem
           key={i}
@@ -71,6 +78,7 @@ export class EventList extends React.Component {
           date={event.date}
           title={event.title}
           contact={event.contact}
+          cueFrequency={event.cueFrequency}
           handleDeleteEventClick={this.handleDeleteEventClick}
         />
       );
@@ -113,7 +121,9 @@ export class EventList extends React.Component {
               <th>Date</th>
               <th>Event</th>
               <th>Contacts</th>
-              <th>Actions</th>
+              <th>Cues</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
 

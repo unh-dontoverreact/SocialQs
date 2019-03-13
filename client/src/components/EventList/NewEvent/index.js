@@ -1,16 +1,17 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
-import { Row, Button, Input } from "react-materialize";
+import { Row, Button, Input} from "react-materialize";
 
 class NewEvent extends React.Component {
+
   render() {
     return (
       <div className="new-event-display card z-depth-2 center-align">
         <h4>Create New Event </h4>
         <form className="center-align">
           <Row>
-            <Input
+            <input
               s={12}
               name="date"
               type="date"
@@ -32,9 +33,25 @@ class NewEvent extends React.Component {
               s={12}
               name="contact"
               type="text"
-              placeholder="Add contacts"
+              placeholder="Add Contacts"
               onChange={this.props.handleNewEvent}
             />
+          </Row>
+          <Row>
+            <Input
+            s={12}
+            name="cueFrequency"
+            type="select"
+            placeholder="Set Cues"
+            onChange={this.props.handleNewEvent}
+            >
+            <option value="Once" >Once</option>
+            <option value="Weekly" >Weekly</option>
+            <option value="Monthly" >Monthly</option>
+            <option value="Quarterly" >Quarterly</option>
+            <option value="Yearly" >Yearly</option>
+            <option value="Off" >Off</option>
+            </Input>
           </Row>
 
           <Button

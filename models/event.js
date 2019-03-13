@@ -6,6 +6,7 @@ const eventSchema = new Schema({
   date: { type: Date, required: true },
   title: { type: String, required: true },
   contact: { type: Array },
+  cueFrequency: { type: String }
 });
 
 // Plugin to track the last modified date for effecient queries
