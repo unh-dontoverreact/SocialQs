@@ -22,6 +22,7 @@ class LandingPage extends Component {
     redirectTo: null,
     userLoggedIn: [],
     test: "",
+    error: "",
   };
 
   // axios request to user database and checks for matched based on input fields
@@ -35,20 +36,22 @@ class LandingPage extends Component {
         console.log("login response: ");
         console.log(response);
         if (response.status === 200) {
-          // update App.js state
+          // Success! Update App.js state
           if (this.props.handlers !== undefined) {
             this.props.handlers.userUpdateHandler(true, response.data);
           }
           // update the state to redirect to home
           this.setState({
+            error: "",   
             redirectTo: "/",
           });
-        }
+        } 
       })
       .catch(error => {
-        // TODO: record error to screen
+        // Record error to console & screen
         console.log("login error: ");
         console.log(error);
+        this.setState({ error : "Failed to match user id and password"})
       });
   };
 
@@ -64,14 +67,21 @@ class LandingPage extends Component {
     console.log(this.state.username);
   };
 
+  // Used by login/alert to report any failed sign-in attempts
+  getErrorMessage = () => {
+      return this.state.error;
+  }
+
   //if user clicks new user it changes state of existing to false and renders new user component
   createUser = () => {
     this.setState({ existing: false });
   };
 
   //if on NewUser component and you click back to login it changes state of existing to true and renders normal landing page and login components
+  //also clears any error messages on the login page so they don't carry over
   returnToLogin = () => {
-    this.setState({ existing: true });
+    this.setState({ error : "",
+                    existing: true });
   };
 
   // creates a new user and post them to user database based on the state which is set by input fields
@@ -89,12 +99,14 @@ class LandingPage extends Component {
     axios
       .post("/auth/", newUserInfo)
       .then(response => {
-        // TODO: record success to the screen
+        // Record success to the screen
+        this.setState({ error : "Success!  New sign-in created.  Click 'Back to Login' to return to sign-in page"})
         console.log(response);
       })
       .catch(error => {
-        // TODO: record error  to the screen
+        // Record error  to the screen
         console.log(error.response);
+        this.setState({ error : "Sorry, cannot add this user!  This email is already in use."})
       });
   };
 
@@ -108,7 +120,8 @@ class LandingPage extends Component {
           <Login
             getUser={this.gUser}
             handleInputChange={this.handleInputChange}
-          />
+            error={this.getErrorMessage()}
+            />
 
           <LandingPageSideBar createUser={this.createUser} />
         </div>
@@ -119,7 +132,8 @@ class LandingPage extends Component {
           returnToLogin={this.returnToLogin}
           newUser={this.newUser}
           handleInputChange={this.handleInputChange}
-        />
+          error={this.getErrorMessage()}
+          />
       );
     }
   }
