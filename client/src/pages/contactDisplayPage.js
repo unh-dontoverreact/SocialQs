@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
-import  EventListItem  from "../components/EventList/EventListItem/index";
+import EventListItem from "../components/EventList/EventListItem/index";
 import { Redirect, Table } from "react-materialize";
 import ContactUpdateModal from "../components/ContactUpdate";
 import moment from "moment";
+import axios from "axios";
 
 class ContactDisplayPage extends Component {
   state = {
@@ -16,7 +17,39 @@ class ContactDisplayPage extends Component {
       userID: this.props.user._id,
       contactID: this.props.contactChosen._id,
     });
+    //renders list of events
   }
+// pulled from Felicia's code will modify to filter events for a specific user
+  renderEventList = () => {
+    let eventsArray = this.props.user.events;
+
+    return eventsArray.map((event, i) => {
+      //will change to code below after Felicia adds contactID to events created
+      // return eventsArray.filter(event => (event.contactID===contactID).map((event, i) => {
+      return (
+        <EventListItem
+          key={i}
+          id={event._id}
+          date={event.date}
+          title={event.title}
+          contact={event.contact}
+          cueFrequency={event.cueFrequency}
+          handleDeleteEventClick={this.handleDeleteEventClick}
+        />
+      );
+    });
+  };
+  //When user clicks delete an event (pulled from Felicia's code to delete event)
+  handleDeleteEventClick = async id => {
+    console.log("hello");
+    await axios
+      .delete("/api/user/" + this.props.user._id + "/events/" + id)
+      .catch(error => {
+        console.log(error.response);
+      });
+
+    this.props.refreshUser(this.props.user._id);
+  };
   // when a contact is updated it rerenders the contact information
   loadUpdatedContact = () => {
     let awaitload = async () => {
@@ -87,9 +120,9 @@ class ContactDisplayPage extends Component {
                       <td>Birthday</td>
                       <td>
                         {" "}
-                        {moment(this.props.contactChosen.birthDate).utc().format(
-                          "MM-DD-YYYY"
-                        )}
+                        {moment(this.props.contactChosen.birthDate)
+                          .utc()
+                          .format("MM-DD-YYYY")}
                       </td>
                     </tr>
 
@@ -112,8 +145,19 @@ class ContactDisplayPage extends Component {
                     </tr>
                   </tbody>
                 </Table>
-               
               </Col>
+            </Row>
+            <Row>
+              <h3> Events </h3>
+            </Row>
+            <Row>
+              <tbody
+                user={this.props.user}
+                handlers={this.props.eventHandlers}
+                refreshUser={this.props.refreshUser}
+              >
+                {this.renderEventList()}
+              </tbody>
             </Row>
           </Container>
         </div>
