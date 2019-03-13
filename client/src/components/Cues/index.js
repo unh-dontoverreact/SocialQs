@@ -43,7 +43,7 @@ export class Cues extends React.Component {
               window.Materialize.toast(cue, CUE_TIMEOUT);
             }}
           >
-            <span><Icon>chat_bubble_outline</Icon>  You have {this.state.cues.length} cues available</span>
+            <span><Icon>chat_bubble_outline</Icon>  You have {this.state.cues.length} {this.state.cues.length === 1 ? 'cue' : 'cues'} available</span>
           </Button>
         </div>
       );
