@@ -17,18 +17,18 @@ challenging to keep an eye on those important details:  birthdates, anniversarie
 Use SocialQs as a personal databse to file away all of those important people,  register important dates and events and have the application give you some advanced notice when you need to reach out.   
 
 ## Application Features    
-1. Contact Management  
+__1. Contact Management__  
 - Add, Edit and Delete contacts  
 - Record names, addresses, dates, categories, hobbies, and general information  
 - Search by name, categories and other filters   
 
-2. Event Management  
+__2. Event Management__  
 - Add, update and delete important dates  
 - Set recurring events   
 - Assign events to contacts  
 - Mark important events for reminder notices  
 
-3. Cue Notifications
+__3. Cue Notifications__
 - Get in-app notifications based on contact dates
 - Get in-app notifications based on tagged events
 - Set interval of notifications  
@@ -60,8 +60,9 @@ Include the following line in a .env file of the project root folder:
 COOKIE_SESSION_KEY="any-unique-lettters-here"  
 
 ## API Endpoints
-
-__User Endpoints:__  
+  
+__User Endpoints:__
+    
 |HTTP Action | Endpoint |  Parms | Input | Output | Description |  
 | ---------- | -------- | ------ | ----- | ------ | ----------- |  
 | GET        | /api/user/ | None         | n/a | JSON [] | Get all users with their populated contacts & events  |  
@@ -69,7 +70,8 @@ __User Endpoints:__
 | UPDATE     | /api/user/:id | id | n/a | | updates specified user to the database|  
 | DELETE     | /api/user/:id | id | n/a | number deleted |  deletes the specified user from the database based on id |  
   
-__Contact Endpoints:__  
+__Contact Endpoints:__ 
+   
 |HTTP Action | Endpoint |  Parms | Input | Output | Description |  
 | ---------- | -------- | ------ | ----- | ------ | ----------- |  
 | GET        | /api/contact/ | None         | n/a | JSON [] | Get all contacts from the database  |  
@@ -78,13 +80,15 @@ __Contact Endpoints:__
 | DELETE     | /api/contact /:id | id | n/a | number deleted |  deletes the specified contact from the database based on id |  
   
 __Scheduler Endpoints:__  
+  
 |HTTP Action | Endpoint |  Parms | Input | Output | Description |  
 | ---------- | -------- | ------ | ----- | ------ | ----------- |  
   
 __Auth Endpoints:__  
+  
 |HTTP Action | Endpoint |  Parms | Input | Output | Description |  
 | ---------- | -------- | ------ | ----- | ------ | ----------- |  
-
+  
 ## Technology Used  
     
 | Package/Interface | Version     | Description                                                              |  
