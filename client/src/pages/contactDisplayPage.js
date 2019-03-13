@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
-import {Redirect, Card} from "react-materialize";
+import { Redirect, Table } from "react-materialize";
 import ContactUpdateModal from "../components/ContactUpdate";
 import moment from "moment";
 
@@ -9,7 +9,6 @@ class ContactDisplayPage extends Component {
   state = {
     user: "",
     contact: "",
-
   };
   componentDidMount() {
     this.setState({
@@ -61,35 +60,58 @@ class ContactDisplayPage extends Component {
                     notes={this.props.contactChosen.notes}
                   />
                 </div>
-                <Card>
-                <h1 className="center"> Contact Display </h1>
+                <Table>
+                  <thead>
+                    <tr>
+                      <th data-field="field">Field</th>
+                      <th data-field="value">Contact Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Name</td>
+                      <td>
+                        {" "}
+                        {this.props.contactChosen.firstName +
+                          " " +
+                          this.props.contactChosen.lastName}{" "}
+                      </td>
+                    </tr>
 
-                <h3 className="center"> Name -
-                {" "}  {this.props.contactChosen.firstName +
-                    " " +
-                    this.props.contactChosen.lastName}{" "}
-                  {/* add all other contact info */}
-                </h3>
-                <h4 className="center"> Email -  {" "}
-                  {this.props.contactChosen.email}
-                </h4>
-                <h5 className="center"> Birthday -  {" "}                       
-               {moment(this.props.contactChosen.birthDate).format("MM-DD-YYYY")} 
-                </h5>
-                <h5 className="center"> Address -  {" "}
-                  {this.props.contactChosen.address}
-                </h5>
-                <h5 className="center"> Occupation -  {" "}
-                  {this.props.contactChosen.occupation}
-                </h5>
-                <h5 className="center"> Hobbies -  {" "}
-                  {this.props.contactChosen.hobbies}
-                </h5>
-                <br></br>
-                <h6 className="center"> Notes -  {" "}
-                  {this.props.contactChosen.notes}
-                </h6>
-                </Card>
+                    <tr>
+                      <td>Email</td>
+                      <td>{this.props.contactChosen.email}</td>
+                    </tr>
+                    <tr>
+                      <td>Birthday</td>
+                      <td>
+                        {" "}
+                        {moment(this.props.contactChosen.birthDate).format(
+                          "MM-DD-YYYY"
+                        )}
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Address</td>
+                      <td>{this.props.contactChosen.address}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Occupation</td>
+                      <td>{this.props.contactChosen.occupation}</td>
+                    </tr>
+                    <tr>
+                      <td>Hobbies</td>
+                      <td>{this.props.contactChosen.hobbies}</td>
+                    </tr>
+                    <tr>
+                      <td>Notes</td>
+                      <td>{this.props.contactChosen.notes}</td>
+                    </tr>
+                  </tbody>
+                </Table>
+               
               </Col>
             </Row>
           </Container>
