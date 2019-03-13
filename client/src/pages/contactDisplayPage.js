@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
-import Redirect from "react-materialize";
+import {Redirect, Card} from "react-materialize";
 import ContactUpdateModal from "../components/ContactUpdate";
+import moment from "moment";
+
 class ContactDisplayPage extends Component {
   state = {
     user: "",
     contact: "",
+
   };
   componentDidMount() {
     this.setState({
@@ -51,21 +54,42 @@ class ContactDisplayPage extends Component {
                     firstName={this.props.contactChosen.firstName}
                     lastName={this.props.contactChosen.lastName}
                     email={this.props.contactChosen.email}
-                    birthday={this.props.contactChosen.birthday}
+                    birthDate={this.props.contactChosen.birthDate}
                     address={this.props.contactChosen.address}
                     occupation={this.props.contactChosen.occupation}
                     hobbies={this.props.contactChosen.hobbies}
                     notes={this.props.contactChosen.notes}
                   />
                 </div>
+                <Card>
                 <h1 className="center"> Contact Display </h1>
 
-                <h3 className="center">
-                  {this.props.contactChosen.firstName +
+                <h3 className="center"> Name -
+                {" "}  {this.props.contactChosen.firstName +
                     " " +
                     this.props.contactChosen.lastName}{" "}
                   {/* add all other contact info */}
                 </h3>
+                <h4 className="center"> Email -  {" "}
+                  {this.props.contactChosen.email}
+                </h4>
+                <h5 className="center"> Birthday -  {" "}                       
+               {moment(this.props.contactChosen.birthDate).format("MM-DD-YYYY")} 
+                </h5>
+                <h5 className="center"> Address -  {" "}
+                  {this.props.contactChosen.address}
+                </h5>
+                <h5 className="center"> Occupation -  {" "}
+                  {this.props.contactChosen.occupation}
+                </h5>
+                <h5 className="center"> Hobbies -  {" "}
+                  {this.props.contactChosen.hobbies}
+                </h5>
+                <br></br>
+                <h6 className="center"> Notes -  {" "}
+                  {this.props.contactChosen.notes}
+                </h6>
+                </Card>
               </Col>
             </Row>
           </Container>
