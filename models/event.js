@@ -5,6 +5,7 @@ const eventSchema = new Schema({
   date: { type: Date, required: true },
   title: { type: String, required: true },
   contact: { type: Array },
+  cueFrequency: { type: String }
 });
 
 const Event = mongoose.model("Event", eventSchema, "event");

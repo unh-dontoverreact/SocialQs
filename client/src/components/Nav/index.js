@@ -1,25 +1,3 @@
-// import React from "react";
-// import "./style.css";
-// import { Link } from "react-router-dom";
-
-// function Nav() {
-//   return (
-//     <nav>
-//       <div className="nav-wrapper">
-//         <ul id="nav-mobile" className="brand-logo center hide-on-med-and-down">
-//           <li>
-//             <Link to={`/`} activeclassname="material-icons waves-effect">
-//               SocialQs
-//             </Link>
-//           </li>
-//         </ul>
-//       </div>
-//     </nav>
-//   );
-// }
-
-// export default Nav;
-
 import React from "react";
 import Styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -44,7 +22,7 @@ const NavBar = Styled.div `
     a {
         color: white;
     }
-    z-index: +1;
+    z-index: +6;
     `
     
 export default Nav;
