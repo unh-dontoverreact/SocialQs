@@ -13,7 +13,6 @@ export class EventList extends React.Component {
     contact: [],
     cueFrequency: "",
     hiddenNewForm: true,
-    userID: this.props.user._id
   };
 
   //when we click enter new event, use state as new event and send to db
@@ -25,6 +24,7 @@ export class EventList extends React.Component {
       title: this.state.title,
       contact: this.state.contact,
       cueFrequency: this.state.cueFrequency,
+      userID: this.props.user._id,
     };
 
     this.setState({
@@ -32,7 +32,7 @@ export class EventList extends React.Component {
       title: "",
       contacts: [],
       cueFrequency: "",
-      hiddenNewForm: true
+      hiddenNewForm: true,
     });
 
     await Axios.post(
@@ -67,12 +67,11 @@ export class EventList extends React.Component {
 
   //renders list of events
   renderEventList = () => {
-
-    let eventsArray = this.props.user.events
-
-    eventsArray.sort(function(a, b) {
-        var dateA = new Date(a.date), dateB = new Date(b.date);
-        return dateA - dateB;
+    //sort events by date
+    this.props.user.events.sort(function(a, b) {
+      var dateA = new Date(a.date),
+        dateB = new Date(b.date);
+      return dateA - dateB;
     });
 
     return this.props.user.events.map((event, i) => {
