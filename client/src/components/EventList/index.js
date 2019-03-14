@@ -70,7 +70,12 @@ export class EventList extends React.Component {
 
     let eventsArray = this.props.user.events
 
-    return eventsArray.map((event, i) => {
+    eventsArray.sort(function(a, b) {
+        var dateA = new Date(a.date), dateB = new Date(b.date);
+        return dateA - dateB;
+    });
+
+    return this.props.user.events.map((event, i) => {
       return (
         <EventListItem
           key={i}
