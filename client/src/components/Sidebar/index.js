@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, SideNav, SideNavItem } from "react-materialize";
 import { NavLink } from "react-router-dom";
 import User from "./User";
-//import CalendarModal from "./DateModal"
+// import CalendarModal from "./DateModal"
 
 import Calendar from "react-calendar";
 import axios from "axios";

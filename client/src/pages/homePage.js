@@ -12,7 +12,7 @@ import axios from "axios";
 
 class HomePage extends Component {
   state = {
-    contacts: "",
+    contacts: [],
     filter: contact => contact.userID === this.props.user._id,
     addContact: false,
     contactName: "",
@@ -138,13 +138,13 @@ class HomePage extends Component {
   deleteContact = event => {
     const contactID = event.target.value;
     console.log(event.target);
-
+    const load = async () => {
     axios
       .delete("/api/user/" + this.props.user._id + "/contacts/" + contactID)
       .then(response => {
         console.log(response);
       });
-    const load = async () => {
+    
       await this.props.refreshUser(this.props.user._id);
 
       this.refreshDropdown();
