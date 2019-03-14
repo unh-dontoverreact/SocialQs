@@ -19,8 +19,8 @@ const Login = props => (
 
             <span
               className="helper-text"
-              data-error="wrong"
-              data-success="right"
+              data-error="Username must be an email"
+              data-success="Correct format"
             >
               UserName
             </span>
