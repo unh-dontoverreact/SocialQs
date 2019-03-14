@@ -51,7 +51,7 @@ class EventListItem extends React.Component {
         <td>{this.props.contact}</td>
         <td>{this.props.cueFrequency}</td>
 
-        <td>
+        <td className="center-align">
           <Modal
             header="Edit Event"
             trigger={
@@ -117,7 +117,7 @@ class EventListItem extends React.Component {
             </form>
           </Modal>
         </td>
-        <td>
+        <td className="center-align">
           <Button
             waves="light"
             className="eventActions white-text #4a148c red darken-4 z-depth-5"

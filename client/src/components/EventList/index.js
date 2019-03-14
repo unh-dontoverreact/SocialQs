@@ -131,8 +131,8 @@ export class EventList extends React.Component {
               <th>Event</th>
               <th>Contacts</th>
               <th>Cues</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th className="center-align">Edit Event</th>
+              <th className="center-align">Delete Event</th>
             </tr>
           </thead>
 
