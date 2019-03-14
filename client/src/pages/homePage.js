@@ -158,11 +158,13 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-            <Sidebar user={this.props.user} handlers={this.props.handlers} />
-            <Row>
-              <Col>
+          <Row>
+            <Col l={2}>
+                <Sidebar user={this.props.user} handlers={this.props.handlers} />
+            </Col>
+            <Col l={10}>
                 <Cues cues={this.props.user.cues} />
-              </Col>
+            </Col>
             </Row>
             <Row>
               <Col l={2}>
@@ -197,13 +199,13 @@ class HomePage extends Component {
                   hideAllContacts={this.hideAllContacts}
                 />
               </Col>
-              <Col l={2} className="l1">
+              <Col l={3} className="l1">
                 <Link
                   to={"/contacts/addnew"}
                   onClick={this.props.launchContactDisplay}
                 >
                   <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
-                    <Icon>add</Icon> New Contact
+                    <Icon>add_circle_outline</Icon> New Contact
                   </button>
                 </Link>
               </Col>

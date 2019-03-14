@@ -54,7 +54,7 @@ class Sidebar extends Component {
         return (
             <div>
                 <SideNav
-                    trigger={<Button icon="menu" />}
+                    trigger={<Button  className="purple darken-4" icon="menu" />}
                     options={{ closeOnClick: true }}
                 >
                     <li>
