@@ -83,7 +83,9 @@ export class EventList extends React.Component {
           title={event.title}
           contact={event.contact}
           cueFrequency={event.cueFrequency}
+          userID={event.userID}
           handleDeleteEventClick={this.handleDeleteEventClick}
+          refreshUser={this.props.refreshUser}
         />
       );
     });
@@ -121,6 +123,7 @@ export class EventList extends React.Component {
             handleNewEvent={this.newEvent}
             enterNewEvent={this.enterNewEvent}
             toggleAddEventForm={this.toggleAddEventForm}
+            user={this.props.user}
           />
         )}
 

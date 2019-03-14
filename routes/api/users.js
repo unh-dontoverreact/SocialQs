@@ -38,6 +38,7 @@ router
 router
   .route("/:id/events/:eventid")
   .get(eventsController.findById)
-  .delete(eventsController.remove);
+  .delete(eventsController.remove)
+  .put(eventsController.update);
 
 module.exports = router;
