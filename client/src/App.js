@@ -73,7 +73,6 @@ class App extends Component {
 
   // handleLogout() - called to log a user out of the system, clears their state
   handleLogout = user => {
-    console.log("logging out", user.firstName, user.lastName);
     this.resetState();
   };
 

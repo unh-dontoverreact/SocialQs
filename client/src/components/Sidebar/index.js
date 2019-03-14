@@ -22,7 +22,6 @@ class Sidebar extends Component {
             .post("/auth/logout")
             .then(response => {
                 console.log("logged out");
-                console.log(response.data);
                 if (response.status === 200) {
                     // update app state as logged out (no user data)
                     const loggedOutUser = {
@@ -31,6 +30,7 @@ class Sidebar extends Component {
                         firstName: "",
                         lastName: "",
                         image: "",
+                        loggedIn: false,
                         contacts: [
                             { firstName: "", lastName: "" },
                         ],
@@ -42,7 +42,7 @@ class Sidebar extends Component {
                             },
                         ],
                     };
-                    this.props.handlers.userUpdateHandler(true, loggedOutUser);
+                    this.props.handlers.userUpdateHandler(false, loggedOutUser);
                 }
             })
             .catch(error => {

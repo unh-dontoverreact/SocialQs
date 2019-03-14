@@ -19,8 +19,8 @@ export class Cues extends React.Component {
     console.log("loading cues:", JSON.stringify(this.props.cues, 2));
 
     this.setState({
-      cues: this.props.cues,
-      displayCueButton: this.props.cues.length ? true : false,
+    cues: this.props.cues,
+    displayCueButton: this.props.cues.length ? true : false,
     });
   }
 
