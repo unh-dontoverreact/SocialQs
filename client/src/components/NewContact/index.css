@@ -1,14 +1,15 @@
-.new-contact-display{
-       width:75%;
-margin: auto !important;
-padding:50px;
-border: 5px;
-border-color: #612469;
-border-style: groove
-
+.new-contact-display {
+  width: 75%;
+  margin: auto !important;
+  padding: 50px;
+  border: 20px;
+  border-color: #612469;
+  border-style: solid;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-.contact-button, .back-to-contact-button{
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-bottom: 10px
+.contact-button,
+.back-to-contact-button {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 10px;
 }
