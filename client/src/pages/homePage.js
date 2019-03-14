@@ -159,13 +159,16 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-          <Row>
-            <Col l={2}>
-                <Sidebar user={this.props.user} handlers={this.props.handlers} />
-            </Col>
-            <Col l={10}>
+            <Row>
+              <Col l={2}>
+                <Sidebar
+                  user={this.props.user}
+                  handlers={this.props.handlers}
+                />
+              </Col>
+              <Col l={10}>
                 <Cues cues={this.props.user.cues} />
-            </Col>
+              </Col>
             </Row>
             <Row>
               <Col l={2}>
