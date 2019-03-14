@@ -122,7 +122,7 @@ class AddContactPage extends Component {
                   handleInputChange={this.handleInputChange}
                   goBack={this.goBack}
                 />
-                {/* Mark adding goBack functionality */}
+                {/* Mark adding goBack  functionality */}
                 
               </Col>
             </Row>
