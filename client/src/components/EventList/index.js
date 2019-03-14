@@ -1,15 +1,7 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
-import {
-  Button,
-  Card,
-  CardTitle,
-  Col,
-  Icon,
-  Row,
-  Table,
-} from "react-materialize";
+import { Button, Col, Icon, Row, Table } from "react-materialize";
 import EventListItem from "./EventListItem";
 import NewEvent from "./NewEvent";
 import Axios from "axios";
