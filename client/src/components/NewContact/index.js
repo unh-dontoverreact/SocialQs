@@ -22,6 +22,7 @@ const NewContact = props => (
             data-success="right"
           >
             First Name
+            <span className="required"> (*Required) </span>
           </span>
         </div>
         <div className="input-field">
@@ -39,6 +40,7 @@ const NewContact = props => (
             data-success="right"
           >
             Last Name
+            <span className="required"> (*Required) </span>
           </span>
         </div>
         <div className="input-field">

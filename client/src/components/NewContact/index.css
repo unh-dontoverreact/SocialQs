@@ -12,3 +12,6 @@ border-style: groove
     margin-right: 100px;
     margin-bottom: 10px
 }
+.required{
+    color:red
+}
