@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Button, Input } from "react-materialize";
+import Alert from "../Alert";
 
 class NewUser extends Component {
   render() {
@@ -99,7 +100,6 @@ class NewUser extends Component {
                   Profile Picture URL
                 </span>
               </div>
-
             </form>
 
             <Button
@@ -114,6 +114,13 @@ class NewUser extends Component {
             >
               Back to login
             </Button>
+            <div className="row">
+              <Alert
+                style={{ opacity: this.props.error ? 1 : 0, marginBottom: 10 }}
+              >
+                {this.props.error}
+              </Alert>
+            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ const moment = require("moment");
 
 // date manipulation methods to break apart dates into Month, Day and Year, returned as an object {month, day, year}
 function parseDate(dateObj) {
-  const check = moment(dateObj);
+  const check = moment(dateObj).utc();
   const month = check.format("MM");
   const day = check.format("DD");
   const year = check.format("YYYY");

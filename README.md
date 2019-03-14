@@ -65,29 +65,44 @@ __User Endpoints:__
     
 |HTTP Action | Endpoint |  Parms | Input | Output | Description |  
 | ---------- | -------- | ------ | ----- | ------ | ----------- |  
-| GET        | /api/user/ | None         | n/a | JSON [] | Get all users with their populated contacts & events  |  
-| POST       | /api/user/     | n/a | JSON  |  | adds a passed user/contact/events to the database   |  
-| UPDATE     | /api/user/:id | id | n/a | | updates specified user to the database|  
+| GET        | /api/user/ | None         | n/a | [users] | Get all users with their populated contacts & events  |  
+| POST       | /api/user/     | n/a | {user}  |  | adds a passed user/contact/events to the database   |  
+| GET        | /api/user/:id | id |     | {user} | find user by id (including associated contacts & events ) |
+| PUT        | /api/user/:id | id | {user} | | updates specified user to the database|  
 | DELETE     | /api/user/:id | id | n/a | number deleted |  deletes the specified user from the database based on id |  
+| GET        | /api/user/:id/contacts | id |     | [contacts] | find all contacts for a given user id |
+| POST       | /api/user/:id/contacts | id | {contact}  |  | adds a contact to a given user based on user id   |  
+| DELETE     | /api/user/:id/contacts/:contactid | id, contactid | n/a | number deleted |  deletes the specified contact for a given user based on id |  
+| UPDATE     | /api/user/:id/contacts/:contactid | id, contactid | {contact} | | updates specified contact for a given user based on user id|
+| GET        | /api/user/:id/events | id |     | [events] | find all events for a given user based on user id |
+| POST       | /api/user/:id/events | id | {event}  |  | adds an event to a given user based on user id   |  
+| GET        | /api/user/:id/events/:eventid | id, eventid | n/a | | gets a specified event for a given user |   
+| DELETE     | /api/user/:id/events/:eventid | id, eventid | n/a | number deleted |  deletes the specified event for a given user |
   
 __Contact Endpoints:__ 
    
 |HTTP Action | Endpoint |  Parms | Input | Output | Description |  
 | ---------- | -------- | ------ | ----- | ------ | ----------- |  
-| GET        | /api/contact/ | None         | n/a | JSON [] | Get all contacts from the database  |  
-| POST       | /api/contact/     | n/a | JSON  |  | adds a passed contact to the database   |  
-| UPDATE     | /api/contact/:id | id | n/a | | updates specified contact in the database|  
-| DELETE     | /api/contact /:id | id | n/a | number deleted |  deletes the specified contact from the database based on id |  
+| GET        | /api/contacts/ | None         | n/a | [contacts] | Gets all contacts from the database  |  
+| GET        | /api/contacts/:id | id        | n/a | {contact} | Gets a specified contact from the database  |  
+| GET        | /api/contacts/birthdate/:month/:day | month, day        | n/a | [contacts] | Gets all contacts matching a birthday of specified month and day  |  
   
 __Scheduler Endpoints:__  
   
 |HTTP Action | Endpoint |  Parms | Input | Output | Description |  
 | ---------- | -------- | ------ | ----- | ------ | ----------- |  
+| POST       | /api/scheduler/start | n/a | n/a | {msg} | starts the scheduler to generate user's cues |
+| POST       | /api/scheduler/stop  | n/a | n/a | {msg} | stops the scheduler from generating cues |
+| POST       | /api/scheduler/test  | n/a | n/a | {msg} | endpoint to test scheduler logic without waiting on the clock |
   
 __Auth Endpoints:__  
   
 |HTTP Action | Endpoint |  Parms | Input | Output | Description |  
 | ---------- | -------- | ------ | ----- | ------ | ----------- |  
+| GET        | /auth/   | n/a    |       | {user} | returns the current authenticated user   |  
+| POST       | /auth/   | n/a    | {user} |        | register a new user in the database   |  
+| POST       | /auth/login | n/a | {user/pwd} |        | authenticate against the database   |  
+| GET        | /logout/ | n/a    |       |  | unauthenicates the user from the database   |  
   
 ## Technology Used  
     
