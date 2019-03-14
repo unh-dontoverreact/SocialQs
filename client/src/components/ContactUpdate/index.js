@@ -13,6 +13,7 @@ class ContactUpdateModal extends Component {
     occupation: this.props.occupation,
     hobbies: this.props.hobbies,
     notes: this.props.notes,
+    relationship: "",
   };
   resetUpdateModalValues = () => {
     this.setState({
@@ -33,6 +34,14 @@ class ContactUpdateModal extends Component {
         "/api/user/" + this.props.userID + "/contacts/" + this.props.contactID,
         {
           firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          birthDate: this.state.birthday,
+          relationship: this.state.relationship,
+          address: this.state.address,
+          occupation: this.state.occupation,
+          hobbies: this.state.hobbies,
+          notes: this.state.notes,
         }
       )
       .then(response => {
@@ -73,12 +82,11 @@ class ContactUpdateModal extends Component {
         >
           <Row>
             <Input
-              // placeholder= {this.props.firstName}
               name="firstName"
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
+              s={12}
               label="First Name"
               defaultValue={this.props.firstName}
             />
@@ -90,7 +98,7 @@ class ContactUpdateModal extends Component {
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
+              s={12}
               label="Last Name"
             />
           </Row>
@@ -101,20 +109,30 @@ class ContactUpdateModal extends Component {
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
+              s={12}
               label="Email Address"
             />
           </Row>
           <Row>
-            <Input
+            <input
+              placeholder="Enter Birthday - example 09/29/1987"
               defaultValue={this.props.birthday}
               name="birthday"
+              id="birthDate"
+              type="date"
+              s={12}
+              className="validate .center-align s"
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
-              label="Birthday"
             />
+            <span
+              className="helper-text"
+              data-error="Please enter a date"
+              data-success="right"
+            >
+              Birthday {this.props.birthday}
+            </span>
           </Row>
           <Row>
             <Input
@@ -123,7 +141,7 @@ class ContactUpdateModal extends Component {
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
+              s={12}
               label="Relationship"
             >
               <option value="Family">Family</option>
@@ -139,7 +157,7 @@ class ContactUpdateModal extends Component {
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
+              s={12}
               label="Occupation"
             />
           </Row>
@@ -150,7 +168,7 @@ class ContactUpdateModal extends Component {
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
+              s={12}
               label="Address"
             />
           </Row>
@@ -161,7 +179,7 @@ class ContactUpdateModal extends Component {
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
+              s={12}
               label="Hobbies"
             />
           </Row>
@@ -172,7 +190,7 @@ class ContactUpdateModal extends Component {
               onChange={event => {
                 this.setContactChanges(event);
               }}
-              s={6}
+              s={12}
               label="Notes"
             />
           </Row>

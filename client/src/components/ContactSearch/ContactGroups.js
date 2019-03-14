@@ -6,14 +6,14 @@ const ContactGroups = props => (
   <div className="contact-group-display">
     <div className="row">
       <Button
-        name="Friends"
+        name="Friend"
         className="friends-button-group group-button  z-depth-3 btn-small"
         onClick={props.displayGroup}
       >
         <Icon tiny> face </Icon> Friends
       </Button>
       <Button
-        name="Co-Workers"
+        name="Co-Worker"
         className="coworkers-group-button btn-small z-depth-3 group-button "
         onClick={props.displayGroup}
       >

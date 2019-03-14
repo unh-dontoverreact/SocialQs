@@ -12,6 +12,7 @@ import ContactSearch from "../components/ContactSearch";
 import axios from "axios";
 class HomePage extends Component {
   state = {
+    contacts: "",
     filter: contact => contact.userID === this.props.user._id,
     addContact: false,
     contactName: "",
@@ -130,7 +131,7 @@ class HomePage extends Component {
 
   deleteContact = event => {
     const contactID = event.target.value;
-    // console.log(event.target)
+    console.log(event.target)
 
     axios
       .delete("/api/user/" + this.props.user._id + "/contacts/" + contactID)

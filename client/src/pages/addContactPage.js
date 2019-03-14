@@ -13,6 +13,7 @@ class AddContactPage extends Component {
     contactlastName: "",
     contactemail: "",
     contactbirthDate: "",
+    contactRelationship: "",
     userID: "",
   };
   componentDidMount() {
@@ -36,7 +37,7 @@ class AddContactPage extends Component {
     this.setState({
       [name]: value,
     });
-    console.log(this.state.contactfirstName);
+    console.log(this.state.contactRelationship);
   };
 
   // establishes new contact and posts it to Mongo DB
