@@ -1,6 +1,6 @@
 import { React, Component } from "react";
 // import "./style.css";
-import { Modal, Table } from "react-materialize";
+import { Modal} from "react-materialize";
 
 class CalendarModal extends Component {
   state = {
