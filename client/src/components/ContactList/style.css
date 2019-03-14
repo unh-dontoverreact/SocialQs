@@ -13,44 +13,52 @@ a.button {
   margin: 5px;
     width:75%; */
   margin: auto !important;
-  padding:50px;
+  padding: 50px;
   border: 5px;
   border-color: #612469;
-  border-style: groove
-  }
-  .contact-total{
-    color: #612469
-  }
-  #contact-list{
-    background-color:white
-  }
-  .striped{
-    background-color:white
-  }
-  .modal {
-    border: 2px;
-    border-color: #612469;
-    border-style: solid;
-    background-color:whitesmoke;
-    text-align: center;
-    width: 50%
-  }
-  .modal .modal-footer{
-      background-color: whitesmoke
-  }
-  .delete-button{
-    background-color:#757083 
-  }
-  .delete-button:hover{
-    background-color: purple
-  }
+  border-style: solid;
+  
+  width: 75%;
+  margin: auto !important;
+  padding: 50px;
+  border: 20px;
+  border-color: #612469;
+  border-style: solid;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.contact-total {
+  color: #612469;
+}
+#contact-list {
+  background-color: white;
+}
+.striped {
+  background-color: white;
+}
+.modal {
+  border: 2px;
+  border-color: #612469;
+  border-style: solid;
+  background-color: whitesmoke;
+  text-align: center;
+  width: 50%;
+}
+.modal .modal-footer {
+  background-color: whitesmoke;
+}
+.delete-button {
+  background-color: #757083;
+}
+.delete-button:hover {
+  background-color: purple;
+}
 
-  .delete-button:focus{
-    background-color: purple
-  }
-  .delete-question{
-   font-size:20px;
-  }
-  .arrow:hover{
-cursor:pointer
-  }
+.delete-button:focus {
+  background-color: purple;
+}
+.delete-question {
+  font-size: 20px;
+}
+.arrow:hover {
+  cursor: pointer;
+}
