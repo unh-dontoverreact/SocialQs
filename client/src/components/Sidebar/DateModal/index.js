@@ -1,6 +1,6 @@
 import { React, Component } from "react";
 // import "./style.css";
-import { Modal} from "react-materialize";
+import { Modal,Button} from "react-materialize";
 
 class CalendarModal extends Component {
   state = {
@@ -16,13 +16,13 @@ class CalendarModal extends Component {
       <Modal
         header="Events"
         trigger={
-          this.state.showModal === true
-          //   <Button
-          //     waves="light"
-          //     className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
-          //   >
-          //     EDIT CONTACT<Icon right>insert_chart</Icon>
-          //   </Button>
+          
+            <Button
+              waves="light"
+              className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
+            >
+              EDIT CONTACT
+            </Button>
         }
       >
         {/* <Table>

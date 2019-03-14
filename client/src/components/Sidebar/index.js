@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, SideNav, SideNavItem } from "react-materialize";
 import { NavLink } from "react-router-dom";
 import User from "./User";
-// import CalendarModal from "./DateModal"
+import CalendarModal from "./DateModal"
 
 import Calendar from "react-calendar";
 import axios from "axios";
@@ -106,7 +106,7 @@ class Sidebar extends Component {
             onClickDay={this.onClickDay}
           />
         </SideNav>{" "}
-        {/* <CalendarModal calendarLaunch={this.state.calendarLaunch} selectedDate={this.state.date}/> */}
+        <CalendarModal calendarLaunch={this.state.calendarLaunch} selectedDate={this.state.date}/>
       </div>
     );
   }
