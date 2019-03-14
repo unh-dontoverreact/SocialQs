@@ -12,35 +12,34 @@ export class ContactList extends React.Component {
     endIndex: 10,
     page: 1,
     endpage: Math.ceil(this.props.user.contacts.length / 10),
-    all: true
+    all: true,
   };
-  
-//   componentDidMount(){
-//     //   this.setState({
-//     //     endpage: Math.ceil(this.props.user.contacts.length / 10)
-//     //   })
-//       this.groupPageNum()
-//   }
-//   groupPageNum = () =>{
-//       if(this.props.filter=== (contact => contact.userID === this.props.user._id) ) {
-//     let groupPageTotal = 0
-//     for (let i =0; i<this.props.user.contacts.length; i++){
-       
-//   if (this.props.user.contacts[i].group === "Family"){
-     
-//      groupPageTotal = groupPageTotal +1
-          
 
-//       }
-//         };
-//         this.setState({
-//             endpage:  Math.ceil(groupPageTotal   /10)
-//            })
-// }
-// else{ this.setState({
-//     endpage: Math.ceil(this.props.user.contacts.length / 10)
-// })}
-//   }
+  //   componentDidMount(){
+  //     //   this.setState({
+  //     //     endpage: Math.ceil(this.props.user.contacts.length / 10)
+  //     //   })
+  //       this.groupPageNum()
+  //   }
+  //   groupPageNum = () =>{
+  //       if(this.props.filter=== (contact => contact.userID === this.props.user._id) ) {
+  //     let groupPageTotal = 0
+  //     for (let i =0; i<this.props.user.contacts.length; i++){
+
+  //   if (this.props.user.contacts[i].group === "Family"){
+
+  //      groupPageTotal = groupPageTotal +1
+
+  //       }
+  //         };
+  //         this.setState({
+  //             endpage:  Math.ceil(groupPageTotal   /10)
+  //            })
+  // }
+  // else{ this.setState({
+  //     endpage: Math.ceil(this.props.user.contacts.length / 10)
+  // })}
+  //   }
   moreContacts = () => {
     if (this.props.user.contacts.length < this.state.endIndex + 10) {
       this.setState({
@@ -63,7 +62,6 @@ export class ContactList extends React.Component {
         page: this.state.page + 1,
       });
     }
-
   };
   lessContacts = () => {
     if (this.state.startIndex - 10 < 0) {
@@ -83,7 +81,20 @@ export class ContactList extends React.Component {
         page: this.state.page - 1,
       });
     }
-    this.groupPageNum()
+    this.groupPageNum();
+  };
+
+  // shows pages if looking at all contacts and hides them if filtering
+  pages = () => {
+    if (this.props.pages)
+      return (
+        <Row>
+          <div className="center-align">
+            {this.state.page}/{Math.ceil(this.props.user.contacts.length / 10)}
+          </div>
+        </Row>
+      );
+    else return <div />;
   };
   setContact = contact => {
     this.props.setContact(contact);
@@ -175,27 +186,21 @@ export class ContactList extends React.Component {
           </thead>
 
           <tbody>{this.renderContactList()}</tbody>
-        
         </Table>
         <Row className="center-align arrow">
           <Col l={6} className="center-align   " onClick={this.lessContacts}>
             <Icon className="arrow">arrow_back</Icon>{" "}
           </Col>
-          <Col l={6} className="center-align arrow " onClick={this.moreContacts}>
+          <Col
+            l={6}
+            className="center-align arrow "
+            onClick={this.moreContacts}
+          >
             <Icon className="arrow">arrow_forward</Icon>
           </Col>
         </Row>
-    
-    </div>
-    )
-    //   return  (
-    //    <Row>
-    //       <div className="center-align">
-    //         {this.state.page}/{ Math.ceil(this.props.user.contacts.length / 10)}
-    //       </div>
-    //     </Row>
-      
-      
-    // );
+        <div> {this.pages()} </div>
+      </div>
+    );
   }
 }
