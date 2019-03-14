@@ -116,6 +116,7 @@ export class EventList extends React.Component {
             handleNewEvent={this.newEvent}
             enterNewEvent={this.enterNewEvent}
             toggleAddEventForm={this.toggleAddEventForm}
+            user={this.props.user}
           />
         )}
 

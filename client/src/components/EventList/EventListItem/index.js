@@ -46,7 +46,7 @@ class EventListItem extends React.Component {
     }
     return (
       <tr>
-        <td>{moment(this.props.date).format("MM-DD-YYYY")}</td>
+        <td>{moment(this.props.date).utc().format("MM-DD-YYYY")}</td>
         <td>{this.props.title}</td>
         <td>{this.props.contact}</td>
         <td>{this.props.cueFrequency}</td>
