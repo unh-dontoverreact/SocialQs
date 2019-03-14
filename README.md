@@ -102,7 +102,7 @@ __Auth Endpoints:__
 | GET        | /auth/   | n/a    |       | {user} | returns the current authenticated user   |  
 | POST       | /auth/   | n/a    | {user} |        | register a new user in the database   |  
 | POST       | /auth/login | n/a | {user/pwd} |        | authenticate against the database   |  
-| GET        | /logout/ | n/a    |       |  | unauthenicates the user from the database   |  
+| GET        | /auth/logout/ | n/a    |       |  | unauthenicates the user from the database   |  
   
 ## Technology Used  
     

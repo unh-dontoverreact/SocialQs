@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema({
   date: { type: Date, required: true },
   title: { type: String, required: true },
-  contact: { type: Array },
-  cueFrequency: { type: String }
+  contact: { type: String },
+  cueFrequency: { type: String },
+  userID: { type: String, required: true }
 });
 
 const Event = mongoose.model("Event", eventSchema, "event");

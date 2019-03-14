@@ -130,9 +130,9 @@ export class ContactList extends React.Component {
                 trigger={
                   <Button
                     waves="light"
-                    className=" delete-button z-depth-3 btn-small"
+                    className="delete-button white-text #4a148c red darken-4 z-depth-3 btn-small"
                   >
-                    Delete <Icon right>delete_forever</Icon>
+                    <Icon>delete_forever</Icon>
                   </Button>
                 }
               >
@@ -145,7 +145,7 @@ export class ContactList extends React.Component {
                 <Button
                   value={contact._id}
                   waves="light"
-                  className="modal-close delete-button"
+                  className="modal-close delete-button red darken-4"
                   onClick={this.props.deleteContact}
                 >
                   Yes
@@ -180,8 +180,8 @@ export class ContactList extends React.Component {
               <th>Email</th>
               <th>Birthdate</th>
               <th>Relationship</th>
-              <th>Delete Contact</th>
-              <th>Go to contact </th>
+              <th className="center-align">Go to contact </th>
+              <th className="center-align">Delete Contact</th>
             </tr>
           </thead>
 

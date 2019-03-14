@@ -100,4 +100,9 @@ export default {
   deleteEvent: function() {
     return axios.delete("/api/user/" + id + "/events/" + eventid);
   },
+
+  // Update an event with given id
+  updateEvent: function() {
+    return axios.put("/api/user/" + id + "/events/" + eventid, eventData);
+  }
 };

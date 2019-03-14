@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Col, Row, Container } from "../components/Grid";
 import { Col, Row, Container, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
@@ -10,6 +9,7 @@ import { Cues } from "../components/Cues";
 import ContactGroups from "../components/ContactSearch/ContactGroups";
 import ContactSearch from "../components/ContactSearch";
 import axios from "axios";
+
 class HomePage extends Component {
   state = {
     contacts: "",
@@ -151,6 +151,7 @@ class HomePage extends Component {
     };
     return load();
   };
+
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
@@ -158,9 +159,14 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-            <Sidebar user={this.props.user} handlers={this.props.handlers} />
             <Row>
-              <Col>
+              <Col l={2}>
+                <Sidebar
+                  user={this.props.user}
+                  handlers={this.props.handlers}
+                />
+              </Col>
+              <Col l={10}>
                 <Cues cues={this.props.user.cues} />
               </Col>
             </Row>
@@ -197,13 +203,13 @@ class HomePage extends Component {
                   hideAllContacts={this.hideAllContacts}
                 />
               </Col>
-              <Col l={2} className="l1">
+              <Col l={3} className="l1">
                 <Link
                   to={"/contacts/addnew"}
                   onClick={this.props.launchContactDisplay}
                 >
                   <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
-                    <Icon>add</Icon> New Contact
+                    <Icon>add_circle_outline</Icon> New Contact
                   </button>
                 </Link>
               </Col>
