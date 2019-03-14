@@ -2,7 +2,7 @@ import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import { Icon, Button, Modal, Row, Input } from "react-materialize";
 import moment from "moment";
-// import Axios from "axios";
+import Axios from "axios";
 
 //table details of one event
 class EventListItem extends React.Component {
@@ -10,14 +10,12 @@ class EventListItem extends React.Component {
     date: this.props.date,
     title: this.props.title,
     contact: this.props.contact,
-    cueFrequency: this.props.frequency
+    cueFrequency: this.props.cueFrequency,
   };
 
-  saveEventUpdate = async (x) => {
+  //when user clicks save to update an event, take any updates and save to db
+  saveEventUpdate = x => {
     x.preventDefault();
-    console.log("save clicked")
-    //when we click enter new event, use state as new event and send to db
-
 
     let newEvent = {
       date: this.state.date,
@@ -26,13 +24,43 @@ class EventListItem extends React.Component {
       cueFrequency: this.state.cueFrequency,
     };
 
-    console.log("newEvent:", newEvent)
+    //make this cleaner if it works*****
+    if (this.state.date === undefined) {
+      newEvent.date = this.props.date;
+    }
 
+    if (this.state.title === undefined) {
+      newEvent.title = this.props.title;
+    }
+
+    if (this.state.contact === undefined) {
+      newEvent.contact = this.props.contact;
+    }
+
+    if (this.state.cueFrequency === undefined) {
+      newEvent.cueFrequency = this.props.cueFrequency;
+    }
+
+    //send put request and refresh
+    return Axios.put(
+      "/api/user/" + this.props.userID + "/events/" + this.props.id,
+      {
+        date: newEvent.date,
+        title: newEvent.title,
+        contact: newEvent.contact,
+        cueFrequency: newEvent.cueFrequency,
+      }
+    )
+      .then(response => {
+        return this.props.refreshUser(this.props.userID);
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
   };
-  
 
   //set state as user enters event info
-  handleEditEvent = (event) => {
+  handleEditEvent = event => {
     const { name, value } = event.target;
 
     this.setState({
@@ -41,12 +69,16 @@ class EventListItem extends React.Component {
   };
 
   render() {
-    if(this.props.date === undefined){
-      return(null)
+    if (this.props.date === undefined) {
+      return null;
     }
     return (
       <tr>
-        <td>{moment(this.props.date).utc().format("MM-DD-YYYY")}</td>
+        <td>
+          {moment(this.props.date)
+            .utc()
+            .format("MM-DD-YYYY")}
+        </td>
         <td>{this.props.title}</td>
         <td>{this.props.contact}</td>
         <td>{this.props.cueFrequency}</td>
@@ -66,26 +98,24 @@ class EventListItem extends React.Component {
             <form className="center-align">
               <Row>
                 <input
-                  defaultValue= {moment(this.props.date).format("MM-DD-YYYY")}
                   s={12}
                   name="date"
                   type="date"
                   onChange={this.handleEditEvent}
-            />
-              </Row>
-              <Row>
-                <Input
-                defaultValue= {this.props.title}
-                  s={12}
-                  name="title"
-                  type="text"
-                  onChange={this.handleEditEvent}
-                  
                 />
               </Row>
               <Row>
                 <Input
-                defaultValue= {this.props.contact}
+                  defaultValue={this.props.title}
+                  s={12}
+                  name="title"
+                  type="text"
+                  onChange={this.handleEditEvent}
+                />
+              </Row>
+              <Row>
+                <Input
+                  defaultValue={this.props.contact}
                   s={12}
                   name="contact"
                   type="text"
@@ -97,6 +127,7 @@ class EventListItem extends React.Component {
                   s={12}
                   name="cueFrequency"
                   type="select"
+                  defaultValue={this.props.cueFrequency}
                   onChange={this.handleEditEvent}
                 >
                   <option value="Once">Once</option>
@@ -109,7 +140,7 @@ class EventListItem extends React.Component {
               </Row>
 
               <Button
-                className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
+                className="modal-close white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
                 onClick={this.saveEventUpdate}
               >
                 Save
