@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Col, Row, Container } from "../components/Grid";
 import { Col, Row, Container, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
@@ -10,6 +9,7 @@ import { Cues } from "../components/Cues";
 import ContactGroups from "../components/ContactSearch/ContactGroups";
 import ContactSearch from "../components/ContactSearch";
 import axios from "axios";
+
 class HomePage extends Component {
   state = {
     contacts: "",
@@ -151,6 +151,7 @@ class HomePage extends Component {
     };
     return load();
   };
+
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;

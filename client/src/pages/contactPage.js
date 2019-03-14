@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ContactSearch from "../components/ContactSearch";
-import { Col } from "../components/Grid";
+import { Col, Container } from "react-materialize";
 import Sidebar from "../components/Sidebar";
 import { ContactList } from "../components/ContactList";
 import { Redirect } from "react-router-dom";
@@ -67,14 +67,6 @@ class ContactPage extends Component {
     const awaitLoad = async () => {
       await this.props.refreshUser(this.props.user._id);
       this.refreshDropdown();
-      // if (this.props.user.contacts.length === 10 ){
-      //   this.displayAllContacts()
-      // }
-      // else{
-      //   this.setState({
-      //     filter: ({limit:10}, contact => contact.userID === this.props.user._id),
-      //   });
-      // }
     };
     return awaitLoad();
   }
@@ -157,12 +149,14 @@ class ContactPage extends Component {
     };
     return load();
   };
+
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
     } else {
       return (
         <div>
+          <Container>
           <div className="row">
             <Col size="s1">
               <Sidebar user={this.props.user} />
@@ -208,6 +202,7 @@ class ContactPage extends Component {
               pages={this.state.pages}
             />
           </div>
+          </Container>
         </div>
       );
     }
