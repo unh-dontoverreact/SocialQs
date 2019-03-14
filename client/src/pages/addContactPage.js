@@ -48,6 +48,15 @@ class AddContactPage extends Component {
     });
     console.log(this.state.contactRelationship);
   };
+   // Mark creating function for goBack button
+
+    // let goBack = () =>{
+    // window.history.back();
+    // }
+    goBack = () =>{
+      window.history.back()
+    }
+      // End of Mark goBack 
 
   // establishes new contact and posts it to Mongo DB
   newContact = () => {
@@ -70,6 +79,7 @@ class AddContactPage extends Component {
     };
     console.log("On New Contact:", newContactInfo);
 
+ 
     axios
       .post("/api/user/" + this.props.user._id + "/contacts", newContactInfo)
       .then(async response => {
@@ -110,7 +120,10 @@ class AddContactPage extends Component {
                 <NewContact
                   newContact={this.newContact}
                   handleInputChange={this.handleInputChange}
+                  goBack={this.goBack}
                 />
+                {/* Mark adding goBack functionality */}
+                
               </Col>
             </Row>
           </Container>
