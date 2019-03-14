@@ -11,8 +11,8 @@ function ContactListItem(props) {
       <td>{props.email}</td>
       <td>{moment(props.birthDate).utc().format("MM-DD-YYYY")}</td>
       <td>{props.relationship}</td>
-      <td>{props.delete}</td>
-      <td> {props.go}</td>
+      <td className="center-align"> {props.go}</td>
+      <td className="center-align">{props.delete}</td>
     </tr>
   );
 }

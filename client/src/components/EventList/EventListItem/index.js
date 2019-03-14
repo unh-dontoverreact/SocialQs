@@ -46,7 +46,7 @@ class EventListItem extends React.Component {
     }
     return (
       <tr>
-        <td>{moment(this.props.date).format("MM-DD-YYYY")}</td>
+        <td>{moment(this.props.date).utc().format("MM-DD-YYYY")}</td>
         <td>{this.props.title}</td>
         <td>{this.props.contact}</td>
         <td>{this.props.cueFrequency}</td>
@@ -120,7 +120,7 @@ class EventListItem extends React.Component {
         <td>
           <Button
             waves="light"
-            className="eventActions white-text #4a148c purple darken-4 z-depth-5"
+            className="eventActions white-text #4a148c red darken-4 z-depth-5"
             onClick={() => this.props.handleDeleteEventClick(this.props.id)}
           >
             <Icon>delete_forever</Icon>

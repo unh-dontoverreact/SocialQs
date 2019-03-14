@@ -1,7 +1,15 @@
 import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./style.css";
-import { Table, Button, Icon } from "react-materialize";
+import {
+  Button,
+  Card,
+  CardTitle,
+  Col,
+  Icon,
+  Row,
+  Table,
+} from "react-materialize";
 import EventListItem from "./EventListItem";
 import NewEvent from "./NewEvent";
 import Axios from "axios";
@@ -102,14 +110,19 @@ export class EventList extends React.Component {
     return (
       <div id="eventSection">
         <h4 className="center-align">Upcoming Events</h4>
-        {this.state.hiddenNewForm && (
-          <Button
-            className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
-            onClick={this.toggleAddEventForm.bind(this)}
-          >
-            <Icon>add_circle_outline</Icon>
-          </Button>
-        )}
+        <Row>
+          <Col l={9} />
+          <Col l={2}>
+            {this.state.hiddenNewForm && (
+              <Button
+                className="white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
+                onClick={this.toggleAddEventForm.bind(this)}
+              >
+                <Icon>add_circle_outline</Icon> Add Event
+              </Button>
+            )}
+          </Col>
+        </Row>
 
         {!this.state.hiddenNewForm && (
           <NewEvent
