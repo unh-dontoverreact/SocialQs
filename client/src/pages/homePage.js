@@ -28,6 +28,7 @@ class HomePage extends Component {
     userID: "",
     searching: "",
     group: "",
+    pages: true,
   };
 
   // refreshes contact drop down list
@@ -78,16 +79,19 @@ class HomePage extends Component {
         contact.firstName + " " + contact.lastName === this.props.searchTerm ||
         contact.firstName === this.props.searchTerm ||
         contact.lastName === this.props.searchTerm,
+      pages: false,
     });
   };
   displayAllContacts = () => {
     this.setState({
       filter: contact => contact.userID === this.props.user._id,
+      pages: true,
     });
   };
   hideAllContacts = () => {
     this.setState({
       filter: contact => contact.userID === 1,
+      pages: false,
     });
   };
   // if user clicks on group icons it will display group filter results
@@ -95,6 +99,7 @@ class HomePage extends Component {
     const group = event.target.name;
     this.setState({
       filter: contact => contact.relationship === group,
+      pages: false,
     });
   };
   //if user is on contact search results and hits back it will return to search component
@@ -116,6 +121,7 @@ class HomePage extends Component {
         contact.firstName + " " + contact.lastName === this.props.searchTerm ||
         contact.firstName === this.props.searchTerm ||
         contact.lastName === this.props.searchTerm,
+      pages: false,
     });
     console.log(event.target.textContent);
     console.log("hello");
@@ -131,7 +137,7 @@ class HomePage extends Component {
 
   deleteContact = event => {
     const contactID = event.target.value;
-    console.log(event.target)
+    console.log(event.target);
 
     axios
       .delete("/api/user/" + this.props.user._id + "/contacts/" + contactID)
@@ -164,8 +170,7 @@ class HomePage extends Component {
                   className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
                   onClick={this.displaySearchedContacts}
                 >
-                  
-                  Search  <Icon>search</Icon>
+                  Search <Icon>search</Icon>
                 </button>
               </Col>
               <Col l={6}>
@@ -198,7 +203,7 @@ class HomePage extends Component {
                   onClick={this.props.launchContactDisplay}
                 >
                   <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
-                   <Icon>add</Icon> New Contact
+                    <Icon>add</Icon> New Contact
                   </button>
                 </Link>
               </Col>
@@ -210,6 +215,7 @@ class HomePage extends Component {
                 filter={this.state.filter}
                 setContact={this.setContact}
                 deleteContact={this.deleteContact}
+                pages={this.state.pages}
               />
               {/* </Col> */}
             </Row>

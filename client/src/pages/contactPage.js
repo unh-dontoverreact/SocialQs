@@ -26,6 +26,7 @@ class ContactPage extends Component {
     searching: "",
     group: "",
     filter: contact => contact.userID === this.props.user._id,
+    pages: true,
   };
   // refreshes contact drop down list
   refreshDropdown = () => {
@@ -84,16 +85,19 @@ class ContactPage extends Component {
         contact.firstName + " " + contact.lastName === this.props.searchTerm ||
         contact.firstName === this.props.searchTerm ||
         contact.lastName === this.props.searchTerm,
+      pages: false,
     });
   };
   displayAllContacts = () => {
     this.setState({
       filter: contact => contact.userID === this.props.user._id,
+      pages: true,
     });
   };
   hideAllContacts = () => {
     this.setState({
       filter: contact => contact.userID === 1,
+      pages: false,
     });
   };
   // if user clicks on group icons it will display group filter results
@@ -101,6 +105,7 @@ class ContactPage extends Component {
     const group = event.target.name;
     this.setState({
       filter: contact => contact.relationship === group,
+      pages: false,
     });
   };
   //if user is on contact search results and hits back it will return to search component
@@ -122,6 +127,7 @@ class ContactPage extends Component {
         contact.firstName + " " + contact.lastName === this.props.searchTerm ||
         contact.firstName === this.props.searchTerm ||
         contact.lastName === this.props.searchTerm,
+      pages: false,
     });
     console.log(event.target.textContent);
     console.log("hello");
@@ -199,6 +205,7 @@ class ContactPage extends Component {
               filter={this.state.filter}
               setContact={this.setContact}
               deleteContact={this.deleteContact}
+              pages={this.state.pages}
             />
           </div>
         </div>
