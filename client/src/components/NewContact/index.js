@@ -22,6 +22,7 @@ const NewContact = props => (
             data-success="right"
           >
             First Name
+            <span className="required"> (*Required) </span>
           </span>
         </div>
         <div className="input-field">
@@ -39,6 +40,7 @@ const NewContact = props => (
             data-success="right"
           >
             Last Name
+            <span className="required"> (*Required) </span>
           </span>
         </div>
         <div className="input-field">
@@ -172,6 +174,13 @@ const NewContact = props => (
       >
         Add Contact
       </button>
+      {/* creating a go Back button on create new Contact */}
+      <button
+      className="contact-button white-text waves-effect waves-light btn #4a148c purple darken-4 z-depth-5"
+        onClick={props.goBack}>
+        Go Back
+      </button>
+      {/* end of Mark goBack button */}
     </div>
   </div>
 );

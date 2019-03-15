@@ -26,7 +26,7 @@ class NewUser extends Component {
                   data-error="wrong"
                   data-success="right"
                 >
-                  First Name
+                  First Name 
                 </span>
               </div>
 
@@ -62,6 +62,7 @@ class NewUser extends Component {
                   data-success="right"
                 >
                   Email (this will be your username)
+                  <span className="required"> (*Required) </span>
                 </span>
               </div>
 
@@ -80,6 +81,7 @@ class NewUser extends Component {
                   data-success="right"
                 >
                   Password
+                  <span className="required"> (*Required) </span>
                 </span>
               </div>
 

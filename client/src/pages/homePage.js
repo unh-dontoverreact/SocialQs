@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Col, Row, Container } from "../components/Grid";
 import { Col, Row, Container, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
@@ -10,9 +9,10 @@ import { Cues } from "../components/Cues";
 import ContactGroups from "../components/ContactSearch/ContactGroups";
 import ContactSearch from "../components/ContactSearch";
 import axios from "axios";
+
 class HomePage extends Component {
   state = {
-    contacts: "",
+    contacts: [],
     filter: contact => contact.userID === this.props.user._id,
     addContact: false,
     contactName: "",
@@ -138,19 +138,20 @@ class HomePage extends Component {
   deleteContact = event => {
     const contactID = event.target.value;
     console.log(event.target);
-
+    const load = async () => {
     axios
       .delete("/api/user/" + this.props.user._id + "/contacts/" + contactID)
       .then(response => {
         console.log(response);
       });
-    const load = async () => {
+    
       await this.props.refreshUser(this.props.user._id);
 
       this.refreshDropdown();
     };
     return load();
   };
+
   render() {
     if (!this.props.loggedIn) {
       return <Redirect to={{ pathname: "/landing" }} />;
@@ -158,13 +159,16 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-          <Row>
-            <Col l={2}>
-                <Sidebar user={this.props.user} handlers={this.props.handlers} />
-            </Col>
-            <Col l={10}>
+            <Row>
+              <Col l={2}>
+                <Sidebar
+                  user={this.props.user}
+                  handlers={this.props.handlers}
+                />
+              </Col>
+              <Col l={10}>
                 <Cues cues={this.props.user.cues} />
-            </Col>
+              </Col>
             </Row>
             <Row>
               <Col l={2}>

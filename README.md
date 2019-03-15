@@ -33,6 +33,13 @@ __3. Cue Notifications__
 - Get in-app notifications based on tagged events
 - Set interval of notifications  
 
+## Built With
+ __M__ ongo  
+ __E__ xpress  
+ __R__ eact  
+ __N__ ode  
+Heroku
+   
 ## Getting Started  
 1. Browse to https://socialqs.herokuapp.com/  
 2. Create a user using an email address and password  
@@ -102,7 +109,7 @@ __Auth Endpoints:__
 | GET        | /auth/   | n/a    |       | {user} | returns the current authenticated user   |  
 | POST       | /auth/   | n/a    | {user} |        | register a new user in the database   |  
 | POST       | /auth/login | n/a | {user/pwd} |        | authenticate against the database   |  
-| GET        | /logout/ | n/a    |       |  | unauthenicates the user from the database   |  
+| GET        | /auth/logout/ | n/a    |       |  | unauthenicates the user from the database   |  
   
 ## Technology Used  
     
@@ -112,11 +119,12 @@ __Auth Endpoints:__
 | React.js          | __16.8.1__  | Main javascript engine for this application                              |  
 | Express           | __4.16.3__  | The workhorse web server provider                                        |  
 | Mongoose          | __5.4.13__  | Package to conifgure schemas and interface with MongoDB                  |  
-| Node              |             | Ubiquitous javascript engine                                             |  
+| Node              | __11.1.0__  | Ubiquitous javascript engine                                             |  
 | Dotenv            | __6.2.0__   | Package used to keep private keys out of Git                             |  
 | if-env            | __1.0.4__   | Package used simplify startup scripts basd on environments               |  
 | babel-eslint      | __10.0.1__  | Coding standards management library                                      |  
 | react-dom         | __16.6.3__  | React framework to enable dynamic UI features                            |  
+| react-router-dom  | __4.3.1__   | React SPA routing framework                                              |
 | node-schedule     | __1.3.2__   | Cron based in-session scheduler for notifications                        |  
 | bcryptjs          | __2.4.3__   | Password hashing library                                                 |  
 | materialize-css   | __1.0.0__   | Material designed based framework for extra screen sugar                 |  
@@ -124,18 +132,12 @@ __Auth Endpoints:__
 | passport          | __0.4.0__   | Login / authentication library                                           |  
 | prettier          | __1.16.4__  | Lint engine for re-writing / formatting code                             |  
 | styled-components | __4.1.3__   | CSS library built for inline components                                  |  
+| react-materialize | __2.6.0__   | React materialize component UI library                                   |
 
 ## Future Enhancements
 More than just noting the details,  SocialQs will be able to help you engage with more meaningful conversations with the FORD method.  The
 application will cue messagse based on Family, Occupation, Recreation and Dreams to help prompt a dialog.  The app can store the bits of knowledge track those pieces that are most important to remember.
   
-## Built With
-React
-Express
-Node
-Mongo
-Heroku
-   
 ## Authors  
 Team - Don't (over) React  
 March, 2019  
