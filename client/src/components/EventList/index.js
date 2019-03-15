@@ -10,7 +10,7 @@ export class EventList extends React.Component {
   state = {
     date: "",
     title: "",
-    contact: [],
+    contact: "",
     cueFrequency: "",
     hiddenNewForm: true,
   };
@@ -19,22 +19,33 @@ export class EventList extends React.Component {
   enterNewEvent = async x => {
     x.preventDefault();
 
+    //Split contact name and id
+    let contactInfo = this.state.contact.split(",");
+
+    let contactName = contactInfo[0] + " " + contactInfo[1];
+
+    let contactID = contactInfo[2];
+
+    //create new event
     let newEvent = {
       date: this.state.date,
       title: this.state.title,
-      contact: this.state.contact,
+      contact: contactName,
+      contactID: contactID,
       cueFrequency: this.state.cueFrequency,
       userID: this.props.user._id,
     };
 
+    //clear state
     this.setState({
       date: "",
       title: "",
-      contacts: [],
+      contacts: "",
       cueFrequency: "",
       hiddenNewForm: true,
     });
 
+    // send post request
     await Axios.post(
       "api/user/" + this.props.user._id + "/events",
       newEvent
@@ -42,6 +53,7 @@ export class EventList extends React.Component {
       console.log(error.response);
     });
 
+    //refresh data
     this.props.refreshUser(this.props.user._id);
   };
 
@@ -54,7 +66,7 @@ export class EventList extends React.Component {
     });
   };
 
-  //When user clicks delete an event
+  //When user clicks delete an event, delete and refresh
   handleDeleteEventClick = async id => {
     await Axios.delete(
       "api/user/" + this.props.user._id + "/events/" + id
@@ -82,10 +94,12 @@ export class EventList extends React.Component {
           date={event.date}
           title={event.title}
           contact={event.contact}
+          contactID={event.contactID}
           cueFrequency={event.cueFrequency}
           userID={event.userID}
           handleDeleteEventClick={this.handleDeleteEventClick}
           refreshUser={this.props.refreshUser}
+          user={this.props.user}
         />
       );
     });
