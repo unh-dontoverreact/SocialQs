@@ -11,6 +11,7 @@ class EventListItem extends React.Component {
     title: this.props.title,
     contact: this.props.contact,
     cueFrequency: this.props.cueFrequency,
+    contactList: this.props.user.contacts,
   };
 
   //when user clicks save to update an event, take any updates and save to db
@@ -20,7 +21,6 @@ class EventListItem extends React.Component {
     let newEvent = {
       date: this.state.date,
       title: this.state.title,
-      contact: this.state.contact,
       cueFrequency: this.state.cueFrequency,
     };
 
@@ -31,10 +31,6 @@ class EventListItem extends React.Component {
 
     if (this.state.title === undefined) {
       newEvent.title = this.props.title;
-    }
-
-    if (this.state.contact === undefined) {
-      newEvent.contact = this.props.contact;
     }
 
     if (this.state.cueFrequency === undefined) {
@@ -116,10 +112,9 @@ class EventListItem extends React.Component {
               <Row>
                 <Input
                   defaultValue={this.props.contact}
+                  disabled
                   s={12}
                   name="contact"
-                  type="text"
-                  onChange={this.handleEditEvent}
                 />
               </Row>
               <Row>

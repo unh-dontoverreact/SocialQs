@@ -105,8 +105,8 @@ class LandingPage extends Component {
       })
       .catch(error => {
         // Record error  to the screen
-        console.log(error.response);
-        this.setState({ error : "Sorry, cannot add this user!  This email is already in use."})
+        console.log(error.response.data.message);
+        this.setState({ error : "Unable to add these credentials.  This user may already be in use or missing a required email/password field"})
       });
   };
 
