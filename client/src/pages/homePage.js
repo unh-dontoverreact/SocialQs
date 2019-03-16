@@ -191,86 +191,90 @@ class HomePage extends Component {
       return (
         <div>
           <Container>
-            <Row>
-              <Col l={2}>
-                {this.showNavbar()}
-                {/* <Sidebar
-                  user={this.props.user}
-                  handlers={this.props.handlers}
-                  events ={this.props.user.events}
-                  
-                  date = {new Date(this.state.events.date.split("-")[0] + ", " + this.state.events.date.slice("-")[6] + ", " + this.state.events.date.split("-")[2].slice("")[0] + this.state.events.date.split("-")[2].slice("")[1])}
-                /> */}
-              </Col>
-
-              <Col l={10}>
-                <Cues cues={this.props.user.cues} />
-              </Col>
-            </Row>
-            <Row>
-              <Col l={2}>
-                <button
-                  className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
-                  onClick={this.displaySearchedContacts}
-                >
-                  Search <Icon>search</Icon>
-                </button>
-              </Col>
-              <Col l={6}>
-                <ContactSearch
-                  contactOptions={this.state.contacts}
-                  test={this.test}
-                />
-              </Col>
-            </Row>
-            <Row>
-              {" "}
-              <h4 className="center-align">
-                Contacts{" "}
-                <span className="contact-total">
-                  ({this.props.user.contacts.length})
-                </span>
-              </h4>
-            </Row>
-            <Row>
-              <Col l={9}>
-                <ContactGroups
-                  displayGroup={this.displayGroup}
-                  displayAllContacts={this.displayAllContacts}
-                  hideAllContacts={this.hideAllContacts}
-                />
-              </Col>
-              <Col l={3} className="l1">
-                <Link
-                  to={"/contacts/addnew"}
-                  onClick={this.props.launchContactDisplay}
-                >
-                  <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
-                    <Icon>add_circle_outline</Icon> New Contact
-                  </button>
-                </Link>
-              </Col>
-            </Row>
-            <Row>
-              {/* <Col> */}
-              <ContactList
-                user={this.props.user}
-                filter={this.state.filter}
-                setContact={this.setContact}
-                deleteContact={this.deleteContact}
-                pages={this.state.pages}
-              />
-              {/* </Col> */}
-            </Row>
-            <Row>
-              {/* <Col> */}
-              <EventList
-                user={this.props.user}
-                handlers={this.props.eventHandlers}
-                refreshUser={this.props.refreshUser}
-              />
-              {/* </Col> */}
-            </Row>
+            <div className="section">
+              <div className="card-content homepage-display">
+                <Row>
+                  <Col l={2}>
+                  {this.showNavbar()}
+                    {/* <Sidebar
+                      user={this.props.user}
+                      handlers={this.props.handlers}
+                    /> */}
+                  </Col>
+                  <Col l={2}>
+                    <button
+                      className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
+                      onClick={this.displaySearchedContacts}
+                    >
+                      Search <Icon>search</Icon>
+                    </button>
+                  </Col>
+                  <Col l={5}>
+                    <ContactSearch
+                      contactOptions={this.state.contacts}
+                      test={this.test}
+                    />
+                  </Col>
+                  <Col l={3}>
+                    <Cues cues={this.props.user.cues} />
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div className="section">
+              <div className="card">
+                <div className="card-content homepage-display">
+                  <span className="card-title black-text center-align">
+                    <h4>Contacts ({this.props.user.contacts.length})</h4>
+                  </span>
+                  <Row>
+                    <Col l={9}>
+                      <ContactGroups
+                        displayGroup={this.displayGroup}
+                        displayAllContacts={this.displayAllContacts}
+                        hideAllContacts={this.hideAllContacts}
+                      />
+                    </Col>
+                    <Col l={3} className="l1">
+                      <Link
+                        to={"/contacts/addnew"}
+                        onClick={this.props.launchContactDisplay}
+                      >
+                        <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
+                          <Icon>add_circle_outline</Icon> New Contact
+                        </button>
+                      </Link>
+                    </Col>
+                  </Row>
+                  <Row>
+                    {/* <Col> */}
+                    <ContactList
+                      user={this.props.user}
+                      filter={this.state.filter}
+                      setContact={this.setContact}
+                      deleteContact={this.deleteContact}
+                      pages={this.state.pages}
+                    />
+                    {/* </Col> */}
+                  </Row>
+                </div>
+              </div>
+            </div>
+            <div className="section">
+              <div className="card homepage-display ">
+                <div className="card-content">
+                  <Row>
+                    {/* <Col> */}
+                    <EventList
+                      user={this.props.user}
+                      handlers={this.props.eventHandlers}
+                      refreshUser={this.props.refreshUser}
+                    />
+                    {/* </Col> */}
+                  </Row>
+                </div>
+              </div>
+            </div>
           </Container>
         </div>
       );
