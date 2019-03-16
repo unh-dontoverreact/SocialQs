@@ -27,6 +27,8 @@ class ContactPage extends Component {
     group: "",
     filter: contact => contact.userID === this.props.user._id,
     pages: true,
+    date: [{ date: new Date() }],
+    showNavbar: false,
   };
   // refreshes contact drop down list
   refreshDropdown = () => {
@@ -64,12 +66,43 @@ class ContactPage extends Component {
     this.setState({
       userID: this.props.user._id,
     });
-    const awaitLoad = async () => {
-      await this.props.refreshUser(this.props.user._id);
-      this.refreshDropdown();
-    };
-    return awaitLoad();
+    // const awaitLoad = async () => {
+    await this.props.refreshUser(this.props.user._id);
+    this.refreshDropdown();
+    let dateArray = [];
+    for (let i = 0; i < this.props.user.events.length; i++) {
+      let event = this.props.user.events[i];
+      let newDate = new Date(
+        event.date.split("-")[0] +
+          ", " +
+          event.date.slice("-")[6] +
+          ", " +
+          event.date.split("-")[2].slice("")[0] +
+          event.date.split("-")[2].slice("")[1]
+      );
+      dateArray.push(newDate);
+    }
+    // setting the userID state to retrieve contacts
+    this.setState({
+      events: this.props.user.events,
+      date: dateArray,
+      showNavbar: true,
+    });
+    // };
+    // return awaitLoad();
   }
+  showNavbar = () => {
+    if (this.state.showNavbar) {
+      return (
+        <Sidebar
+          user={this.props.user}
+          handlers={this.props.handlers}
+          events={this.props.user.events}
+          date={this.state.date}
+        />
+      );
+    }
+  };
   // sets filter to search by first and last name when you hit search button
   filterSearch = () => {
     this.setState({
@@ -157,6 +190,7 @@ class ContactPage extends Component {
       return (
         <div>
           <Container>
+<<<<<<< HEAD
             <div className="section">
               <div className="card-content contact-display">
                 <div className="row">
@@ -172,6 +206,22 @@ class ContactPage extends Component {
                         {" "}
                         Search{" "}
                       </button>
+=======
+            <div className="row">
+              <Col size="s1">
+                {this.showNavbar()}
+                {/* <Sidebar user={this.props.user} /> */}
+              </Col>
+              <div className="row">
+                <div className="col s4">
+                  <button
+                    className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
+                    onClick={this.displaySearchedContacts}
+                  >
+                    {" "}
+                    Search{" "}
+                  </button>
+>>>>>>> 1685ec1e25f141e75557dbcb595778f9698c89ee
 
                       <ContactSearch
                         contactOptions={this.state.contacts}
