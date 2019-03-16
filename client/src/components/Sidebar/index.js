@@ -2,29 +2,50 @@ import React, { Component } from "react";
 import { Button, SideNav, SideNavItem } from "react-materialize";
 import { NavLink } from "react-router-dom";
 import User from "./User";
-import CalendarModal from "./DateModal"
-
-import Calendar from "react-calendar";
 import axios from "axios";
+import DayPicker from "react-day-picker";
+import "react-day-picker/lib/style.css";
+import "./style.css";
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      events: this.props.events,
       date: new Date(),
       calendarLaunch: false,
+      eventDate: "",
+      dateArray: [],
+      modifiers: {
+        highlighted: [new Date(2019, 2, 28), new Date(2019, 2, 25)],
+      },
     };
 
     this.logout = this.logout.bind(this);
   }
-  //something I was playing around with
-  // onClickDay= (value) =>{
-  //     console.log(value)
-  //     this.setState({
-  //         calendarLaunch: true
-  //     })
-  // }
+  // sets the event dates to highlight the calendar on load
+  componentDidMount() {
+    console.log("yo");
+    console.log(this.props.date);
+    this.setState({
+      modifiers: { highlighted: this.props.date },
+    });
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      modifiers: { highlighted: this.props.date },
+    });
+
+    console.log("second");
+    if (this.props.user.events[0].date) {
+      console.log("loaded");
+      this.setState({
+        modifiers: { highlighted: this.props.date },
+      });
+    }
+  }
 
   logout(event) {
     console.log("logging out");
@@ -62,7 +83,13 @@ class Sidebar extends Component {
     return (
       <div>
         <SideNav
-          trigger={<Button className="purple darken-4" icon="menu" />}
+          trigger={
+            <Button
+              className="purple darken-4"
+              icon="menu"
+              onClick={this.processEvent}
+            />
+          }
           options={{ closeOnClick: true }}
         >
           <li>
@@ -99,14 +126,12 @@ class Sidebar extends Component {
             </NavLink>
           </li>
           <SideNavItem divider />
-
-          <Calendar
-            onChange={this.onChange}
-            value={this.state.date}
-            onClickDay={this.onClickDay}
-          />
+          <div />
+          <div>
+            <DayPicker modifiers={this.state.modifiers} month={new Date()} />
+          </div>
         </SideNav>{" "}
-        <CalendarModal calendarLaunch={this.state.calendarLaunch} selectedDate={this.state.date}/>
+        {/* <CalendarModal calendarLaunch={this.state.calendarLaunch} selectedDate={this.state.date}/> */}
       </div>
     );
   }

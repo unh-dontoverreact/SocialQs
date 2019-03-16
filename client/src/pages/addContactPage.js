@@ -15,20 +15,53 @@ class AddContactPage extends Component {
     contactbirthDate: "",
     contactRelationship: "",
     userID: "",
+    date: [{ date: new Date() }],
+    showNavbar: false,
   };
-  componentDidMount() {
+
+  async componentDidMount() {
     console.log(
       "contact page logged in user: ",
       this.props.user.firstName,
       this.props.user.lastName
     );
-    console.log(this.props.user.contacts);
     this.setState({
       userID: this.props.user._id,
     });
-    this.props.refreshUser(this.props.user._id);
+    await this.props.refreshUser(this.props.user._id);
+    let dateArray = [];
+    for (let i = 0; i < this.props.user.events.length; i++) {
+      let event = this.props.user.events[i];
+      let newDate = new Date(
+        event.date.split("-")[0] +
+          ", " +
+          event.date.slice("-")[6] +
+          ", " +
+          event.date.split("-")[2].slice("")[0] +
+          event.date.split("-")[2].slice("")[1]
+      );
+      dateArray.push(newDate);
+    }
+    // setting the userID state to retrieve contacts
+    this.setState({
+      events: this.props.user.events,
+      date: dateArray,
+      showNavbar: true,
+    });
   }
-
+  //shows Navbar after user refreshes so data will be current
+  showNavbar = () => {
+    if (this.state.showNavbar) {
+      return (
+        <Sidebar
+          user={this.props.user}
+          handlers={this.props.handlers}
+          events={this.props.user.events}
+          date={this.state.date}
+        />
+      );
+    }
+  };
   //function that capetilizes the first letter of any word passed to it
   capitalization = word => {
     // let word =this.state.contactfirstName
@@ -48,15 +81,15 @@ class AddContactPage extends Component {
     });
     console.log(this.state.contactRelationship);
   };
-   // Mark creating function for goBack button
+  // Mark creating function for goBack button
 
-    // let goBack = () =>{
-    // window.history.back();
-    // }
-    goBack = () =>{
-      window.history.back()
-    }
-      // End of Mark goBack 
+  // let goBack = () =>{
+  // window.history.back();
+  // }
+  goBack = () => {
+    window.history.back();
+  };
+  // End of Mark goBack
 
   // establishes new contact and posts it to Mongo DB
   newContact = () => {
@@ -79,7 +112,6 @@ class AddContactPage extends Component {
     };
     console.log("On New Contact:", newContactInfo);
 
- 
     axios
       .post("/api/user/" + this.props.user._id + "/contacts", newContactInfo)
       .then(async response => {
@@ -113,7 +145,8 @@ class AddContactPage extends Component {
           <Container>
             <Row>
               <Col size="s1">
-                <Sidebar user={this.props.user} />
+                {this.showNavbar()}
+                {/* <Sidebar user={this.props.user} events={this.props.user.events} /> */}
               </Col>
               <Col size="s11">
                 <p />
@@ -123,7 +156,6 @@ class AddContactPage extends Component {
                   goBack={this.goBack}
                 />
                 {/* Mark adding goBack  functionality */}
-                
               </Col>
             </Row>
           </Container>

@@ -29,6 +29,8 @@ class HomePage extends Component {
     searching: "",
     group: "",
     pages: true,
+    events: [{ date: new Date() }],
+    showNavbar: false,
   };
 
   // refreshes contact drop down list
@@ -66,12 +68,42 @@ class HomePage extends Component {
     if (this.props.loggedIn) {
       await this.props.refreshUser(this.props.user._id);
       this.refreshDropdown();
+
+      let dateArray = [];
+      for (let i = 0; i < this.props.user.events.length; i++) {
+        let event = this.props.user.events[i];
+        let newDate = new Date(
+          event.date.split("-")[0] +
+            ", " +
+            event.date.slice("-")[6] +
+            ", " +
+            event.date.split("-")[2].slice("")[0] +
+            event.date.split("-")[2].slice("")[1]
+        );
+        dateArray.push(newDate);
+      }
+      // setting the userID state to retrieve contacts
+      this.setState({
+        userID: this.props.user._id,
+        events: this.props.user.events,
+        date: dateArray,
+        showNavbar: true,
+      });
     }
-    // setting the userID state to retrieve contacts
-    this.setState({
-      userID: this.props.user._id,
-    });
   }
+  //shows Navbar after user refreshes so data will be current
+  showNavbar = () => {
+    if (this.state.showNavbar) {
+      return (
+        <Sidebar
+          user={this.props.user}
+          handlers={this.props.handlers}
+          events={this.props.user.events}
+          date={this.state.date}
+        />
+      );
+    }
+  };
   // sets filter to search by first and last name when you hit search button
   filterSearch = () => {
     this.setState({
@@ -139,12 +171,12 @@ class HomePage extends Component {
     const contactID = event.target.value;
     console.log(event.target);
     const load = async () => {
-    axios
-      .delete("/api/user/" + this.props.user._id + "/contacts/" + contactID)
-      .then(response => {
-        console.log(response);
-      });
-    
+      axios
+        .delete("/api/user/" + this.props.user._id + "/contacts/" + contactID)
+        .then(response => {
+          console.log(response);
+        });
+
       await this.props.refreshUser(this.props.user._id);
 
       this.refreshDropdown();
@@ -161,11 +193,16 @@ class HomePage extends Component {
           <Container>
             <Row>
               <Col l={2}>
-                <Sidebar
+                {this.showNavbar()}
+                {/* <Sidebar
                   user={this.props.user}
                   handlers={this.props.handlers}
-                />
+                  events ={this.props.user.events}
+                  
+                  date = {new Date(this.state.events.date.split("-")[0] + ", " + this.state.events.date.slice("-")[6] + ", " + this.state.events.date.split("-")[2].slice("")[0] + this.state.events.date.split("-")[2].slice("")[1])}
+                /> */}
               </Col>
+
               <Col l={10}>
                 <Cues cues={this.props.user.cues} />
               </Col>
