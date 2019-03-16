@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Sidebar from "../components/Sidebar";
 import EventListItem from "../components/EventList/EventListItem/index";
-import { Redirect, Table } from "react-materialize";
+import { Redirect, Table, Card } from "react-materialize";
 import ContactUpdateModal from "../components/ContactUpdate";
 import moment from "moment";
 import axios from "axios";
@@ -58,21 +58,33 @@ class ContactDisplayPage extends Component {
   renderEventList = () => {
     let eventsArray = this.props.user.events;
 
-    return eventsArray.map((event, i) => {
-      //will change to code below after Felicia adds contactID to events created
-      // return eventsArray.filter(event => (event.contactID===contactID).map((event, i) => {
-      return (
-        <EventListItem
-          key={i}
-          id={event._id}
-          date={event.date}
-          title={event.title}
-          contact={event.contact}
-          cueFrequency={event.cueFrequency}
-          handleDeleteEventClick={this.handleDeleteEventClick}
-        />
-      );
-    });
+    // return eventsArray.map((event, i) => {
+    //will change to code below after Felicia adds contactID to events created
+    return eventsArray
+      .filter(event => event.contactID === this.state.contactID)
+      .sort(function(a, b) {
+        var dateA = new Date(a.date),
+          dateB = new Date(b.date);
+        return dateA - dateB;
+      })
+      .map((event, i) => {
+        console.log(event);
+        return (
+          <EventListItem
+            key={i}
+            id={event._id}
+            date={event.date}
+            title={event.title}
+            contact={event.contact}
+            contactID={event.contactID}
+            cueFrequency={event.cueFrequency}
+            userID={event.userID}
+            handleDeleteEventClick={this.handleDeleteEventClick}
+            refreshUser={this.props.refreshUser}
+            user={this.props.user}
+          />
+        );
+      });
   };
   //When user clicks delete an event (pulled from Felicia's code to delete event)
   handleDeleteEventClick = async id => {
@@ -187,13 +199,15 @@ class ContactDisplayPage extends Component {
               <h3> Events </h3>
             </Row>
             <Row>
-              <tbody
-                user={this.props.user}
-                handlers={this.props.eventHandlers}
-                refreshUser={this.props.refreshUser}
-              >
-                {this.renderEventList()}
-              </tbody>
+              <Card>
+                <tbody
+                  user={this.props.user}
+                  handlers={this.props.eventHandlers}
+                  refreshUser={this.props.refreshUser}
+                >
+                  {this.renderEventList()}
+                </tbody>
+              </Card>
             </Row>
           </Container>
         </div>
