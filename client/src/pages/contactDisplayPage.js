@@ -11,15 +11,50 @@ class ContactDisplayPage extends Component {
   state = {
     user: "",
     contact: "",
+    events: [{ date: new Date() }],
+    showNavbar: false,
   };
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({
       userID: this.props.user._id,
       contactID: this.props.contactChosen._id,
     });
-    //renders list of events
+
+    await this.props.refreshUser(this.props.user._id);
+    let dateArray = [];
+    for (let i = 0; i < this.props.user.events.length; i++) {
+      let event = this.props.user.events[i];
+      let newDate = new Date(
+        event.date.split("-")[0] +
+          ", " +
+          event.date.slice("-")[6] +
+          ", " +
+          event.date.split("-")[2].slice("")[0] +
+          event.date.split("-")[2].slice("")[1]
+      );
+      dateArray.push(newDate);
+    }
+    // setting the userID state to retrieve contacts
+    this.setState({
+      events: this.props.user.events,
+      date: dateArray,
+      showNavbar: true,
+    });
   }
-// pulled from Felicia's code will modify to filter events for a specific user
+  //shows Navbar after user refreshes so data will be current
+  showNavbar = () => {
+    if (this.state.showNavbar) {
+      return (
+        <Sidebar
+          user={this.props.user}
+          handlers={this.props.handlers}
+          events={this.props.user.events}
+          date={this.state.date}
+        />
+      );
+    }
+  };
+  // pulled from Felicia's code will modify to filter events for a specific user
   renderEventList = () => {
     let eventsArray = this.props.user.events;
 
@@ -75,7 +110,8 @@ class ContactDisplayPage extends Component {
           <Container>
             <Row>
               <Col size="s3">
-                <Sidebar user={this.props.user} />
+                {this.showNavbar()}
+                {/* <Sidebar user={this.props.user} /> */}
               </Col>
 
               <Col size="s9">
