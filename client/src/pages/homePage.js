@@ -31,6 +31,7 @@ class HomePage extends Component {
     pages: true,
     events: [{ date: new Date() }],
     showNavbar: false,
+    date: undefined,
   };
 
   // refreshes contact drop down list
@@ -70,8 +71,11 @@ class HomePage extends Component {
       this.refreshDropdown();
 
       let dateArray = [];
+
+      // loop through the events
       for (let i = 0; i < this.props.user.events.length; i++) {
         let event = this.props.user.events[i];
+        //format them to(YYYY, M, DD)
         let newDate = new Date(
           event.date.split("-")[0] +
             ", " +
@@ -80,8 +84,10 @@ class HomePage extends Component {
             event.date.split("-")[2].slice("")[0] +
             event.date.split("-")[2].slice("")[1]
         );
+        //add them to the dateArray
         dateArray.push(newDate);
       }
+
       // setting the userID state to retrieve contacts
       this.setState({
         userID: this.props.user._id,
@@ -91,7 +97,8 @@ class HomePage extends Component {
       });
     }
   }
-  //shows Navbar after user refreshes so data will be current
+  //shows Navbar after ComponentDidMount and user
+  // refreshes so data will be current
   showNavbar = () => {
     if (this.state.showNavbar) {
       return (
@@ -194,13 +201,7 @@ class HomePage extends Component {
             <div className="section">
               <div className="card-content homepage-display">
                 <Row>
-                  <Col l={2}>
-                  {this.showNavbar()}
-                    {/* <Sidebar
-                      user={this.props.user}
-                      handlers={this.props.handlers}
-                    /> */}
-                  </Col>
+                  <Col l={2}>{this.showNavbar()}</Col>
                   <Col l={2}>
                     <button
                       className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, SideNav, SideNavItem, Toast } from "react-materialize";
+import { Button, SideNav, SideNavItem } from "react-materialize";
 import { NavLink } from "react-router-dom";
 import User from "./User";
 import axios from "axios";
@@ -18,7 +18,7 @@ class Sidebar extends Component {
       eventDate: "",
       dateArray: [],
       selectedDay: undefined,
-      modalOptions:{open: true},
+      modalOptions: { open: true },
       modifiers: {
         highlighted: [new Date(2019, 2, 28), new Date(2019, 2, 25)],
       },
@@ -32,43 +32,33 @@ class Sidebar extends Component {
   componentDidMount() {
     console.log("yo");
     console.log(this.props.date);
+
     this.setState({
       modifiers: { highlighted: this.props.date },
     });
   }
-
+// if props change it reloads 
   componentWillReceiveProps() {
     this.setState({
       modifiers: { highlighted: this.props.date },
     });
-
-    console.log("second");
-    if (this.props.user.events[0].date) {
-      console.log("loaded");
-      this.setState({
-        modifiers: { highlighted: this.props.date },
-      });
-    }
   }
-  
+  // if user clicks on a date it pops up an alert with the event happening 
+  //(it's very ugly I was in the process of changing this)
   async handleDayClick(day) {
+      //sets selectedDay to day clicked
     await this.setState({ selectedDay: day });
     let clickedDate = moment(this.state.selectedDay)
       .utc()
       .format("MM-DD-YYYY");
-       this.props.user.events.forEach(function(event) {
+    this.props.user.events.forEach(function(event) {
       let eventsDate = moment(event.date)
         .utc()
         .format("MM-DD-YYYY");
-         if (clickedDate === eventsDate) {
-        console.log(event);
-       return <Toast toast={event.date}>Get Cue</Toast>
-        // alert(
-        //    event.date +
-        //    event.title +
-        //    event.contact
-        //    // <p>{event.date}</p>
-        // )
+      if (clickedDate === eventsDate) {
+       
+
+        alert(event.title);
       }
     });
   }
@@ -161,7 +151,6 @@ class Sidebar extends Component {
             />
           </div>
         </SideNav>{" "}
-        {/* <CalendarModal calendarLaunch={this.state.calendarLaunch} selectedDate={this.state.date}/> */}
       </div>
     );
   }

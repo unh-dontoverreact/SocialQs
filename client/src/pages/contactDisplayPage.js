@@ -22,8 +22,10 @@ class ContactDisplayPage extends Component {
 
     await this.props.refreshUser(this.props.user._id);
     let dateArray = [];
+    // loop through the events
     for (let i = 0; i < this.props.user.events.length; i++) {
       let event = this.props.user.events[i];
+      //format them to(YYYY, M, DD)
       let newDate = new Date(
         event.date.split("-")[0] +
           ", " +
@@ -32,6 +34,7 @@ class ContactDisplayPage extends Component {
           event.date.split("-")[2].slice("")[0] +
           event.date.split("-")[2].slice("")[1]
       );
+      //add them to the dateArray
       dateArray.push(newDate);
     }
     // setting the userID state to retrieve contacts
