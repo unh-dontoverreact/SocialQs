@@ -42,16 +42,16 @@ class LandingPage extends Component {
           }
           // update the state to redirect to home
           this.setState({
-            error: "",   
+            error: "",
             redirectTo: "/",
           });
-        } 
+        }
       })
       .catch(error => {
         // Record error to console & screen
         console.log("login error: ");
         console.log(error);
-        this.setState({ error : "Failed to match user id and password"})
+        this.setState({ error: "Failed to match user id and password" });
       });
   };
 
@@ -69,8 +69,8 @@ class LandingPage extends Component {
 
   // Used by login/alert to report any failed sign-in attempts
   getErrorMessage = () => {
-      return this.state.error;
-  }
+    return this.state.error;
+  };
 
   //if user clicks new user it changes state of existing to false and renders new user component
   createUser = () => {
@@ -80,8 +80,7 @@ class LandingPage extends Component {
   //if on NewUser component and you click back to login it changes state of existing to true and renders normal landing page and login components
   //also clears any error messages on the login page so they don't carry over
   returnToLogin = () => {
-    this.setState({ error : "",
-                    existing: true });
+    this.setState({ error: "", existing: true });
   };
 
   // creates a new user and post them to user database based on the state which is set by input fields
@@ -100,13 +99,19 @@ class LandingPage extends Component {
       .post("/auth/", newUserInfo)
       .then(response => {
         // Record success to the screen
-        this.setState({ error : "Success!  New sign-in created.  Click 'Back to Login' to return to sign-in page"})
+        this.setState({
+          error:
+            "Success!  New sign-in created.  Click 'Back to Login' to return to sign-in page",
+        });
         console.log(response);
       })
       .catch(error => {
         // Record error  to the screen
         console.log(error.response.data.message);
-        this.setState({ error : "Unable to add these credentials.  This user may already be in use or missing a required email/password field"})
+        this.setState({
+          error:
+            "Unable to add these credentials.  This user may already be in use or missing a required email/password field",
+        });
       });
   };
 
@@ -121,7 +126,7 @@ class LandingPage extends Component {
             getUser={this.gUser}
             handleInputChange={this.handleInputChange}
             error={this.getErrorMessage()}
-            />
+          />
 
           <LandingPageSideBar createUser={this.createUser} />
         </div>
@@ -133,7 +138,7 @@ class LandingPage extends Component {
           newUser={this.newUser}
           handleInputChange={this.handleInputChange}
           error={this.getErrorMessage()}
-          />
+        />
       );
     }
   }

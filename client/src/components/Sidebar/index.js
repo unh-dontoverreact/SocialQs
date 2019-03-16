@@ -4,23 +4,27 @@ import { NavLink } from "react-router-dom";
 import User from "./User";
 import axios from "axios";
 import DayPicker from "react-day-picker";
+import moment from "moment";
 import "react-day-picker/lib/style.css";
 import "./style.css";
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       events: this.props.events,
       date: new Date(),
       calendarLaunch: false,
       eventDate: "",
       dateArray: [],
+      selectedDay: undefined,
+      modalOptions: { open: true },
       modifiers: {
         highlighted: [new Date(2019, 2, 28), new Date(2019, 2, 25)],
       },
     };
+
+    this.handleDayClick = this.handleDayClick.bind(this);
 
     this.logout = this.logout.bind(this);
   }
@@ -28,23 +32,35 @@ class Sidebar extends Component {
   componentDidMount() {
     console.log("yo");
     console.log(this.props.date);
+
     this.setState({
       modifiers: { highlighted: this.props.date },
     });
   }
-
+// if props change it reloads 
   componentWillReceiveProps() {
     this.setState({
       modifiers: { highlighted: this.props.date },
     });
+  }
+  // if user clicks on a date it pops up an alert with the event happening 
+  //(it's very ugly I was in the process of changing this)
+  async handleDayClick(day) {
+      //sets selectedDay to day clicked
+    await this.setState({ selectedDay: day });
+    let clickedDate = moment(this.state.selectedDay)
+      .utc()
+      .format("MM-DD-YYYY");
+    this.props.user.events.forEach(function(event) {
+      let eventsDate = moment(event.date)
+        .utc()
+        .format("MM-DD-YYYY");
+      if (clickedDate === eventsDate) {
+       
 
-    console.log("second");
-    if (this.props.user.events[0].date) {
-      console.log("loaded");
-      this.setState({
-        modifiers: { highlighted: this.props.date },
-      });
-    }
+        alert(event.title);
+      }
+    });
   }
 
   logout(event) {
@@ -128,10 +144,13 @@ class Sidebar extends Component {
           <SideNavItem divider />
           <div />
           <div>
-            <DayPicker modifiers={this.state.modifiers} month={new Date()} />
+            <DayPicker
+              modifiers={this.state.modifiers}
+              month={new Date()}
+              onDayClick={this.handleDayClick}
+            />
           </div>
         </SideNav>{" "}
-        {/* <CalendarModal calendarLaunch={this.state.calendarLaunch} selectedDate={this.state.date}/> */}
       </div>
     );
   }
