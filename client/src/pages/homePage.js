@@ -197,7 +197,7 @@ class HomePage extends Component {
     } else {
       return (
         <div>
-         {this.showNavbar()}
+          {this.showNavbar()}
           <Container>
             <div className="section">
               <div className="card-content homepage-display">
@@ -248,7 +248,6 @@ class HomePage extends Component {
                     </Col>
                   </Row>
                   <Row>
-                    {/* <Col> */}
                     <ContactList
                       user={this.props.user}
                       filter={this.state.filter}
@@ -256,7 +255,6 @@ class HomePage extends Component {
                       deleteContact={this.deleteContact}
                       pages={this.state.pages}
                     />
-                    {/* </Col> */}
                   </Row>
                 </div>
               </div>
@@ -265,13 +263,11 @@ class HomePage extends Component {
               <div className="card homepage-display ">
                 <div className="card-content">
                   <Row>
-                    {/* <Col> */}
                     <EventList
                       user={this.props.user}
                       handlers={this.props.eventHandlers}
                       refreshUser={this.props.refreshUser}
                     />
-                    {/* </Col> */}
                   </Row>
                 </div>
               </div>

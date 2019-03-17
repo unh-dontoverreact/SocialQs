@@ -76,7 +76,7 @@ class EventListItem extends React.Component {
             .format("MM-DD-YYYY")}
         </td>
         <td>{this.props.title}</td>
-        <td>{this.props.contact}</td>
+        <td>{this.props.contact ? this.props.contact : ""}</td>
         <td>{this.props.cueFrequency}</td>
 
         <td className="center-align">
@@ -144,31 +144,28 @@ class EventListItem extends React.Component {
           </Modal>
         </td>
         <td className="center-align">
-        <Modal
-                header="Delete Event"
-                trigger={
-                  <Button
-                    waves="light"
-                    className="eventActions white-text #4a148c red darken-4 z-depth-5"
-                  >
-                    <Icon>delete_forever</Icon>
-                  </Button>
-                }
+          <Modal
+            header="Delete Event"
+            trigger={
+              <Button
+                waves="light"
+                className="eventActions white-text #4a148c red darken-4 z-depth-5"
               >
-                <p className="delete-question">
-                  Are you sure you want to delete{" "}
-                  <span>
-                    {this.props.title}?{" "}
-                  </span>
-                </p>
-                <Button
-                  waves="light"
-                  className="modal-close delete-button red darken-4"
-                  onClick={() => this.props.handleDeleteEventClick(this.props.id)}
-                >
-                  Yes
-                </Button>
-              </Modal>
+                <Icon>delete_forever</Icon>
+              </Button>
+            }
+          >
+            <p className="delete-question">
+              Are you sure you want to delete <span>{this.props.title}? </span>
+            </p>
+            <Button
+              waves="light"
+              className="modal-close delete-button red darken-4"
+              onClick={() => this.props.handleDeleteEventClick(this.props.id)}
+            >
+              Yes
+            </Button>
+          </Modal>
         </td>
       </tr>
     );
