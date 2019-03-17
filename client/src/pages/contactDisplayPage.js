@@ -178,6 +178,10 @@ class ContactDisplayPage extends Component {
                     </tr>
 
                     <tr>
+                      <td>Relationship</td>
+                      <td>{this.props.contactChosen.relationship}</td>
+                    </tr>
+                    <tr>
                       <td>Address</td>
                       <td>{this.props.contactChosen.address}</td>
                     </tr>
