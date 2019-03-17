@@ -197,11 +197,11 @@ class HomePage extends Component {
     } else {
       return (
         <div>
+          {this.showNavbar()}
           <Container>
             <div className="section">
               <div className="card-content homepage-display">
                 <Row>
-                  <Col l={2}>{this.showNavbar()}</Col>
                   <Col l={2}>
                     <button
                       className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
@@ -210,7 +210,7 @@ class HomePage extends Component {
                       Search <Icon>search</Icon>
                     </button>
                   </Col>
-                  <Col l={5}>
+                  <Col l={7}>
                     <ContactSearch
                       contactOptions={this.state.contacts}
                       test={this.test}
@@ -254,7 +254,6 @@ class HomePage extends Component {
                     </Col>
                   </Row>
                   <Row>
-                    {/* <Col> */}
                     <ContactList
                       user={this.props.user}
                       filter={this.state.filter}
@@ -262,7 +261,6 @@ class HomePage extends Component {
                       deleteContact={this.deleteContact}
                       pages={this.state.pages}
                     />
-                    {/* </Col> */}
                   </Row>
                 </div>
               </div>
@@ -271,13 +269,11 @@ class HomePage extends Component {
               <div className="card homepage-display ">
                 <div className="card-content">
                   <Row>
-                    {/* <Col> */}
                     <EventList
                       user={this.props.user}
                       handlers={this.props.eventHandlers}
                       refreshUser={this.props.refreshUser}
                     />
-                    {/* </Col> */}
                   </Row>
                 </div>
               </div>

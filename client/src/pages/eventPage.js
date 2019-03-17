@@ -53,17 +53,10 @@ class EventPage extends Component {
     } else
       return (
         <div>
+         {this.showNavbar()}
           <Container>
+          <div className="card-content event-display">
             <Row>
-              <Col>
-                {this.showNavbar()}
-                {/* <Sidebar
-                  user={this.props.user}
-                  handlers={this.props.handlers}
-                  events={this.props.user.events}
-                  date={this.state.date}
-                /> */}
-              </Col>
               <Col>
                 <EventList
                   user={this.props.user}
@@ -72,6 +65,7 @@ class EventPage extends Component {
                 />
               </Col>
             </Row>
+            </div>
           </Container>
         </div>
       );

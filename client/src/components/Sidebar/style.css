@@ -2,3 +2,12 @@
   background-color: #612469;
   color: white;
 }
+.DayPicker-Day--highlighted:hover {
+  background-color: purple;
+ 
+}
+
+
+.calendar-prompts{
+    color:#612469
+}

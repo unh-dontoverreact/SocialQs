@@ -192,11 +192,11 @@ class ContactPage extends Component {
     } else {
       return (
         <div>
+         {this.showNavbar()}
           <Container>
+          <div className="card-content contact-display">
             <div className="row">
               <Col size="s1">
-                {this.showNavbar()}
-                {/* <Sidebar user={this.props.user} /> */}
               </Col>
               <div className="row">
                 <div className="col s4">
@@ -238,6 +238,7 @@ class ContactPage extends Component {
                 deleteContact={this.deleteContact}
                 pages={this.state.pages}
               />
+            </div>
             </div>
           </Container>
         </div>

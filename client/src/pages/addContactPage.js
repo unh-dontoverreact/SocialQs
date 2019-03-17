@@ -145,13 +145,10 @@ class AddContactPage extends Component {
     } else {
       return (
         <div>
+          {this.showNavbar()}
           <Container>
             <Row>
-              <Col size="s1">
-                {this.showNavbar()}
-                {/* <Sidebar user={this.props.user} events={this.props.user.events} /> */}
-              </Col>
-              <Col size="s11">
+              <Col size="s12">
                 <p />
                 <NewContact
                   newContact={this.newContact}

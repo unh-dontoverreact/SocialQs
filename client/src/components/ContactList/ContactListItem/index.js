@@ -9,7 +9,12 @@ function ContactListItem(props) {
       <td>{props.firstName}</td>
       <td>{props.lastName}</td>
       <td>{props.email}</td>
-      <td>{moment(props.birthDate).utc().format("MM-DD-YYYY")}</td>
+      <td>{props.birthDate
+                ?   
+                moment(props.birthDate)
+                  .utc()
+                  .format("MM-DD-YYYY")
+                : ""}</td>
       <td>{props.relationship}</td>
       <td className="center-align"> {props.go}</td>
       <td className="center-align">{props.delete}</td>
