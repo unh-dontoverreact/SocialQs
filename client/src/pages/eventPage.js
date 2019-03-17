@@ -53,17 +53,9 @@ class EventPage extends Component {
     } else
       return (
         <div>
+         {this.showNavbar()}
           <Container>
             <Row>
-              <Col>
-                {this.showNavbar()}
-                {/* <Sidebar
-                  user={this.props.user}
-                  handlers={this.props.handlers}
-                  events={this.props.user.events}
-                  date={this.state.date}
-                /> */}
-              </Col>
               <Col>
                 <EventList
                   user={this.props.user}
