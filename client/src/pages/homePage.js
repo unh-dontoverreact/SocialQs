@@ -266,8 +266,17 @@ class HomePage extends Component {
               </div>
             </div>
             <div className="section">
-              <div className="card homepage-display ">
-                <div className="card-content">
+              <div className="card  ">
+              <div className="card-image img-container">
+                  <img className="contacts-img"
+                    src="/assets/images/purple-sky.jpg"
+                    alt="contact header"
+                  />
+                  <span className="card-title white-text center-align">
+                    Upcoming Events 
+                  </span>
+                </div>
+                <div className="card-content homepage-display">
                   <Row>
                     <EventList
                       user={this.props.user}

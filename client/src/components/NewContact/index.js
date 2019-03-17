@@ -109,6 +109,7 @@ const NewContact = props => (
             id="relationship"
             onChange={props.handleInputChange}
           >
+            <option > </option>
             <option value="Family">Family</option>
             <option value="Friend">Friend</option>
             <option value="Co-Worker">Co-Worker</option>

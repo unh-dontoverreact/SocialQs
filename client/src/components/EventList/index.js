@@ -117,7 +117,7 @@ export class EventList extends React.Component {
   render() {
     return (
       <div id="eventSection">
-        <h4 className="center-align">Upcoming Events</h4>
+       
         <Row>
           <Col l={9} />
           <Col l={2}>
