@@ -122,13 +122,9 @@ class ContactDisplayPage extends Component {
     } else {
       return (
         <div>
+          {this.showNavbar()}
           <Container>
             <Row>
-              <Col size="s3">
-                {this.showNavbar()}
-                {/* <Sidebar user={this.props.user} /> */}
-              </Col>
-
               <Col size="s9">
                 <div className="right-align">
                   <ContactUpdateModal

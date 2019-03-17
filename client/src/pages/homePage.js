@@ -197,11 +197,11 @@ class HomePage extends Component {
     } else {
       return (
         <div>
+         {this.showNavbar()}
           <Container>
             <div className="section">
               <div className="card-content homepage-display">
                 <Row>
-                  <Col l={2}>{this.showNavbar()}</Col>
                   <Col l={2}>
                     <button
                       className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
@@ -210,7 +210,7 @@ class HomePage extends Component {
                       Search <Icon>search</Icon>
                     </button>
                   </Col>
-                  <Col l={5}>
+                  <Col l={7}>
                     <ContactSearch
                       contactOptions={this.state.contacts}
                       test={this.test}

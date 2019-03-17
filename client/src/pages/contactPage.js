@@ -192,11 +192,11 @@ class ContactPage extends Component {
     } else {
       return (
         <div>
+         {this.showNavbar()}
+         {/* <Sidebar user={this.props.user} /> */}
           <Container>
             <div className="row">
               <Col size="s1">
-                {this.showNavbar()}
-                {/* <Sidebar user={this.props.user} /> */}
               </Col>
               <div className="row">
                 <div className="col s4">
