@@ -55,6 +55,10 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     box-shadow:0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
 }
 
+.contacts-img {
+    margin-top: -150px;
+}
+
 .contactDisplay-display,
  .contact-display,
 .event-display 
