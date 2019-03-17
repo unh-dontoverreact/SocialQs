@@ -42,11 +42,12 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     box-shadow:0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22)
 }
 
+.contactDisplay-display,
 .contact-display,
 .event-display {
   height: 100%;
   padding: 20px;
-  margin: 20px;
+  margin: 0px;
   transition: 0.3s;
   background-color: #dddddd !important;
   color: black;

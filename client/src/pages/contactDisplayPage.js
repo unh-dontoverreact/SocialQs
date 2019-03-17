@@ -123,99 +123,104 @@ class ContactDisplayPage extends Component {
       return (
         <div>
           <Container>
-            <Row>
-              <Col size="s3">
-                {this.showNavbar()}
-                {/* <Sidebar user={this.props.user} /> */}
-              </Col>
+            <div className="section">
+              <div className="card-content contactDisplay-display">
+                <Row>
+                  <Col size="s3">
+                    {this.showNavbar()}
+                    {/* <Sidebar user={this.props.user} /> */}
+                  </Col>
 
-              <Col size="s9">
-                <div className="right-align">
-                  <ContactUpdateModal
-                    userID={this.props.contactChosen.userID}
-                    loadUpdatedContact={this.loadUpdatedContact}
-                    contactID={this.props.contactChosen._id}
-                    firstName={this.props.contactChosen.firstName}
-                    lastName={this.props.contactChosen.lastName}
-                    email={this.props.contactChosen.email}
-                    birthDate={this.props.contactChosen.birthDate}
-                    address={this.props.contactChosen.address}
-                    occupation={this.props.contactChosen.occupation}
-                    hobbies={this.props.contactChosen.hobbies}
-                    notes={this.props.contactChosen.notes}
-                  />
-                </div>
-                <Table>
-                  <thead>
-                    <tr>
-                      <th data-field="field">Field</th>
-                      <th data-field="value">Contact Value</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Name</td>
-                      <td>
-                        {" "}
-                        {this.props.contactChosen.firstName +
-                          " " +
-                          this.props.contactChosen.lastName}{" "}
-                      </td>
-                    </tr>
+                  <Col size="s9">
+                    <div className="right-align">
+                      <ContactUpdateModal
+                        userID={this.props.contactChosen.userID}
+                        loadUpdatedContact={this.loadUpdatedContact}
+                        contactID={this.props.contactChosen._id}
+                        firstName={this.props.contactChosen.firstName}
+                        lastName={this.props.contactChosen.lastName}
+                        email={this.props.contactChosen.email}
+                        birthDate={this.props.contactChosen.birthDate}
+                        address={this.props.contactChosen.address}
+                        occupation={this.props.contactChosen.occupation}
+                        hobbies={this.props.contactChosen.hobbies}
+                        notes={this.props.contactChosen.notes}
+                      />
+                    </div>
+                    <Table>
+                      <thead>
+                        <tr>
+                          <th data-field="field">Field</th>
+                          <th data-field="value">Contact Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Name</td>
+                          <td>
+                            {" "}
+                            {this.props.contactChosen.firstName +
+                              " " +
+                              this.props.contactChosen.lastName}{" "}
+                          </td>
+                        </tr>
 
-                    <tr>
-                      <td>Email</td>
-                      <td>{this.props.contactChosen.email}</td>
-                    </tr>
-                    <tr>
-                      <td>Birthday</td>
-                      <td>
-                        {" "}
-                        {moment(this.props.contactChosen.birthDate)
-                          .utc()
-                          .format("MM-DD-YYYY")}
-                      </td>
-                    </tr>
+                        <tr>
+                          <td>Email</td>
+                          <td>{this.props.contactChosen.email}</td>
+                        </tr>
+                        <tr>
+                          <td>Birthday</td>
+                          <td>
+                            {" "}
+                            {moment(this.props.contactChosen.birthDate)
+                              .utc()
+                              .format("MM-DD-YYYY")}
+                          </td>
+                        </tr>
 
-                    <tr>
-                      <td>Address</td>
-                      <td>{this.props.contactChosen.address}</td>
-                    </tr>
+                        <tr>
+                          <td>Address</td>
+                          <td>{this.props.contactChosen.address}</td>
+                        </tr>
 
-                    <tr>
-                      <td>Occupation</td>
-                      <td>{this.props.contactChosen.occupation}</td>
-                    </tr>
-                    <tr>
-                      <td>Hobbies</td>
-                      <td>{this.props.contactChosen.hobbies}</td>
-                    </tr>
-                    <tr>
-                      <td>Notes</td>
-                      <td>{this.props.contactChosen.notes}</td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </Col>
-            </Row>
-            <Row>
-              <h3> Events </h3>
-            </Row>
-            <Row>
-              <Card>
-                <tbody
-                  user={this.props.user}
-                  handlers={this.props.eventHandlers}
-                  refreshUser={this.props.refreshUser}
-                >
-                  {this.renderEventList()}
-                </tbody>
-              </Card>
-            </Row>
+                        <tr>
+                          <td>Occupation</td>
+                          <td>{this.props.contactChosen.occupation}</td>
+                        </tr>
+                        <tr>
+                          <td>Hobbies</td>
+                          <td>{this.props.contactChosen.hobbies}</td>
+                        </tr>
+                        <tr>
+                          <td>Notes</td>
+                          <td>{this.props.contactChosen.notes}</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
+                </Row>
+                <Row>
+                  <h3> Events </h3>
+                </Row>
+                <Row>
+                  <Card>
+                    <tbody
+                      user={this.props.user}
+                      handlers={this.props.eventHandlers}
+                      refreshUser={this.props.refreshUser}
+                    >
+                      {this.renderEventList()}
+                    </tbody>
+                  </Card>
+                </Row>
+              </div>
+            </div>
           </Container>
         </div>
       );
     }
   }
 }
+
 export default ContactDisplayPage;

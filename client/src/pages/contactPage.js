@@ -193,7 +193,6 @@ class ContactPage extends Component {
       return (
         <div>
           <Container>
-<<<<<<< HEAD
             <div className="section">
               <div className="card-content contact-display">
                 <div className="row">
@@ -209,60 +208,45 @@ class ContactPage extends Component {
                         {" "}
                         Search{" "}
                       </button>
-=======
-            <div className="row">
-              <Col size="s1">
-                {this.showNavbar()}
-                {/* <Sidebar user={this.props.user} /> */}
-              </Col>
-              <div className="row">
-                <div className="col s4">
-                  <button
-                    className="login-button white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4"
-                    onClick={this.displaySearchedContacts}
-                  >
-                    {" "}
-                    Search{" "}
-                  </button>
->>>>>>> 1685ec1e25f141e75557dbcb595778f9698c89ee
 
-                      <ContactSearch
-                        contactOptions={this.state.contacts}
-                        test={this.test}
-                      />
+                            <ContactSearch
+                              contactOptions={this.state.contacts}
+                              test={this.test}
+                            />
+                          </div>
+
+                          <div className=" offset-s8 col s2  ">
+                            <Link
+                              to={"/contacts/addnew"}
+                              onClick={this.props.launchContactDisplay}
+                            >
+                              <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
+                                Add a Contact
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
+                        <ContactGroups
+                          displayGroup={this.displayGroup}
+                          displayAllContacts={this.displayAllContacts}
+                          hideAllContacts={this.hideAllContacts}
+                        />
+
+                        <ContactList
+                          user={this.props.user}
+                          filter={this.state.filter}
+                          setContact={this.setContact}
+                          deleteContact={this.deleteContact}
+                          pages={this.state.pages}
+                        />
+                      </div>
                     </div>
-
-                    <div className=" offset-s8 col s2  ">
-                      <Link
-                        to={"/contacts/addnew"}
-                        onClick={this.props.launchContactDisplay}
-                      >
-                        <button className=" white-text z-depth-5 waves-effect waves-light btn #4a148c purple darken-4">
-                          Add a Contact
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                  <ContactGroups
-                    displayGroup={this.displayGroup}
-                    displayAllContacts={this.displayAllContacts}
-                    hideAllContacts={this.hideAllContacts}
-                  />
-
-                  <ContactList
-                    user={this.props.user}
-                    filter={this.state.filter}
-                    setContact={this.setContact}
-                    deleteContact={this.deleteContact}
-                    pages={this.state.pages}
-                  />
-                </div>
               </div>
-            </div>
           </Container>
         </div>
       );
     }
   }
 }
+
 export default ContactPage;

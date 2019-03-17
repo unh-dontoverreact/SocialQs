@@ -5,8 +5,6 @@ import { EventList } from "../components/EventList";
 import { Redirect } from "react-router-dom";
 
 class EventPage extends Component {
-<<<<<<< HEAD
-=======
   state = {
     showNavbar: false,
     date: [{ date: new Date() }],
@@ -49,7 +47,6 @@ class EventPage extends Component {
       );
     }
   };
->>>>>>> 1685ec1e25f141e75557dbcb595778f9698c89ee
   render() {
     if (this.props.user.firstName === "George") {
       return <Redirect to={{ pathname: "/landing" }} />;
@@ -57,7 +54,6 @@ class EventPage extends Component {
       return (
         <div>
           <Container>
-<<<<<<< HEAD
             <div className="section">
               <div className="card-content event-display">
                 <Row>
@@ -77,26 +73,6 @@ class EventPage extends Component {
                 </Row>
               </div>
             </div>
-=======
-            <Row>
-              <Col>
-                {this.showNavbar()}
-                {/* <Sidebar
-                  user={this.props.user}
-                  handlers={this.props.handlers}
-                  events={this.props.user.events}
-                  date={this.state.date}
-                /> */}
-              </Col>
-              <Col>
-                <EventList
-                  user={this.props.user}
-                  handlers={this.props.eventHandlers}
-                  refreshUser={this.props.refreshUser}
-                />
-              </Col>
-            </Row>
->>>>>>> 1685ec1e25f141e75557dbcb595778f9698c89ee
           </Container>
         </div>
       );
