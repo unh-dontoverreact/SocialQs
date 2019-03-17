@@ -55,6 +55,7 @@ class EventPage extends Component {
         <div>
          {this.showNavbar()}
           <Container>
+          <div className="card-content event-display">
             <Row>
               <Col>
                 <EventList
@@ -64,6 +65,7 @@ class EventPage extends Component {
                 />
               </Col>
             </Row>
+            </div>
           </Container>
         </div>
       );

@@ -169,7 +169,7 @@ class Sidebar extends Component {
                   this.state.selectedDay.toLocaleString().split(",")[0]
                 : "Select a highlighted date to view events"}
             </div>
-            <div>
+            <div className = "calendar-prompt">
               {this.state.selectedEvents
                 ? "Events :" + this.state.selectedEvents
                 : ""}

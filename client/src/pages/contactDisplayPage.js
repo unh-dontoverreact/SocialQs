@@ -124,6 +124,7 @@ class ContactDisplayPage extends Component {
         <div>
           {this.showNavbar()}
           <Container>
+            <div className="card-content contactDisplay-display">
             <Row>
               <Col size="s9">
                 <div className="right-align">
@@ -141,7 +142,7 @@ class ContactDisplayPage extends Component {
                     notes={this.props.contactChosen.notes}
                   />
                 </div>
-                <Table>
+                <Table className="Display-Contact-Table">
                   <thead>
                     <tr>
                       <th data-field="field">Field</th>
@@ -166,10 +167,13 @@ class ContactDisplayPage extends Component {
                     <tr>
                       <td>Birthday</td>
                       <td>
-                        {" "}
-                        {moment(this.props.contactChosen.birthDate)
-                          .utc()
-                          .format("MM-DD-YYYY")}
+                      
+                           {this.props.contactChosen.birthDate
+                ?   
+                moment(this.props.contactChosen.birthDate)
+                  .utc()
+                  .format("MM-DD-YYYY")
+                : ""}
                       </td>
                     </tr>
 
@@ -208,6 +212,7 @@ class ContactDisplayPage extends Component {
                 </tbody>
               </Card>
             </Row>
+            </div>
           </Container>
         </div>
       );
