@@ -224,10 +224,16 @@ class HomePage extends Component {
             </div>
             <div className="section">
               <div className="card">
-                <div className="card-content homepage-display">
-                  <span className="card-title black-text center-align">
-                    <h4>Contacts ({this.props.user.contacts.length})</h4>
+                <div className="card-image img-container">
+                  <img className="contacts-img"
+                    src="/assets/images/purple-sky.jpg"
+                    alt="contact header"
+                  />
+                  <span className="card-title white-text center-align">
+                    Contacts ({this.props.user.contacts.length})
                   </span>
+                </div>
+                <div className="card-content homepage-display">
                   <Row>
                     <Col l={9}>
                       <ContactGroups
